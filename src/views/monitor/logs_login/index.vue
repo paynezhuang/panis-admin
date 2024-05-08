@@ -32,13 +32,13 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
       key: 'userName',
       title: $t('page.monitor.logs.login.userName'),
       align: 'center',
-      minWidth: 100
+      width: 100
     },
     {
       key: 'userRealName',
       title: $t('page.monitor.logs.login.userRealName'),
       align: 'center',
-      minWidth: 100
+      width: 100
     },
     {
       key: 'status',
@@ -59,7 +59,7 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
       key: 'ip',
       title: $t('page.monitor.logs.login.ip'),
       align: 'center',
-      width: 100
+      width: 120
     },
     {
       key: 'ipAddr',
