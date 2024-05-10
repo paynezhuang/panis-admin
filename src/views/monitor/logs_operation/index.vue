@@ -61,7 +61,7 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
       key: 'createUser',
       title: $t('page.monitor.logs.operation.createUser'),
       align: 'center',
-      width: 100
+      width: 140
     },
     {
       key: 'createTime',
@@ -73,7 +73,7 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
       key: 'ip',
       title: $t('page.monitor.logs.operation.ip'),
       align: 'center',
-      width: 100
+      width: 140
     },
     {
       key: 'ipAddr',

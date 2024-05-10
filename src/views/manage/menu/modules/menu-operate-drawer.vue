@@ -293,6 +293,9 @@ watch(
           <NFormItemGi span="24" :label="$t('page.manage.menu.routePath')" path="routePath">
             <NInput v-model:value="model.routePath" :placeholder="$t('page.manage.menu.form.routePath')" />
           </NFormItemGi>
+          <NFormItemGi span="24" :label="$t('page.manage.menu.pathParam')" path="pathParam">
+            <NInput v-model:value="model.pathParam" :placeholder="$t('page.manage.menu.form.pathParam')" />
+          </NFormItemGi>
           <NFormItemGi v-if="showLayout" span="24" :label="$t('page.manage.menu.layout')" path="layout">
             <NSelect v-model:value="model.layout" :options="layoutOptions" :placeholder="$t('page.manage.menu.form.layout')" />
           </NFormItemGi>
