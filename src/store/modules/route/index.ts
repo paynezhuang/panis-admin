@@ -183,14 +183,15 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     addConstantRoutes(staticRoute.constantRoutes);
 
     // if (authRouteMode.value === 'static') {
-    //   const staticRoute = createStaticRoutes();
-
     //   addConstantRoutes(staticRoute.constantRoutes);
     // } else {
     //   const { data, error } = await fetchGetConstantRoutes();
 
     //   if (!error) {
     //     addConstantRoutes(data);
+    //   } else {
+    //     // if fetch constant routes failed, use static constant routes
+    //     addConstantRoutes(staticRoute.constantRoutes);
     //   }
     // }
 
