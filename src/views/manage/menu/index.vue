@@ -182,7 +182,7 @@ init(null);
             <NDescriptionsItem :label="$t('page.manage.menu.i18nKey')">{{ showData.i18nKey }}</NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.routeName')">{{ showData.routeName }}</NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.routePath')">{{ showData.routePath }}</NDescriptionsItem>
-            <NDescriptionsItem :label="$t('page.manage.menu.hide')">
+            <NDescriptionsItem :label="$t('page.manage.menu.hideInMenu')">
               <NTag :type="yesOrNoTag[showData.hide]">{{ $t(yesOrNoRecord[showData.hide]) }}</NTag>
             </NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.keepAlive')">

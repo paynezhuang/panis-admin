@@ -68,6 +68,7 @@ function createDefaultModel(): Model {
     routeName: '',
     routePath: '',
     pathParam: '',
+    component: '',
     icon: '',
     iconType: '1',
     layout: '',
@@ -267,6 +268,9 @@ watch(
           <NFormItemGi span="24" :label="$t('page.manage.menu.name')" path="name">
             <NInput v-model:value="model.name" :placeholder="$t('page.manage.menu.form.name')" />
           </NFormItemGi>
+          <NFormItemGi span="24" :label="$t('page.manage.menu.routeName')" path="routeName">
+            <NInput v-model:value="model.routeName" :placeholder="$t('page.manage.menu.form.routeName')" />
+          </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.i18nKey')" path="i18nKey">
             <NInput v-model:value="model.i18nKey" :placeholder="$t('page.manage.menu.form.i18nKey')" />
           </NFormItemGi>
@@ -287,20 +291,17 @@ watch(
               <NSelect v-model:value="model.icon" :placeholder="$t('page.manage.menu.form.localIcon')" :options="localIconOptions" />
             </template>
           </NFormItemGi>
-          <NFormItemGi span="24" :label="$t('page.manage.menu.routeName')" path="routeName">
-            <NInput v-model:value="model.routeName" :placeholder="$t('page.manage.menu.form.routeName')" />
-          </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.routePath')" path="routePath">
             <NInput v-model:value="model.routePath" :placeholder="$t('page.manage.menu.form.routePath')" />
-          </NFormItemGi>
-          <NFormItemGi span="24" :label="$t('page.manage.menu.pathParam')" path="pathParam">
-            <NInput v-model:value="model.pathParam" :placeholder="$t('page.manage.menu.form.pathParam')" />
           </NFormItemGi>
           <NFormItemGi v-if="showLayout" span="24" :label="$t('page.manage.menu.layout')" path="layout">
             <NSelect v-model:value="model.layout" :options="layoutOptions" :placeholder="$t('page.manage.menu.form.layout')" />
           </NFormItemGi>
           <NFormItemGi v-if="showPage" span="24" :label="$t('page.manage.menu.page')" path="page">
             <NSelect v-model:value="model.page" :options="pageOptions" :placeholder="$t('page.manage.menu.form.page')" />
+          </NFormItemGi>
+          <NFormItemGi span="24" :label="$t('page.manage.menu.pathParam')" path="pathParam">
+            <NInput v-model:value="model.pathParam" :placeholder="$t('page.manage.menu.form.pathParam')" />
           </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.href')" path="href">
             <NInput v-model:value="model.href" :placeholder="$t('page.manage.menu.form.href')" />
