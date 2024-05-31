@@ -34,7 +34,12 @@ interface Props {
 
 const props = defineProps<Props>();
 
-type Model = Api.SystemManage.MenuEdit;
+type Model = Api.SystemManage.MenuEdit & {
+  query: NonNullable<Api.SystemManage.Menu['query']>;
+  layout: string;
+  page: string;
+  pathParam: string;
+};
 
 interface Emits {
   (e: 'submitted', data: Model): void;
@@ -201,11 +206,11 @@ function getSubmitParams() {
 async function handleSubmit() {
   await validate();
 
-  getSubmitParams();
+  const params = getSubmitParams();
 
   // request
   const func = isEdit.value ? fetchUpdateMenuInfo : fetchAddMenu;
-  const { error, data } = await func(model);
+  const { error, data } = await func(params);
   if (!error && data) {
     window.$message?.success(isEdit.value ? $t('common.updateSuccess') : $t('common.addSuccess'));
     closeDrawer();

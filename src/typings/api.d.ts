@@ -249,12 +249,7 @@ declare namespace Api {
       | 'multiTab'
       | 'activeMenu'
       | 'fixedIndexInTab'
-    > & {
-      query: NonNullable<Api.SystemManage.Menu['query']>;
-      layout: string;
-      page: string;
-      pathParam: string;
-    };
+    >;
 
     /** menu list */
     type MenuList = Common.PaginatingQueryRecord<Menu>;
