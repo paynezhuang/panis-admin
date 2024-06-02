@@ -201,6 +201,8 @@ const routeMap: RouteMap = {
   "monitor_logs_error": "/monitor/logs/error",
   "monitor_logs_login": "/monitor/logs/login",
   "monitor_logs_operation": "/monitor/logs/operation",
+  "monitor_logs_scheduler": "/monitor/logs/scheduler",
+  "monitor_scheduler": "/monitor/scheduler",
   "monitor_system": "/monitor/system",
   "multi-menu": "/multi-menu",
   "multi-menu_first": "/multi-menu/first",

@@ -57,6 +57,8 @@ declare module "@elegant-router/types" {
     "monitor_logs_error": "/monitor/logs/error";
     "monitor_logs_login": "/monitor/logs/login";
     "monitor_logs_operation": "/monitor/logs/operation";
+    "monitor_logs_scheduler": "/monitor/logs/scheduler";
+    "monitor_scheduler": "/monitor/scheduler";
     "monitor_system": "/monitor/system";
     "multi-menu": "/multi-menu";
     "multi-menu_first": "/multi-menu/first";
@@ -161,6 +163,8 @@ declare module "@elegant-router/types" {
     | "monitor_logs_error"
     | "monitor_logs_login"
     | "monitor_logs_operation"
+    | "monitor_logs_scheduler"
+    | "monitor_scheduler"
     | "monitor_system"
     | "multi-menu_first_child"
     | "multi-menu_second_child_home"

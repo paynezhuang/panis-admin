@@ -245,7 +245,7 @@ export function getNaiveTheme(colors: App.Theme.ThemeColor, recommended = false)
   const theme: GlobalThemeOverrides = {
     common: {
       ...getNaiveThemeColors(colors, recommended),
-      borderRadius: '4px'
+      borderRadius: '6px'
     },
     Card: {
       paddingSmall: '8px'
@@ -256,8 +256,14 @@ export function getNaiveTheme(colors: App.Theme.ThemeColor, recommended = false)
     LoadingBar: {
       colorLoading
     },
+    Dialog: {
+      padding: '8px',
+      closeMargin: '12px 8px 0 0',
+      actionSpace: '8px',
+      iconSize: '18px'
+    },
     Tag: {
-      borderRadius: '4px'
+      borderRadius: '6px'
     }
   };
 

@@ -114,7 +114,7 @@ watch(visible, () => {
       </NForm>
       <template #footer>
         <NSpace>
-          <NButton @click="closeDrawer">{{ $t('common.cancel') }}</NButton>
+          <NButton quaternary @click="closeDrawer">{{ $t('common.cancel') }}</NButton>
           <NButton type="primary" @click="handleSubmit">{{ $t('common.confirm') }}</NButton>
         </NSpace>
       </template>

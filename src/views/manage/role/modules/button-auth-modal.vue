@@ -88,7 +88,7 @@ watch(visible, () => {
     </NCheckboxGroup>
     <template #footer>
       <NSpace justify="end">
-        <NButton size="small" @click="closeModal">
+        <NButton size="small" quaternary @click="closeModal">
           {{ $t('common.cancel') }}
         </NButton>
         <NButton type="primary" size="small" @click="handleSubmit">

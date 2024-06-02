@@ -1,23 +1,24 @@
 <script setup lang="tsx">
-import { NCard, NSpace, NText } from 'naive-ui';
+import { NCard, NSpace, NTag, NText } from 'naive-ui';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
-import { fetchGetOperationLogList } from '@/service/api';
-import LogsOperationSearch from './modules/operation-search.vue';
+import { fetchGetSchedulerLogList } from '@/service/api';
+import { logsSchedulerStatusRecord, logsSchedulerStatusTag } from '@/constants/business';
+import LogsSchedulerSearch from './modules/scheduler-search.vue';
 
 defineOptions({
-  name: 'MonitorLogsOperation'
+  name: 'MonitorLogsScheduler'
 });
 
 const appStore = useAppStore();
 
 const { columns, columnChecks, data, loading, getData, mobilePagination, searchParams, resetSearchParams } = useTable({
-  apiFn: fetchGetOperationLogList,
+  apiFn: fetchGetSchedulerLogList,
   apiParams: {
     page: 1,
     pageSize: 20,
-    createUser: null
+    jobName: null
   },
   columns: () => [
     {
@@ -33,84 +34,70 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
         return (
           <NSpace vertical>
             <NText>
-              {$t('page.monitor.logs.operation.ip')}: {rowData.ip}
+              {$t('page.monitor.logs.scheduler.exceptionMessage')}: {rowData.exceptionMessage}
             </NText>
             <NText>
-              {$t('page.monitor.logs.operation.ipAddr')}: {rowData.ipAddr}
+              {$t('page.monitor.logs.scheduler.line')}: {rowData.line}
             </NText>
             <NText>
-              {$t('page.monitor.logs.operation.requestId')}: {rowData.requestId}
+              {$t('page.monitor.logs.scheduler.exceptionClass')}: {rowData.exceptionClass}
             </NText>
             <NText>
-              {$t('page.monitor.logs.operation.userAgent')}: {rowData.userAgent}
-            </NText>
-            <NText>
-              {$t('page.monitor.logs.operation.requestUri')}: {rowData.requestUri}
-            </NText>
-            <NText>
-              {$t('page.monitor.logs.operation.contentType')}: {rowData.contentType}
-            </NText>
-            <NText>
-              {$t('page.monitor.logs.operation.methodParams')}: {rowData.methodParams}
+              {$t('page.monitor.logs.scheduler.stackTrace')}: {rowData.stackTrace}
             </NText>
           </NSpace>
         );
       }
     },
     {
-      key: 'createUser',
-      title: $t('page.monitor.logs.operation.createUser'),
-      align: 'center',
-      width: 140
-    },
-    {
       key: 'createTime',
-      title: $t('page.monitor.logs.operation.createTime'),
+      title: $t('page.monitor.logs.scheduler.createTime'),
       align: 'center',
+      minWidth: 200,
       width: 200
     },
     {
-      key: 'ip',
-      title: $t('page.monitor.logs.operation.ip'),
+      key: 'status',
+      title: $t('page.monitor.logs.scheduler.status'),
       align: 'center',
-      width: 140
+      minWidth: 100,
+      render: row => {
+        if (row.status === null) {
+          return null;
+        }
+
+        const label = $t(logsSchedulerStatusRecord[row.status]);
+
+        return <NTag type={logsSchedulerStatusTag[row.status]}>{label}</NTag>;
+      }
     },
     {
-      key: 'ipAddr',
-      title: $t('page.monitor.logs.operation.ipAddr'),
+      key: 'useTime',
+      title: $t('page.monitor.logs.scheduler.useTime'),
       align: 'center',
-      width: 200,
+      width: 100
+    },
+    {
+      key: 'jobName',
+      title: $t('page.monitor.logs.scheduler.jobName'),
+      align: 'center',
+      minWidth: 140,
       ellipsis: {
         tooltip: true
       }
     },
     {
-      key: 'requestUri',
-      title: $t('page.monitor.logs.operation.requestUri'),
+      key: 'jobGroup',
+      title: $t('page.monitor.logs.scheduler.jobGroup'),
       align: 'center',
-      width: 200,
+      minWidth: 200,
       ellipsis: {
         tooltip: true
       }
     },
     {
-      key: 'requestMethod',
-      title: $t('page.monitor.logs.operation.requestMethod'),
-      align: 'center',
-      width: 80
-    },
-    {
-      key: 'methodName',
-      title: $t('page.monitor.logs.operation.methodName'),
-      align: 'center',
-      width: 200,
-      ellipsis: {
-        tooltip: true
-      }
-    },
-    {
-      key: 'operation',
-      title: $t('page.monitor.logs.operation.operation'),
+      key: 'exceptionMessage',
+      title: $t('page.monitor.logs.scheduler.exceptionMessage'),
       align: 'center',
       width: 250,
       ellipsis: {
@@ -118,8 +105,17 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
       }
     },
     {
-      key: 'useTime',
-      title: $t('page.monitor.logs.operation.useTime'),
+      key: 'exceptionClass',
+      title: $t('page.monitor.logs.scheduler.exceptionClass'),
+      align: 'center',
+      width: 250,
+      ellipsis: {
+        tooltip: true
+      }
+    },
+    {
+      key: 'line',
+      title: $t('page.monitor.logs.scheduler.line'),
       align: 'center',
       width: 100
     }
@@ -131,7 +127,7 @@ const { checkedRowKeys } = useTableOperate(data, getData);
 
 <template>
   <div class="min-h-500px flex-col-stretch gap-8px overflow-hidden lt-sm:overflow-auto">
-    <LogsOperationSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getData" />
+    <LogsSchedulerSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getData" />
     <NCard :bordered="false" class="sm:flex-1-hidden card-wrapper" content-class="flex-col">
       <TableHeaderOperation v-model:columns="columnChecks" :checked-row-keys="checkedRowKeys" :loading="loading" @refresh="getData" />
       <NDataTable

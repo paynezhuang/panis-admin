@@ -98,7 +98,7 @@ watch(visible, val => {
     <NTree v-model:checked-keys="checks" :data="tree" block-line expand-on-click checkable cascade />
     <template #footer>
       <NSpace justify="end">
-        <NButton @click="closeModal">
+        <NButton quaternary @click="closeModal">
           {{ $t('common.cancel') }}
         </NButton>
         <NButton type="primary" @click="handleSubmit">

@@ -254,6 +254,7 @@ declare namespace App {
       };
       common: {
         action: string;
+        actionSuccess: string;
         add: string;
         addSuccess: string;
         backToHome: string;
@@ -295,6 +296,10 @@ declare namespace App {
           yes: string;
           no: string;
         };
+        createUser: string;
+        createTime: string;
+        updateUser: string;
+        updateTime: string;
       };
       request: {
         logout: string;
@@ -767,6 +772,72 @@ declare namespace App {
               form: {
                 createUser: string;
               };
+            };
+            scheduler: {
+              jobName: string;
+              jobGroup: string;
+              useTime: string;
+              status: string;
+              createTime: string;
+              exceptionMessage: string;
+              exceptionClass: string;
+              line: string;
+              stackTrace: string;
+              executeStatus: {
+                success: string;
+                fail: string;
+              };
+              form: {
+                jobName: string;
+              };
+            };
+          };
+          scheduler: {
+            jobName: string;
+            jobGroup: string;
+            jobClassName: string;
+            description: string;
+            cronExpression: string;
+            jobData: string;
+            triggerName: string;
+            triggerGroup: string;
+            triggerDescription: string;
+            triggerData: string;
+            triggerState: string;
+            form: {
+              jobName: string;
+              jobGroup: string;
+              jobClassName: string;
+              description: string;
+              cronExpression: string;
+              jobDataKey: string;
+              jobDataValue: string;
+              triggerName: string;
+              triggerGroup: string;
+              triggerDescription: string;
+              triggerDataKey: string;
+              triggerDataValue: string;
+            };
+            addJob: string;
+            editJob: string;
+            ImmediateJob: string;
+            ImmediateSuccess: string;
+            pauseJob: string;
+            pauseJobGroup: string;
+            pauseSuccess: string;
+            pauseFail: string;
+            resumeJob: string;
+            resumeJobGroup: string;
+            resumeSuccess: string;
+            resumeFail: string;
+            confirmOperate: string;
+            triggerStates: {
+              waiting: string;
+              acquired: string;
+              executing: string;
+              paused: string;
+              blocked: string;
+              error: string;
             };
           };
         };

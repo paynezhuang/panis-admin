@@ -4,6 +4,7 @@ const local: App.I18n.Schema = {
   },
   common: {
     action: '操作',
+    actionSuccess: '操作成功',
     add: '新增',
     addSuccess: '添加成功',
     backToHome: '返回首页',
@@ -44,7 +45,11 @@ const local: App.I18n.Schema = {
     yesOrNo: {
       yes: '是',
       no: '否'
-    }
+    },
+    createUser: '创建用户',
+    createTime: '创建时间',
+    updateUser: '更新用户',
+    updateTime: '更新时间'
   },
   request: {
     logout: '请求失败后登出用户',
@@ -178,6 +183,8 @@ const local: App.I18n.Schema = {
     monitor_logs_login: '登录日志',
     monitor_logs_operation: '操作日志',
     monitor_logs_error: '错误日志',
+    monitor_logs_scheduler: '调度日志',
+    monitor_scheduler: '调度任务',
     'multi-menu': '多级菜单',
     'multi-menu_first': '菜单一',
     'multi-menu_first_child': '菜单一子菜单',
@@ -601,6 +608,72 @@ const local: App.I18n.Schema = {
           form: {
             createUser: '请填写操作用户'
           }
+        },
+        scheduler: {
+          jobName: '任务名称',
+          jobGroup: '任务组名',
+          useTime: '耗时(ms)',
+          status: '执行状态',
+          createTime: '执行时间',
+          exceptionMessage: '异常信息',
+          exceptionClass: '异常类名',
+          line: '异常行号',
+          stackTrace: '异常堆栈',
+          executeStatus: {
+            success: '执行成功',
+            fail: '执行失败'
+          },
+          form: {
+            jobName: '请选择任务名称'
+          }
+        }
+      },
+      scheduler: {
+        jobName: '任务名称',
+        jobGroup: '任务组名',
+        jobClassName: '任务类名',
+        description: '任务描述',
+        cronExpression: 'cron 表达式',
+        jobData: '任务参数',
+        triggerName: '触发器名称',
+        triggerGroup: '触发器组名',
+        triggerDescription: '触发器描述',
+        triggerData: '触发器参数',
+        triggerState: '状态',
+        form: {
+          jobName: '请输入任务名称',
+          jobGroup: '请输入任务组名',
+          jobClassName: '请输入任务类名',
+          description: '请输入任务描述',
+          cronExpression: '请输入 cron 表达式',
+          jobDataKey: '请输入任务参数Key',
+          jobDataValue: '请输入任务参数Value',
+          triggerName: '请输入触发器名称',
+          triggerGroup: '请输入触发器组名',
+          triggerDescription: '请输入触发器描述',
+          triggerDataKey: '请输入触发器参数Key',
+          triggerDataValue: '请输入触发器参数Value'
+        },
+        addJob: '新增任务',
+        editJob: '编辑任务',
+        ImmediateJob: '立即执行',
+        ImmediateSuccess: '执行成功',
+        pauseJob: '暂停任务',
+        pauseJobGroup: '暂停任务组',
+        pauseSuccess: '暂停成功',
+        pauseFail: '暂停失败',
+        resumeJob: '恢复任务',
+        resumeJobGroup: '恢复任务组',
+        resumeSuccess: '恢复成功',
+        resumeFail: '恢复失败',
+        confirmOperate: '您确认{operation} : {name} ?',
+        triggerStates: {
+          waiting: '等待执行',
+          acquired: '准备执行',
+          executing: '执行中',
+          paused: '暂停',
+          blocked: '阻塞',
+          error: '错误'
         }
       }
     }

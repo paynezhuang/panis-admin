@@ -4,6 +4,7 @@ const local: App.I18n.Schema = {
   },
   common: {
     action: 'Action',
+    actionSuccess: 'Action Success',
     add: 'Add',
     addSuccess: 'Add Success',
     backToHome: 'Back to home',
@@ -44,7 +45,11 @@ const local: App.I18n.Schema = {
     yesOrNo: {
       yes: 'Yes',
       no: 'No'
-    }
+    },
+    createUser: 'Create User',
+    createTime: 'Create Time',
+    updateUser: 'Update User',
+    updateTime: 'Update Time'
   },
   request: {
     logout: 'Logout user after request failed',
@@ -178,6 +183,8 @@ const local: App.I18n.Schema = {
     monitor_logs_login: 'Login Logs',
     monitor_logs_operation: 'Operation Logs',
     monitor_logs_error: 'Error Logs',
+    monitor_logs_scheduler: 'Scheduler Logs',
+    monitor_scheduler: 'Scheduler',
     'multi-menu': 'Multi Menu',
     'multi-menu_first': 'Menu One',
     'multi-menu_first_child': 'Menu One Child',
@@ -601,6 +608,72 @@ const local: App.I18n.Schema = {
           form: {
             createUser: 'Please enter operation User'
           }
+        },
+        scheduler: {
+          jobName: 'Job Name',
+          jobGroup: 'Job Group',
+          useTime: 'Use Time(ms)',
+          status: 'Status',
+          createTime: 'Execute Time',
+          exceptionMessage: 'Exception Message',
+          exceptionClass: 'Exception Class',
+          line: 'Exceptioin Line',
+          stackTrace: 'Stack Trace',
+          executeStatus: {
+            success: 'Success',
+            fail: 'Fail'
+          },
+          form: {
+            jobName: 'Please select job name'
+          }
+        }
+      },
+      scheduler: {
+        jobName: 'Job Name',
+        jobGroup: 'Job Group',
+        jobClassName: 'Job Class Name',
+        description: 'Job Description',
+        cronExpression: 'Cron Expression',
+        jobData: 'Job Params',
+        triggerName: 'Trigger Name',
+        triggerGroup: 'Trigger Group',
+        triggerDescription: 'Trigger Description',
+        triggerData: 'Trigger Params',
+        triggerState: 'State',
+        form: {
+          jobName: 'Please enter job name',
+          jobGroup: 'Please enter job group',
+          jobClassName: 'Please enter job class name',
+          description: 'Please enter job description',
+          cronExpression: 'Please enter cron expression',
+          jobDataKey: 'Please enter job params key',
+          jobDataValue: 'Please enter job params value',
+          triggerName: 'Please enter trigger name',
+          triggerGroup: 'Please enter trigger group',
+          triggerDescription: 'Please enter trigger description',
+          triggerDataKey: 'Please enter trigger params key',
+          triggerDataValue: 'Please enter trigger params value'
+        },
+        addJob: 'Add Job',
+        editJob: 'Edit Job',
+        ImmediateJob: 'Immediate Job',
+        ImmediateSuccess: 'Immediate Success',
+        pauseJob: 'Pause Job',
+        pauseJobGroup: 'Pause Group Job',
+        pauseSuccess: 'Pause Success',
+        pauseFail: 'Pause Fail',
+        resumeJob: 'Resume Job',
+        resumeJobGroup: 'Resume Group Job',
+        resumeSuccess: 'Resume Success',
+        resumeFail: 'Resume Fail',
+        confirmOperate: 'Are You Confirm {operation} : {name} ?',
+        triggerStates: {
+          waiting: 'Waiting',
+          acquired: 'Acquired',
+          executing: 'Executing',
+          paused: 'Paused',
+          blocked: 'Blocked',
+          error: 'Error'
         }
       }
     }

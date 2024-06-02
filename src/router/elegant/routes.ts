@@ -320,8 +320,26 @@ export const generatedRoutes: GeneratedRoute[] = [
               title: 'monitor_logs_operation',
               i18nKey: 'route.monitor_logs_operation'
             }
+          },
+          {
+            name: 'monitor_logs_scheduler',
+            path: '/monitor/logs/scheduler',
+            component: 'view.monitor_logs_scheduler',
+            meta: {
+              title: 'monitor_logs_scheduler',
+              i18nKey: 'route.monitor_logs_scheduler'
+            }
           }
         ]
+      },
+      {
+        name: 'monitor_scheduler',
+        path: '/monitor/scheduler',
+        component: 'view.monitor_scheduler',
+        meta: {
+          title: 'monitor_scheduler',
+          i18nKey: 'route.monitor_scheduler'
+        }
       },
       {
         name: 'monitor_system',

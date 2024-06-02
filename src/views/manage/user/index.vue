@@ -192,7 +192,7 @@ function edit(id: string) {
 </script>
 
 <template>
-  <div class="min-h-500px flex-col-stretch gap-2 overflow-hidden lt-sm:overflow-auto">
+  <div class="min-h-500px flex-col-stretch gap-8px overflow-hidden lt-sm:overflow-auto">
     <UserSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getData" />
     <NCard :bordered="false" class="sm:flex-1-hidden card-wrapper" content-class="flex-col">
       <TableHeaderOperation
@@ -212,7 +212,7 @@ function edit(id: string) {
         size="small"
         class="sm:h-full"
         :data="data"
-        :scroll-x="1088"
+        :scroll-x="962"
         :columns="columns"
         :flex-height="!appStore.isMobile"
         :loading="loading"

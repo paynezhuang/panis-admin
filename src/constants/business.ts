@@ -60,3 +60,37 @@ export const logsLoginStatusTag: Record<Api.Monitor.LogsLoginStatus, NaiveUI.The
 };
 
 export const logsLoginStatusOptions = transformRecordToOption(logsLoginStatusRecord);
+
+/** monitor logs scheduler status */
+export const logsSchedulerStatusRecord: Record<Api.Monitor.SchedulerExecuteStatus, App.I18n.I18nKey> = {
+  FAIL: 'page.monitor.logs.scheduler.executeStatus.fail',
+  SUCCESS: 'page.monitor.logs.scheduler.executeStatus.success'
+};
+
+export const logsSchedulerStatusTag: Record<Api.Monitor.SchedulerExecuteStatus, NaiveUI.ThemeColor> = {
+  FAIL: 'error',
+  SUCCESS: 'success'
+};
+
+export const logsSchedulerStatusOptions = transformRecordToOption(logsSchedulerStatusRecord);
+
+/** monitor scheduler trigger state */
+export const schedulerTriggerStateRecord: Record<Api.Monitor.SchedulerTriggerState, App.I18n.I18nKey> = {
+  WAITING: 'page.monitor.scheduler.triggerStates.waiting',
+  ACQUIRED: 'page.monitor.scheduler.triggerStates.acquired',
+  EXECUTING: 'page.monitor.scheduler.triggerStates.executing',
+  PAUSED: 'page.monitor.scheduler.triggerStates.paused',
+  BLOCKED: 'page.monitor.scheduler.triggerStates.blocked',
+  ERROR: 'page.monitor.scheduler.triggerStates.error'
+};
+
+export const schedulerTriggerStateTag: Record<Api.Monitor.SchedulerTriggerState, NaiveUI.ThemeColor> = {
+  WAITING: 'success',
+  ACQUIRED: 'success',
+  EXECUTING: 'success',
+  PAUSED: 'error',
+  BLOCKED: 'error',
+  ERROR: 'error'
+};
+
+export const schedulerTriggerStateOptions = transformRecordToOption(schedulerTriggerStateRecord);

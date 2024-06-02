@@ -32,19 +32,19 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
       key: 'userName',
       title: $t('page.monitor.logs.login.userName'),
       align: 'center',
-      width: 140
+      minWidth: 140
     },
     {
       key: 'userRealName',
       title: $t('page.monitor.logs.login.userRealName'),
       align: 'center',
-      width: 100
+      minWidth: 100
     },
     {
       key: 'status',
       title: $t('page.monitor.logs.login.status'),
       align: 'center',
-      width: 100,
+      minWidth: 100,
       render: row => {
         if (row.status === null) {
           return null;
@@ -59,13 +59,13 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
       key: 'ip',
       title: $t('page.monitor.logs.login.ip'),
       align: 'center',
-      width: 140
+      minWidth: 140
     },
     {
       key: 'ipAddr',
       title: $t('page.monitor.logs.login.ipAddr'),
       align: 'center',
-      width: 200,
+      minWidth: 200,
       ellipsis: {
         tooltip: true
       }
@@ -118,7 +118,7 @@ const { checkedRowKeys } = useTableOperate(data, getData);
         size="small"
         class="sm:h-full"
         :data="data"
-        :scroll-x="702"
+        :scroll-x="962"
         :columns="columns"
         :flex-height="!appStore.isMobile"
         :loading="loading"

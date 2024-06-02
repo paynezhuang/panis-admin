@@ -2,6 +2,7 @@ import { computed, effectScope, onScopeDispose, reactive, ref, watch } from 'vue
 import type { Ref } from 'vue';
 import { type PaginationProps } from 'naive-ui';
 import { useBoolean, useHookTable } from '@sa/hooks';
+import { cloneDeep } from 'lodash-es';
 import { useAppStore } from '@/store/modules/app';
 import { $t } from '@/locales';
 type TableData = NaiveUI.TableData;
@@ -192,25 +193,56 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
   /** the editing row data */
   const editingData: Ref<T | null> = ref(null);
 
+  /** the checked row key of table */
+  const checkedRowKey: Ref<string> = ref('0');
+
+  /** the checked row keys of table */
+  const checkedRowKeys: Ref<string[]> = ref([]);
+
+  /** the checked row data of table */
+  const checkedRowData: Ref<T | null> = ref(null);
+
+  /** the checked row datas of table */
+  const checkedRowDatas: Ref<T[]> = ref([]);
+
+  /** Get data by id */
   function handleEdit(id: T['id']) {
     operateType.value = 'edit';
-    editingData.value = data.value.find(item => item.id === id) || null;
 
+    editingId.value = id;
+
+    const findItem = data.value.find(item => item.id === id) || null;
+    editingData.value = cloneDeep(findItem);
     openDrawer();
   }
 
   /** set row data id */
-  function handleId(id: T['id']) {
-    editingId.value = id;
+  function handleId(id?: T['id']) {
+    editingId.value = getTargetId(id);
+  }
+
+  /** set checked row data */
+  function handleCheckedRow() {
+    checkedRowKey.value = checkedRowKeys.value.length > 0 ? checkedRowKeys.value[0] : '0';
+    checkedRowData.value = data.value.find(item => item.id === checkedRowKey.value) || null;
+    checkedRowDatas.value = data.value.filter(item => checkedRowKeys.value.includes(item.id));
   }
 
   /** set row data */
-  function handleData(id: T['id']) {
-    editingData.value = data.value.find(item => item.id === id) || null;
+  function handleData(id?: T['id']) {
+    const targetId = getTargetId(id);
+    if (targetId === '0') {
+      editingData.value = null;
+      return;
+    }
+    const findItem = data.value.find(item => item.id === targetId) || null;
+    editingData.value = cloneDeep(findItem);
   }
 
-  /** the checked row keys of table */
-  const checkedRowKeys = ref<string[]>([]);
+  /** get the target id , If no ID is entered, retrieve the row key; otherwise, it is 0 */
+  function getTargetId(id?: string) {
+    return id ?? (checkedRowKeys.value.length > 0 ? checkedRowKeys.value[0] : '0');
+  }
 
   /** the hook after the batch delete operation is completed */
   async function onBatchDeleted() {
@@ -228,6 +260,15 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
     await getData();
   }
 
+  /** Remote operation is complete, displaying the message action. */
+  async function onMessage(message?: string, immediate: boolean = true) {
+    window.$message?.success(message || $t('common.actionSuccess'));
+
+    checkedRowKeys.value = [];
+
+    if (immediate) await getData();
+  }
+
   return {
     drawerVisible,
     openDrawer,
@@ -239,9 +280,14 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
     handleEdit,
     handleId,
     handleData,
+    checkedRowKey,
     checkedRowKeys,
+    checkedRowData,
+    checkedRowDatas,
+    handleCheckedRow,
     onBatchDeleted,
-    onDeleted
+    onDeleted,
+    onMessage
   };
 }
 
