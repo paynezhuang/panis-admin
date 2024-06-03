@@ -49,6 +49,7 @@ onMounted(() => {
             <NFormItemGi span="24 s:8 m:8" :label="$t('page.monitor.logs.scheduler.jobName')" path="jobName">
               <NSelect
                 v-model:value="model.jobName"
+                size="small"
                 clearable
                 filterable
                 :placeholder="$t('page.monitor.logs.scheduler.form.jobName')"
