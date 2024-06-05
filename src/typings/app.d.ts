@@ -820,8 +820,8 @@ declare namespace App {
             };
             addJob: string;
             editJob: string;
-            ImmediateJob: string;
-            ImmediateSuccess: string;
+            immediateJob: string;
+            immediateSuccess: string;
             pauseJob: string;
             pauseJobGroup: string;
             pauseSuccess: string;

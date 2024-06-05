@@ -1,24 +1,18 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
-import { computed } from 'vue';
+import { computed, h } from 'vue';
 import { useAppStore } from '@/store/modules/app';
 import { $t } from '@/locales';
 import { useTable, useTableOperate } from '@/hooks/common/table';
-import {
-  fetchDeleteScheduler,
-  fetchGetSchedulerList,
-  fetchImmediateJob,
-  fetchPauseJob,
-  fetchPauseJobGroup,
-  fetchResumeJob,
-  fetchResumeJobGroup
-} from '@/service/api';
+import { fetchDeleteScheduler, fetchGetSchedulerList } from '@/service/api';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
-import SvgIcon from '@/components/custom/svg-icon.vue';
 import { schedulerTriggerStateRecord, schedulerTriggerStateTag } from '@/constants/business';
+import SvgIcon from '@/components/custom/svg-icon.vue';
 import SchedulerSearch from './modules/scheduler-search.vue';
 import SchedulerOperateDrawer from './modules/scheduler-operate-drawer.vue';
+import type { OperateButton } from './modules/shared';
+import { getOperationConfig } from './modules/shared';
 
 defineOptions({
   name: 'MonScheduler'
@@ -180,13 +174,46 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
   ]
 });
 
+// operation buttons
+const buttons: OperateButton[] = [
+  {
+    type: 'immediate',
+    auth: 'mon:scheduler:immediate',
+    title: $t('page.monitor.scheduler.immediateJob'),
+    icon: () => h(SvgIcon, { icon: 'ic:baseline-play-arrow' })
+  },
+  {
+    type: 'pause',
+    auth: 'mon:scheduler:pause',
+    title: $t('page.monitor.scheduler.pauseJob'),
+    icon: () => h(SvgIcon, { icon: 'ic:baseline-pause' })
+  },
+  {
+    type: 'pauseGroup',
+    auth: 'mon:scheduler:pauseGroup',
+    title: $t('page.monitor.scheduler.pauseJobGroup'),
+    icon: () => h(SvgIcon, { icon: 'ic:baseline-pause-circle' })
+  },
+  {
+    type: 'resume',
+    auth: 'mon:scheduler:resume',
+    title: $t('page.monitor.scheduler.resumeJob'),
+    icon: () => h(SvgIcon, { icon: 'ic:baseline-wifi-protected-setup' })
+  },
+  {
+    type: 'resumeGroup',
+    auth: 'mon:scheduler:resumeGroup',
+    title: $t('page.monitor.scheduler.resumeJobGroup'),
+    icon: () => h(SvgIcon, { icon: 'ic:round-auto-awesome-motion' })
+  }
+];
+
 const {
   drawerVisible,
   operateType,
   editingData,
   handleAdd,
   handleEdit,
-  checkedRowKey,
   checkedRowKeys,
   checkedRowData,
   handleCheckedRow,
@@ -201,102 +228,23 @@ function edit(id: string) {
   handleEdit(id);
 }
 
-/** immediate job */
-function handleImmediateJob() {
+// handle operation
+function handleOperation(button: OperateButton) {
   handleCheckedRow();
+  // get config
+  const config = getOperationConfig(button, checkedRowData.value);
+  // show dialog
   window.$dialog?.warning({
-    title: $t('page.monitor.scheduler.ImmediateJob'),
-    icon: () => <SvgIcon icon="ic:baseline-play-arrow" />,
-    content: () =>
-      $t('page.monitor.scheduler.confirmOperate', { operation: $t('page.monitor.scheduler.ImmediateJob'), name: checkedRowData.value?.jobName }),
-    positiveText: $t('common.confirm'),
-    negativeText: $t('common.cancel'),
-    onPositiveClick: () => {
-      fetchImmediateJob(checkedRowKey.value).then(res => {
-        if (!res.error && res.data) {
-          onMessage($t('page.monitor.scheduler.ImmediateSuccess'));
-        }
-      });
-    }
-  });
-}
-
-/** pause job */
-function handlePauseJob() {
-  handleCheckedRow();
-  window.$dialog?.warning({
-    title: $t('page.monitor.scheduler.pauseJob'),
-    icon: () => <SvgIcon icon="ic:baseline-pause" />,
-    content: () =>
-      $t('page.monitor.scheduler.confirmOperate', { operation: $t('page.monitor.scheduler.pauseJob'), name: checkedRowData.value?.jobName }),
-    positiveText: $t('common.confirm'),
-    negativeText: $t('common.cancel'),
-    onPositiveClick: () => {
-      fetchPauseJob(checkedRowKey.value).then(res => {
-        if (!res.error && res.data) {
-          onMessage($t('page.monitor.scheduler.pauseSuccess'));
-        }
-      });
-    }
-  });
-}
-
-/** pause job group */
-function handlePauseJobGroup() {
-  handleCheckedRow();
-  window.$dialog?.warning({
-    title: $t('page.monitor.scheduler.pauseJobGroup'),
-    icon: () => <SvgIcon icon="ic:baseline-pause-circle" />,
-    content: () =>
-      $t('page.monitor.scheduler.confirmOperate', { operation: $t('page.monitor.scheduler.pauseJobGroup'), name: checkedRowData.value?.jobGroup }),
-    positiveText: $t('common.confirm'),
-    negativeText: $t('common.cancel'),
-    onPositiveClick: () => {
-      fetchPauseJobGroup(checkedRowKey.value).then(res => {
-        if (!res.error && res.data) {
-          onMessage($t('page.monitor.scheduler.pauseSuccess'));
-        }
-      });
-    }
-  });
-}
-
-/** resume job */
-function handleResumeJob() {
-  handleCheckedRow();
-  window.$dialog?.warning({
-    title: $t('page.monitor.scheduler.resumeJob'),
-    icon: () => <SvgIcon icon="ic:baseline-wifi-protected-setup" />,
-    content: () =>
-      $t('page.monitor.scheduler.confirmOperate', { operation: $t('page.monitor.scheduler.resumeJob'), name: checkedRowData.value?.jobName }),
-    positiveText: $t('common.confirm'),
-    negativeText: $t('common.cancel'),
-    onPositiveClick: () => {
-      fetchResumeJob(checkedRowKey.value).then(res => {
-        if (!res.error && res.data) {
-          onMessage($t('page.monitor.scheduler.resumeSuccess'));
-        }
-      });
-    }
-  });
-}
-
-/** resume job group */
-function handleResumeJobGroup() {
-  handleCheckedRow();
-  window.$dialog?.warning({
-    title: $t('page.monitor.scheduler.resumeJobGroup'),
-    icon: () => <SvgIcon icon="ic:round-auto-awesome-motion" />,
-    content: () =>
-      $t('page.monitor.scheduler.confirmOperate', { operation: $t('page.monitor.scheduler.resumeJobGroup'), name: checkedRowData.value?.jobGroup }),
-    positiveText: $t('common.confirm'),
-    negativeText: $t('common.cancel'),
-    onPositiveClick: () => {
-      fetchResumeJobGroup(checkedRowKey.value).then(res => {
-        if (!res.error && res.data) {
-          onMessage($t('page.monitor.scheduler.resumeSuccess'));
-        }
-      });
+    title: config.title,
+    icon: config.icon,
+    content: config.content,
+    positiveText: config.positiveText,
+    negativeText: config.negativeText,
+    onPositiveClick: async () => {
+      const res = await config.onPositiveClick();
+      if (!res.error && res.data) {
+        onMessage(config.message);
+      }
     }
   });
 }
@@ -333,35 +281,19 @@ async function handleBatchDelete() {
         @refresh="getData"
       >
         <template #suffix>
-          <NButton v-if="hasAuth('mon:scheduler:immediate')" size="small" ghost :disabled="hasCheckOne" @click="handleImmediateJob()">
+          <NButton
+            v-for="button in buttons"
+            :key="button.title"
+            :v-if="hasAuth(button.auth)"
+            size="small"
+            ghost
+            :disabled="hasCheckOne"
+            @click="handleOperation(button)"
+          >
             <template #icon>
-              <icon-ic:baseline-play-arrow class="text-icon" />
+              <component :is="button.icon" class="text-icon" />
             </template>
-            {{ $t('page.monitor.scheduler.ImmediateJob') }}
-          </NButton>
-          <NButton v-if="hasAuth('mon:scheduler:pause')" size="small" ghost :disabled="hasCheckOne" @click="handlePauseJob()">
-            <template #icon>
-              <icon-ic:baseline-pause class="text-icon" />
-            </template>
-            {{ $t('page.monitor.scheduler.pauseJob') }}
-          </NButton>
-          <NButton v-if="hasAuth('mon:scheduler:pause')" size="small" ghost :disabled="hasCheckOne" @click="handlePauseJobGroup()">
-            <template #icon>
-              <icon-ic:baseline-pause-circle class="text-icon" />
-            </template>
-            {{ $t('page.monitor.scheduler.pauseJobGroup') }}
-          </NButton>
-          <NButton v-if="hasAuth('mon:scheduler:pause')" size="small" ghost :disabled="hasCheckOne" @click="handleResumeJob()">
-            <template #icon>
-              <icon-ic:baseline-wifi-protected-setup class="text-icon" />
-            </template>
-            {{ $t('page.monitor.scheduler.resumeJob') }}
-          </NButton>
-          <NButton v-if="hasAuth('mon:scheduler:pause')" size="small" ghost :disabled="hasCheckOne" @click="handleResumeJobGroup()">
-            <template #icon>
-              <icon-ic:round-auto-awesome-motion class="text-icon" />
-            </template>
-            {{ $t('page.monitor.scheduler.resumeJobGroup') }}
+            {{ button.title }}
           </NButton>
         </template>
       </TableHeaderOperation>
