@@ -1,5 +1,6 @@
 import type { LocationQueryRaw, NavigationGuardNext, RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router';
 import type { RouteKey, RoutePath } from '@elegant-router/types';
+import { useAuthStore } from '@/store/modules/auth';
 import { useRouteStore } from '@/store/modules/route';
 import { localStg } from '@/utils/storage';
 
@@ -85,6 +86,7 @@ export function createRouteGuard(router: Router) {
  * @param to to route
  */
 async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw | null> {
+  const authStore = useAuthStore();
   const routeStore = useRouteStore();
 
   const notFoundRoute: RouteKey = 'not-found';
@@ -152,6 +154,8 @@ async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw 
 
     return location;
   }
+
+  await authStore.initUserInfo();
 
   // initialize the auth route
   await routeStore.initAuthRoute();

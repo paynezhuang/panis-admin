@@ -69,6 +69,7 @@ export const request = createFlatRequest<App.Service.Response, RequestInstanceSt
           content: response.data.message,
           positiveText: $t('common.confirm'),
           maskClosable: false,
+          closeOnEsc: false,
           onPositiveClick() {
             logoutAndCleanup();
           },
