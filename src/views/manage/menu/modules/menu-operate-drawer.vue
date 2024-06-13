@@ -83,7 +83,7 @@ function createDefaultModel(): Model {
     sort: 0,
     href: '',
     keepAlive: 'Y',
-    parentId: '0',
+    parentId: 0,
     multiTab: 'N',
     activeMenu: '' as LastLevelRouteKey,
     fixedIndexInTab: -1,
@@ -113,7 +113,7 @@ const localIconOptions = localIcons.map<SelectOption>(item => ({
   value: item
 }));
 
-const showLayout = computed(() => model.parentId === '0');
+const showLayout = computed(() => model.parentId === 0);
 
 const showPage = computed(() => model.type === '2');
 

@@ -14,6 +14,9 @@ declare namespace UnionKey {
   /** Theme scheme */
   type ThemeScheme = 'light' | 'dark' | 'auto';
 
+  /** string or number */
+  type StrNum = string | number;
+
   /**
    * The layout mode
    *

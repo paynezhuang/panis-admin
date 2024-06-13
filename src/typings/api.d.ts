@@ -196,7 +196,7 @@ declare namespace Api {
     type Menu = Common.CommonRecord<
       {
         /** parent menu id */
-        parentId: string;
+        parentId: UnionKey.StrNum;
         /** menu type */
         type: MenuType;
         /** menu name */
