@@ -91,17 +91,17 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
       render: row => (
         <div class="flex-center gap-8px">
           {hasAuth('sys:role:menu:add') && (
-            <NButton type="primary" ghost size="small" onClick={() => handleMenuAuth(row.id)}>
+            <NButton type="primary" quaternary size="small" onClick={() => handleMenuAuth(row.id)}>
               {$t('page.manage.role.menuAuth')}
             </NButton>
           )}
           {hasAuth('sys:role:permission:add') && (
-            <NButton type="primary" ghost size="small" onClick={() => handleButtonAuth(row.id)}>
+            <NButton type="primary" quaternary size="small" onClick={() => handleButtonAuth(row.id)}>
               {$t('page.manage.role.buttonAuth')}
             </NButton>
           )}
           {hasAuth('sys:role:update') && (
-            <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
+            <NButton type="primary" quaternary size="small" onClick={() => edit(row.id)}>
               {$t('common.edit')}
             </NButton>
           )}
@@ -110,7 +110,7 @@ const { columns, columnChecks, data, loading, getData, mobilePagination, searchP
               {{
                 default: () => $t('common.confirmDelete'),
                 trigger: () => (
-                  <NButton type="error" ghost size="small">
+                  <NButton type="error" quaternary size="small">
                     {$t('common.delete')}
                   </NButton>
                 )
