@@ -300,6 +300,7 @@ declare namespace App {
           yes: string;
           no: string;
         };
+        moreOperation: string;
         createUser: string;
         createTime: string;
         updateUser: string;

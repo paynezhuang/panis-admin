@@ -22,4 +22,13 @@ declare namespace CommonType {
   type RecordNullable<T> = {
     [K in keyof T]?: T[K] | null;
   };
+
+  /** common Button dropdown */
+  type ButtonDropdown<T, S> = {
+    key: T;
+    show: boolean;
+    label: string;
+    icon?: () => import('vue').VNodeChild;
+    handler: (key: T, row: S) => void;
+  };
 }

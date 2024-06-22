@@ -1,20 +1,12 @@
-import { type VNode } from 'vue';
+import type { Api } from '@vitejs/plugin-vue';
 import { $t } from '@/locales';
 import { fetchImmediateJob, fetchPauseJob, fetchPauseJobGroup, fetchResumeJob, fetchResumeJobGroup } from '@/service/api';
 
-export type OperationTypes = 'immediate' | 'pause' | 'pauseGroup' | 'resume' | 'resumeGroup';
-
-export interface OperateButton {
-  type: OperationTypes;
-  auth: string;
-  title: string;
-  icon: () => VNode;
-}
+export type ButtonDropdownKey = 'immediate' | 'pause' | 'pauseGroup' | 'resume' | 'resumeGroup';
 
 // button operation config
 interface OperationConfig {
   title: string;
-  icon: () => VNode;
   content: string;
   positiveText: string;
   negativeText: string;
@@ -23,14 +15,13 @@ interface OperationConfig {
 }
 
 // get operation handler
-const initOperationHandler = (button: OperateButton, checkedRowData: Api.Monitor.Scheduler | null): Record<OperationTypes, OperationConfig> => {
+const initOperationHandler = (checkedRowData: Api.Monitor.Scheduler | null): Record<ButtonDropdownKey, OperationConfig> => {
   const checkedRowKey = checkedRowData?.id || '';
   return {
     immediate: {
-      title: button.title,
-      icon: button.icon,
+      title: $t('page.monitor.scheduler.immediateJob'),
       content: $t('page.monitor.scheduler.confirmOperate', {
-        operation: button.title,
+        operation: $t('page.monitor.scheduler.immediateJob'),
         name: checkedRowData?.jobName
       }),
       positiveText: $t('common.confirm'),
@@ -39,10 +30,9 @@ const initOperationHandler = (button: OperateButton, checkedRowData: Api.Monitor
       message: $t('page.monitor.scheduler.immediateSuccess')
     },
     pause: {
-      title: button.title,
-      icon: button.icon,
+      title: $t('page.monitor.scheduler.pauseJob'),
       content: $t('page.monitor.scheduler.confirmOperate', {
-        operation: button.title,
+        operation: $t('page.monitor.scheduler.pauseJob'),
         name: checkedRowData?.jobName
       }),
       positiveText: $t('common.confirm'),
@@ -51,10 +41,9 @@ const initOperationHandler = (button: OperateButton, checkedRowData: Api.Monitor
       message: $t('page.monitor.scheduler.pauseSuccess')
     },
     pauseGroup: {
-      title: button.title,
-      icon: button.icon,
+      title: $t('page.monitor.scheduler.pauseJobGroup'),
       content: $t('page.monitor.scheduler.confirmOperate', {
-        operation: button.title,
+        operation: $t('page.monitor.scheduler.pauseJobGroup'),
         name: checkedRowData?.jobGroup
       }),
       positiveText: $t('common.confirm'),
@@ -63,10 +52,9 @@ const initOperationHandler = (button: OperateButton, checkedRowData: Api.Monitor
       message: $t('page.monitor.scheduler.pauseSuccess')
     },
     resume: {
-      title: button.title,
-      icon: button.icon,
+      title: $t('page.monitor.scheduler.resumeJob'),
       content: $t('page.monitor.scheduler.confirmOperate', {
-        operation: button.title,
+        operation: $t('page.monitor.scheduler.resumeJob'),
         name: checkedRowData?.jobName
       }),
       positiveText: $t('common.confirm'),
@@ -75,10 +63,9 @@ const initOperationHandler = (button: OperateButton, checkedRowData: Api.Monitor
       message: $t('page.monitor.scheduler.resumeSuccess')
     },
     resumeGroup: {
-      title: button.title,
-      icon: button.icon,
+      title: $t('page.monitor.scheduler.resumeJobGroup'),
       content: $t('page.monitor.scheduler.confirmOperate', {
-        operation: button.title,
+        operation: $t('page.monitor.scheduler.resumeJobGroup'),
         name: checkedRowData?.jobGroup
       }),
       positiveText: $t('common.confirm'),
@@ -89,6 +76,6 @@ const initOperationHandler = (button: OperateButton, checkedRowData: Api.Monitor
   };
 };
 
-export const getOperationConfig = (button: OperateButton, checkedRowData: Api.Monitor.Scheduler | null) => {
-  return initOperationHandler(button, checkedRowData)[button.type];
+export const getOperationConfig = (key: ButtonDropdownKey, checkedRowData: Api.Monitor.Scheduler | null) => {
+  return initOperationHandler(checkedRowData)[key];
 };

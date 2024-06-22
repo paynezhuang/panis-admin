@@ -50,6 +50,7 @@ const local: App.I18n.Schema = {
       yes: 'Yes',
       no: 'No'
     },
+    moreOperation: 'More Operation',
     createUser: 'Create User',
     createTime: 'Create Time',
     updateUser: 'Update User',

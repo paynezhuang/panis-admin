@@ -248,7 +248,7 @@ export function getNaiveTheme(colors: App.Theme.ThemeColor, recommended = false)
       borderRadius: '6px'
     },
     Card: {
-      paddingSmall: '8px'
+      paddingSmall: '12px'
     },
     Button: {
       paddingSmall: '0 8px'
@@ -257,9 +257,9 @@ export function getNaiveTheme(colors: App.Theme.ThemeColor, recommended = false)
       colorLoading
     },
     Dialog: {
-      padding: '8px',
-      closeMargin: '12px 8px 0 0',
-      actionSpace: '8px',
+      padding: '12px',
+      closeMargin: '12px 12px 0 0',
+      actionSpace: '12px',
       iconSize: '18px'
     },
     Tag: {

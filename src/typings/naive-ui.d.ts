@@ -10,6 +10,7 @@ declare namespace NaiveUI {
   type TableColumnCheck = import('@sa/hooks').TableColumnCheck;
   type TableDataWithIndex<T> = import('@sa/hooks').TableDataWithIndex<T>;
   type FlatResponseData<T> = import('@sa/axios').FlatResponseData<T>;
+  type DropdownOption = import('naive-ui').DropdownOption;
 
   /**
    * the custom column key
