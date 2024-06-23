@@ -16,7 +16,7 @@ const { hasAuth } = useAuth();
 
 const modal = useModal();
 
-const { columns, columnChecks, data, getData, loading, mobilePagination, searchParams, resetSearchParams } = useTable({
+const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetUserList,
   apiParams: {
     page: 1,
@@ -194,7 +194,7 @@ function edit(id: string) {
 
 <template>
   <div class="min-h-500px flex-col-stretch gap-8px overflow-hidden lt-sm:overflow-auto">
-    <UserSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getData" />
+    <UserSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
     <NCard :bordered="false" class="sm:flex-1-hidden card-wrapper" content-class="flex-col">
       <TableHeaderOperation
         v-model:columns="columnChecks"
@@ -222,7 +222,7 @@ function edit(id: string) {
         :row-key="row => row.id"
         :pagination="mobilePagination"
       />
-      <UserOperateDrawer v-model:visible="drawerVisible" :operate-type="operateType" :row-data="editingData" @submitted="getData" />
+      <UserOperateDrawer v-model:visible="drawerVisible" :operate-type="operateType" :row-data="editingData" @submitted="getDataByPage" />
     </NCard>
   </div>
 </template>

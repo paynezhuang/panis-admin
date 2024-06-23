@@ -107,3 +107,7 @@ declare namespace Env {
     readonly VITE_STORAGE_PREFIX?: string;
   }
 }
+
+interface ImportMeta {
+  readonly env: Env.ImportMeta;
+}

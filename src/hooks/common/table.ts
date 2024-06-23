@@ -83,7 +83,9 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
           columnMap.set(EXPAND_KEY, column);
         }
       });
+
       const filteredColumns = checks.filter(item => item.checked).map(check => columnMap.get(check.key) as TableColumn<GetTableData<A>>);
+
       return filteredColumns;
     },
     onFetched: async transformed => {
@@ -147,6 +149,24 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
     Object.assign(pagination, update);
   }
 
+  /**
+   * get data by page number
+   *
+   * @param pageNum the page number. default is 1
+   */
+  async function getDataByPage(pageNum: number = 1) {
+    updatePagination({
+      page: pageNum
+    });
+
+    updateSearchParams({
+      page: pageNum,
+      pageSize: pagination.pageSize!
+    });
+
+    await getData();
+  }
+
   scope.run(() => {
     watch(
       () => appStore.locale,
@@ -171,6 +191,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
     mobilePagination,
     updatePagination,
     getData,
+    getDataByPage,
     searchParams,
     updateSearchParams,
     resetSearchParams

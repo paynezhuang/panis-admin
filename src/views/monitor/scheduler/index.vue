@@ -64,7 +64,7 @@ const options: CommonType.ButtonDropdown<ButtonDropdownKey, Api.Monitor.Schedule
 
 const { renderDropdown } = useButtonAuthDropdown(options);
 
-const { columns, columnChecks, data, loading, getData, mobilePagination, searchParams, resetSearchParams } = useTable({
+const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetSchedulerList,
   apiParams: {
     page: 1,
@@ -261,7 +261,7 @@ async function handleBatchDelete() {
 
 <template>
   <div class="min-h-500px flex-col-stretch gap-8px overflow-hidden lt-sm:overflow-auto">
-    <SchedulerSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getData" />
+    <SchedulerSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
     <NCard :bordered="false" class="sm:flex-1-hidden card-wrapper" content-class="flex-col">
       <TableHeaderOperation
         v-model:columns="columnChecks"
@@ -291,7 +291,7 @@ async function handleBatchDelete() {
         :row-key="row => row.id"
         :pagination="mobilePagination"
       />
-      <SchedulerOperateDrawer v-model:visible="drawerVisible" :operate-type="operateType" :row-data="editingData" @submitted="getData" />
+      <SchedulerOperateDrawer v-model:visible="drawerVisible" :operate-type="operateType" :row-data="editingData" @submitted="getDataByPage" />
     </NCard>
   </div>
 </template>

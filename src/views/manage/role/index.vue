@@ -21,7 +21,7 @@ const { bool: buttonModalVisible, setTrue: openButtonModal } = useBoolean();
 
 const { hasAuth } = useAuth();
 
-const { columns, columnChecks, data, loading, getData, mobilePagination, searchParams, resetSearchParams } = useTable({
+const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetRoleList,
   apiParams: {
     page: 1,
@@ -159,7 +159,7 @@ function handleButtonAuth(id: string) {
 
 <template>
   <div class="min-h-500px flex-col-stretch gap-8px overflow-hidden lt-sm:overflow-auto">
-    <RoleSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getData" />
+    <RoleSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
     <NCard :bordered="false" class="sm:flex-1-hidden card-wrapper" content-class="flex-col">
       <TableHeaderOperation
         v-model:columns="columnChecks"
@@ -187,7 +187,7 @@ function handleButtonAuth(id: string) {
         :row-key="row => row.id"
         :pagination="mobilePagination"
       />
-      <RoleOperateDrawer v-model:visible="drawerVisible" :operate-type="operateType" :row-data="editingData" @submitted="getData" />
+      <RoleOperateDrawer v-model:visible="drawerVisible" :operate-type="operateType" :row-data="editingData" @submitted="getDataByPage" />
       <MenuAuthModal v-model:visible="menuModalVisible" :role-id="editingId" />
       <ButtonAuthModal v-model:visible="buttonModalVisible" :role-id="editingId" />
     </NCard>

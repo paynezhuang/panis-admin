@@ -1,9 +1,9 @@
 import type { AxiosResponse } from 'axios';
 import { BACKEND_ERROR_CODE, createFlatRequest, createRequest } from '@sa/axios';
 import { useAuthStore } from '@/store/modules/auth';
+import { $t } from '@/locales';
 import { localStg } from '@/utils/storage';
 import { getServiceBaseURL } from '@/utils/service';
-import { $t } from '@/locales';
 import { handleRefreshToken, showErrorMsg } from './shared';
 import type { RequestInstanceState } from './type';
 
@@ -65,7 +65,7 @@ export const request = createFlatRequest<App.Service.Response, RequestInstanceSt
         window.addEventListener('beforeunload', handleLogout);
 
         window.$dialog?.error({
-          title: 'Error',
+          title: $t('common.error'),
           content: response.data.message,
           positiveText: $t('common.confirm'),
           maskClosable: false,

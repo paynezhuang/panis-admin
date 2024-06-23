@@ -25,7 +25,7 @@ const appStore = useAppStore();
 
 const { hasAuth } = useAuth();
 
-const { columns, data, loading, mobilePagination, searchParams, getData } = useTable({
+const { columns, data, loading, mobilePagination, searchParams, getData, getDataByPage } = useTable({
   apiFn: fetchGetPermissionList,
   apiParams: {
     page: 1,
@@ -130,7 +130,7 @@ async function handleDeleteButton(id: string) {
 // query permisson button data with menu id.
 watch(props.showData, () => {
   searchParams.menuId = props.showData.id;
-  getData();
+  getDataByPage();
 });
 </script>
 
@@ -166,7 +166,7 @@ watch(props.showData, () => {
       :operate-type="operateType"
       :menu-data="showData"
       :row-data="editingData"
-      @submitted="getData()"
+      @submitted="getDataByPage()"
     />
   </div>
 </template>
