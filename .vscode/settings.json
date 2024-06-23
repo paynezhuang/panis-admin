@@ -8,7 +8,7 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 200,
-  "eslint.experimental.useFlatConfig": true,
+  "eslint.useFlatConfig": true,
   "editor.formatOnSave": false,
   "eslint.validate": ["html", "css", "scss", "json", "jsonc"],
   "i18n-ally.displayLanguage": "zh-cn",
