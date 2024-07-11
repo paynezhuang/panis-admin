@@ -120,7 +120,7 @@ watch(visible, () => {
     <NDrawerContent :title="title" :native-scrollbar="false" closable>
       <NForm ref="formRef" :model="model" :rules="rules">
         <NFormItem :label="$t('page.manage.user.userName')" path="userName">
-          <NInput v-model:value="model.userName" :placeholder="$t('page.manage.user.form.userName')" />
+          <NInput v-model:value="model.userName" :placeholder="$t('page.manage.user.form.userName')" :disabled="!isAdd" />
         </NFormItem>
         <NFormItem :label="$t('page.manage.user.gender')" path="gender">
           <NRadioGroup v-model:value="model.gender">
