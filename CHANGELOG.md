@@ -1,6 +1,28 @@
 # Changelog
 
 
+## [v1.0.3](https://github.com/paynezhuang/panis-admin/compare/v1.0.2...v1.0.3) (2024-07-22)
+
+### &nbsp;&nbsp;&nbsp;🚀 Features
+
+- **projects**:
+  - add postion / orgUnits / dict &nbsp;-&nbsp; by @paynezhuang [<samp>(46787)</samp>](https://github.com/paynezhuang/panis-admin/commit/46787e1)
+  - merge remote project v1.2.7 -> v1.3.1 &nbsp;-&nbsp; by @paynezhuang [<samp>(a99ef)</samp>](https://github.com/paynezhuang/panis-admin/commit/a99ef2f)
+
+### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
+
+- **projects**:
+  - user realName rule &nbsp;-&nbsp; by @paynezhuang [<samp>(59b2b)</samp>](https://github.com/paynezhuang/panis-admin/commit/59b2b8d)
+  - Disable username field in user edit &nbsp;-&nbsp; by @paynezhuang [<samp>(d6cb6)</samp>](https://github.com/paynezhuang/panis-admin/commit/d6cb65b)
+
+### &nbsp;&nbsp;&nbsp;📖 Documentation
+
+- **projects**: add CHANGELOG &nbsp;-&nbsp; by @paynezhuang [<samp>(36810)</samp>](https://github.com/paynezhuang/panis-admin/commit/3681040)
+
+### &nbsp;&nbsp;&nbsp;❤️ Contributors
+
+[![paynezhuang](https://github.com/paynezhuang.png?size=48)](https://github.com/paynezhuang)&nbsp;&nbsp;
+
 ## [v1.0.2](https://github.com/paynezhuang/panis-admin/compare/v1.0.1...v1.0.2) (2024-06-23)
 
 ### &nbsp;&nbsp;&nbsp;🚀 Features
