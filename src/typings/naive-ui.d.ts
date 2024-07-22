@@ -11,6 +11,7 @@ declare namespace NaiveUI {
   type TableDataWithIndex<T> = import('@sa/hooks').TableDataWithIndex<T>;
   type FlatResponseData<T> = import('@sa/axios').FlatResponseData<T>;
   type DropdownOption = import('naive-ui').DropdownOption;
+  type TreeOption = import('naive-ui').TreeOption;
 
   /**
    * the custom column key

@@ -2,7 +2,6 @@
 import type { Ref } from 'vue';
 import { h, reactive, ref, shallowRef } from 'vue';
 import { useBoolean } from '@sa/hooks';
-import type { TreeOption } from 'naive-ui';
 import { $t } from '@/locales';
 import { fetchDeleteMenu, fetchGetAllPages, fetchGetMenuTree } from '@/service/api';
 import SvgIcon from '@/components/custom/svg-icon.vue';
@@ -74,9 +73,9 @@ function recursive(item: Api.SystemManage.Menu): MenuTreeModel {
 }
 
 /** tree select handle */
-function handleSelectKeys(node: TreeOption | null, action: string) {
+function handleSelectKeys(node: NaiveUI.TreeOption | null, action: string) {
   setDetailVisible(action === 'select');
-  if (detailVisible.value) {
+  if (detailVisible) {
     Object.assign(showData, node);
   }
 }
@@ -125,14 +124,14 @@ init(null);
 </script>
 
 <template>
-  <div class="flex">
-    <NGrid :x-gap="8" :y-gap="8" item-responsive responsive="screen" cols="1 s:1 m:5 l:5 xl:5 2xl:5">
-      <NGridItem>
-        <NCard :title="$t('page.manage.menu.title')" :bordered="false" size="small" class="sm:flex-1-hidden sm:h-full">
+  <div class="h-full-hidden flex">
+    <NGrid :x-gap="8" :y-gap="8" item-responsive responsive="screen" cols="1 s:1 m:5 l:5 xl:5 2xl:5" class="h-full-hidden">
+      <NGridItem span="1" class="h-full-hidden">
+        <NCard :title="$t('page.manage.menu.title')" :bordered="false" size="small" class="h-full sm:flex-1-hidden" content-class="h-full-hidden">
           <template #header-extra>
             <NButton quaternary @click="init(null)">
               <template #icon>
-                <SvgIcon icon="material-symbols:refresh-rounded" />
+                <SvgIcon icon="ic:round-refresh" />
               </template>
             </NButton>
           </template>
@@ -140,11 +139,12 @@ init(null);
           <NTree
             :data="tree"
             :pattern="name"
-            :show-irrelevant-nodes="false"
             block-line
             class="py-3"
             key-field="id"
-            :on-update:selected-keys="(_key, _option, { node, action }) => handleSelectKeys(node, action)"
+            virtual-scroll
+            :show-irrelevant-nodes="false"
+            @update-selected-keys="(_key, _option, { node, action }) => handleSelectKeys(node, action)"
           />
         </NCard>
       </NGridItem>

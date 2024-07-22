@@ -95,7 +95,7 @@ watch(visible, val => {
 
 <template>
   <NModal v-model:show="visible" :title="title" preset="card" class="w-480px">
-    <NTree v-model:checked-keys="checks" :data="tree" block-line expand-on-click checkable cascade />
+    <NTree v-model:checked-keys="checks" :data="tree" block-line expand-on-click checkable cascade virtual-scroll class="h-500px" />
     <template #footer>
       <NSpace justify="end">
         <NButton quaternary @click="closeModal">

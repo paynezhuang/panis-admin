@@ -182,6 +182,9 @@ const local: App.I18n.Schema = {
     'manage_user-detail': '用户详情',
     manage_role: '角色管理',
     manage_menu: '菜单管理',
+    manage_dict: '字典管理',
+    manage_position: '岗位管理',
+    manage_org: '组织管理',
     monitor: '监控管理',
     monitor_system: '系统监控',
     monitor_cache: '缓存监控',
@@ -365,6 +368,8 @@ const local: App.I18n.Schema = {
         email: '邮箱',
         status: '用户状态',
         userRole: '用户角色',
+        userPosition: '用户岗位',
+        userOrgUnits: '用户组织',
         form: {
           userName: '请输入用户名',
           gender: '请选择性别',
@@ -373,12 +378,16 @@ const local: App.I18n.Schema = {
           phone: '请输入手机号',
           email: '请输入邮箱',
           status: '请选择用户状态',
-          userRole: '请选择用户角色'
+          userRole: '请选择用户角色',
+          userPosition: '请选择用户岗位',
+          userOrgUnits: '请选择用户组织'
         },
         addUser: '新增用户',
         editUser: '编辑用户',
         resetPwd: '重置密码',
         confirmResetPwd: '确认重置密码吗？',
+        responsibilities: '职责设置',
+        manageOrganization: '管理组织（负责人）',
         userGender: {
           confidential: '保密',
           male: '男',
@@ -470,6 +479,93 @@ const local: App.I18n.Schema = {
           sort: '请输入排序',
           description: '请输入按钮描述'
         }
+      },
+      position: {
+        name: '岗位名称',
+        i18nKey: '国际化key',
+        code: '岗位编码',
+        abbr: '岗位简称',
+        description: '岗位描述',
+        sort: '排序',
+        status: '岗位状态',
+        form: {
+          name: '请输入岗位名称',
+          i18nKey: '请输入国际化key',
+          code: '请输入岗位编码',
+          abbr: '请输入岗位简称',
+          description: '请输入岗位描述',
+          sort: '请输入排序',
+          status: '请选择岗位状态'
+        },
+        addPosition: '新增岗位',
+        editPosition: '编辑岗位'
+      },
+      dict: {
+        title: '字典列表',
+        name: '字典名称',
+        code: '字典编码',
+        type: '字典类型',
+        description: '字典描述',
+        sort: '排序',
+        status: '字典状态',
+        form: {
+          name: '请输入字典名称',
+          code: '请输入字典编码',
+          type: '请选择字典类型',
+          description: '请输入字典描述',
+          sort: '请输入排序',
+          status: '请选择字典状态'
+        },
+        addDict: '新增字典',
+        editDict: '编辑字典',
+        dictType: {
+          system: '系统字典',
+          business: '业务字典'
+        },
+        loadCacheSuccess: '缓存成功',
+        selectTreeIsEmptyTip: '请选择字典查看子项目',
+        systemFieldsCannotBeDeleted: '系统字段禁止操作删除'
+      },
+      dictItem: {
+        title: '字典项列表',
+        dictCode: '字典编码',
+        value: '字典值',
+        zhCN: '中文',
+        enUS: '英文',
+        color: '#颜色',
+        sort: '排序',
+        status: '状态',
+        description: '描述',
+        form: {
+          value: '请输入字典值',
+          zhCN: '请输入字典项中文',
+          enUS: '请输入字典项英文',
+          color: '请选择颜色',
+          sort: '请输入排序',
+          status: '请选择字典项状态',
+          description: '请输入字典描述'
+        },
+        addDictItem: '新增字典项',
+        editDictItem: '编辑字典项'
+      },
+      orgUnits: {
+        name: '组织名称',
+        code: '组织编码',
+        abbr: '组织简称',
+        description: '组织描述',
+        sort: '排序',
+        status: '组织状态',
+        form: {
+          name: '请输入组织名称',
+          code: '请输入组织编码',
+          abbr: '请输入组织简称',
+          description: '请输入组织描述',
+          sort: '请输入排序',
+          status: '请选择组织状态'
+        },
+        addOrgUnits: '新增组织',
+        editOrgUnits: '编辑组织',
+        addChildDepart: '新增子部门'
       }
     },
     monitor: {

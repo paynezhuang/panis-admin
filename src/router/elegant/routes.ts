@@ -217,6 +217,15 @@ export const generatedRoutes: GeneratedRoute[] = [
     },
     children: [
       {
+        name: 'manage_dict',
+        path: '/manage/dict',
+        component: 'view.manage_dict',
+        meta: {
+          title: 'manage_dict',
+          i18nKey: 'route.manage_dict'
+        }
+      },
+      {
         name: 'manage_menu',
         path: '/manage/menu',
         component: 'view.manage_menu',
@@ -227,6 +236,24 @@ export const generatedRoutes: GeneratedRoute[] = [
           order: 3,
           roles: ['R_ADMIN'],
           keepAlive: true
+        }
+      },
+      {
+        name: 'manage_org',
+        path: '/manage/org',
+        component: 'view.manage_org',
+        meta: {
+          title: 'manage_org',
+          i18nKey: 'route.manage_org'
+        }
+      },
+      {
+        name: 'manage_position',
+        path: '/manage/position',
+        component: 'view.manage_position',
+        meta: {
+          title: 'manage_position',
+          i18nKey: 'route.manage_position'
         }
       },
       {

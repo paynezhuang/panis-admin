@@ -182,6 +182,9 @@ const local: App.I18n.Schema = {
     'manage_user-detail': 'User Detail',
     manage_role: 'Role Manage',
     manage_menu: 'Menu Manage',
+    manage_dict: 'Dictionary Manage',
+    manage_position: 'Position Manage',
+    manage_org: 'Organization Manage',
     monitor: 'Monitor Manage',
     monitor_system: 'System Monitor',
     monitor_cache: 'Cache Monitor',
@@ -365,6 +368,8 @@ const local: App.I18n.Schema = {
         email: 'Email',
         status: 'User Status',
         userRole: 'User Role',
+        userPosition: 'User Position',
+        userOrgUnits: 'User Organization',
         form: {
           userName: 'Please enter user name',
           gender: 'Please select gender',
@@ -373,12 +378,16 @@ const local: App.I18n.Schema = {
           phone: 'Please enter phone number',
           email: 'Please enter email',
           status: 'Please select user status',
-          userRole: 'Please select user role'
+          userRole: 'Please select user role',
+          userPosition: 'Please select user position',
+          userOrgUnits: 'Please select user organization'
         },
         addUser: 'Add User',
         editUser: 'Edit User',
         resetPwd: 'Reset Password',
         confirmResetPwd: 'Are you sure you want to reset the password? ',
+        responsibilities: 'Responsibilities',
+        manageOrganization: 'Manage Organization(Principal)',
         userGender: {
           confidential: 'Confidential',
           male: 'Male',
@@ -447,7 +456,7 @@ const local: App.I18n.Schema = {
           iconify: 'Iconify Icon',
           local: 'Local Icon'
         },
-        selectTreeIsEmptyTip: 'Please select menu for details',
+        selectTreeIsEmptyTip: 'Please select a dictionary to view sub-items',
         menuTypeIsDirectory: 'Directory type does not need to display data'
       },
       permission: {
@@ -470,6 +479,93 @@ const local: App.I18n.Schema = {
           sort: 'Please enter sort',
           description: 'Please enter button description'
         }
+      },
+      position: {
+        name: 'Position Name',
+        i18nKey: 'I18n Key',
+        code: 'Position Code',
+        abbr: 'Abbreviation',
+        description: 'Position Description',
+        sort: 'Sort',
+        status: 'Position Status',
+        form: {
+          name: 'Please enter position name',
+          i18nKey: 'Please enter i18n key',
+          code: 'Please enter position code',
+          abbr: 'Please enter abbreviation',
+          description: 'Please enter position description',
+          sort: 'Please enter sort',
+          status: 'Please select position status'
+        },
+        addPosition: 'Add Position',
+        editPosition: 'Edit Position'
+      },
+      dict: {
+        title: 'Dictionary List',
+        name: 'Dictionary Name',
+        code: 'Dictionary Code',
+        type: 'Dictionary Type',
+        sort: 'Sort',
+        description: 'Description',
+        status: 'Dictionary Status',
+        form: {
+          name: 'Please enter dictionary name',
+          code: 'Please enter dictionary code',
+          type: 'Please select dictionary type',
+          description: 'Please enter dictionary description',
+          sort: 'Please enter sort',
+          status: 'Please select dictionary status'
+        },
+        addDict: 'Add Dictionary',
+        editDict: 'Edit Dictionary',
+        dictType: {
+          system: 'System',
+          business: 'Business'
+        },
+        loadCacheSuccess: 'Load Cache Success',
+        selectTreeIsEmptyTip: 'Please select the dictionary for details',
+        systemFieldsCannotBeDeleted: 'System fields cannot be deleted'
+      },
+      dictItem: {
+        title: 'Dictionary Item List',
+        dictCode: 'Dict Code',
+        value: 'Value',
+        zhCN: 'Simplified Chinese',
+        enUS: 'English',
+        color: 'Color',
+        sort: 'Sort',
+        status: 'Status',
+        description: 'Description',
+        form: {
+          value: 'Please enter value',
+          zhCN: 'Please enter item simplified Chinese',
+          enUS: 'Please enter item English',
+          color: 'Please enter color',
+          sort: 'Please enter sort',
+          status: 'Please select item status',
+          description: 'Please enter item description'
+        },
+        addDictItem: 'Add Dict Item',
+        editDictItem: 'Edit Dict Item'
+      },
+      orgUnits: {
+        name: 'Organization Name',
+        code: 'Organization Code',
+        abbr: 'Abbreviation',
+        description: 'Description',
+        sort: 'Sort',
+        status: 'Status',
+        form: {
+          name: 'Please enter organization name',
+          code: 'Please enter organization code',
+          abbr: 'Please enter abbreviation',
+          description: 'Please enter organization description',
+          sort: 'Please enter sort',
+          status: 'Please select organization status'
+        },
+        addOrgUnits: 'Add Organization',
+        editOrgUnits: 'Edit Organization',
+        addChildDepart: 'Add Child Depart'
       }
     },
     monitor: {

@@ -214,17 +214,16 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
   /** the editing row data */
   const editingData: Ref<T | null> = ref(null);
 
-  /** the checked row key of table */
-  const checkedRowKey: Ref<string> = ref('0');
-
   /** the checked row keys of table */
   const checkedRowKeys: Ref<string[]> = ref([]);
 
-  /** the checked row data of table */
-  const checkedRowData: Ref<T | null> = ref(null);
+  /** the checked row key of table */
+  const checkedRowKey: Ref<string> = computed(() => checkedRowKeys.value[0] || '0');
 
-  /** the checked row datas of table */
-  const checkedRowDatas: Ref<T[]> = ref([]);
+  /** set row data id */
+  function handleId(id?: T['id']) {
+    editingId.value = getTargetId(id);
+  }
 
   /** Get data by id */
   function handleEdit(id: T['id']) {
@@ -234,28 +233,19 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
 
     const findItem = data.value.find(item => item.id === id) || null;
     editingData.value = cloneDeep(findItem);
+
     openDrawer();
-  }
-
-  /** set row data id */
-  function handleId(id?: T['id']) {
-    editingId.value = getTargetId(id);
-  }
-
-  /** set checked row data */
-  function handleCheckedRow() {
-    checkedRowKey.value = checkedRowKeys.value.length > 0 ? checkedRowKeys.value[0] : '0';
-    checkedRowData.value = data.value.find(item => item.id === checkedRowKey.value) || null;
-    checkedRowDatas.value = data.value.filter(item => checkedRowKeys.value.includes(item.id));
   }
 
   /** set row data */
   function handleData(id?: T['id']) {
     const targetId = getTargetId(id);
+
     if (targetId === '0') {
       editingData.value = null;
       return;
     }
+
     const findItem = data.value.find(item => item.id === targetId) || null;
     editingData.value = cloneDeep(findItem);
   }
@@ -303,9 +293,6 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
     handleData,
     checkedRowKey,
     checkedRowKeys,
-    checkedRowData,
-    checkedRowDatas,
-    handleCheckedRow,
     onBatchDeleted,
     onDeleted,
     onMessage

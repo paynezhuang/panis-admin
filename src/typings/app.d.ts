@@ -530,6 +530,8 @@ declare namespace App {
             email: string;
             status: string;
             userRole: string;
+            userPosition: string;
+            userOrgUnits: string;
             form: {
               userName: string;
               gender: string;
@@ -539,11 +541,15 @@ declare namespace App {
               email: string;
               status: string;
               userRole: string;
+              userPosition: string;
+              userOrgUnits: string;
             };
             addUser: string;
             editUser: string;
             resetPwd: string;
             confirmResetPwd: string;
+            responsibilities: string;
+            manageOrganization: string;
             userGender: {
               confidential: string;
               male: string;
@@ -634,6 +640,93 @@ declare namespace App {
               sort: string;
               description: string;
             };
+          };
+          position: {
+            name: string;
+            i18nKey: string;
+            code: string;
+            abbr: string;
+            description: string;
+            sort: string;
+            status: string;
+            form: {
+              name: string;
+              i18nKey: string;
+              code: string;
+              abbr: string;
+              description: string;
+              sort: string;
+              status: string;
+            };
+            addPosition: string;
+            editPosition: string;
+          };
+          dict: {
+            title: string;
+            name: string;
+            code: string;
+            type: string;
+            sort: string;
+            description: string;
+            status: string;
+            form: {
+              name: string;
+              code: string;
+              type: string;
+              sort: string;
+              description: string;
+              status: string;
+            };
+            addDict: string;
+            editDict: string;
+            dictType: {
+              system: string;
+              business: string;
+            };
+            loadCacheSuccess: string;
+            selectTreeIsEmptyTip: string;
+            systemFieldsCannotBeDeleted: string;
+          };
+          dictItem: {
+            title: string;
+            dictCode: string;
+            value: string;
+            zhCN: string;
+            enUS: string;
+            sort: string;
+            color: string;
+            description: string;
+            status: string;
+            form: {
+              value: string;
+              zhCN: string;
+              enUS: string;
+              sort: string;
+              color: string;
+              description: string;
+              status: string;
+            };
+            addDictItem: string;
+            editDictItem: string;
+          };
+          orgUnits: {
+            name: string;
+            code: string;
+            abbr: string;
+            description: string;
+            sort: string;
+            status: string;
+            form: {
+              name: string;
+              code: string;
+              abbr: string;
+              description: string;
+              sort: string;
+              status: string;
+            };
+            addOrgUnits: string;
+            editOrgUnits: string;
+            addChildDepart: string;
           };
         };
         monitor: {

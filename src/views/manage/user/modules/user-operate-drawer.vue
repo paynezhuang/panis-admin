@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from 'vue';
+import { computed, reactive, watch } from 'vue';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
-import { fetchAddUser, fetchGetAllRoles, fetchGetEditUserInfo, fetchUpdateUserInfo } from '@/service/api';
+import { fetchAddUser, fetchGetEditUserInfo, fetchUpdateUserInfo } from '@/service/api';
 import { $t } from '@/locales';
 import { enableStatusOptions, userGenderOptions } from '@/constants/business';
 
@@ -51,7 +51,6 @@ function createDefaultModel(): Model {
     realName: '',
     phone: '',
     email: '',
-    roleIds: [],
     status: '1'
   };
 }
@@ -65,17 +64,6 @@ const rules: Record<RuleKey, App.Global.FormRule[]> = {
   phone: formRules.phone,
   email: formRules.email
 };
-
-/** the enabled role options */
-const roleOptions = ref<CommonType.Option[]>([]);
-
-async function getRoleOptions() {
-  const { error, data } = await fetchGetAllRoles();
-
-  if (!error) {
-    roleOptions.value = data;
-  }
-}
 
 const isAdd = computed(() => props.operateType === 'add');
 
@@ -110,7 +98,6 @@ watch(visible, () => {
   if (visible.value) {
     handleInitModel();
     restoreValidation();
-    getRoleOptions();
   }
 });
 </script>
@@ -143,9 +130,6 @@ watch(visible, () => {
           <NRadioGroup v-model:value="model.status">
             <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
           </NRadioGroup>
-        </NFormItem>
-        <NFormItem :label="$t('page.manage.user.userRole')" path="roles">
-          <NSelect v-model:value="model.roleIds" multiple :options="roleOptions" :placeholder="$t('page.manage.user.form.userRole')" />
         </NFormItem>
       </NForm>
       <template #footer>

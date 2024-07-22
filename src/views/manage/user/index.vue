@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm, NTag, useModal } from 'naive-ui';
+import { NButton, NTag, useModal } from 'naive-ui';
 import { fetchDeleteUser, fetchGetUserList, fetchResetUserPassword } from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/store/modules/app';
@@ -7,6 +7,9 @@ import { enableStatusRecord, enableStatusTag, userGenderRecord, userGenderTag } 
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
+import { useButtonAuthDropdown } from '@/hooks/common/button-auth-dropdown';
+import UserResponsibilitiesSetting from '@/views/manage/user/modules/user-responsibilities-modal.vue';
+import { useBoolean } from '~/packages/hooks';
 import UserOperateDrawer from './modules/user-operate-drawer.vue';
 import UserSearch from './modules/user-search.vue';
 
@@ -15,6 +18,34 @@ const appStore = useAppStore();
 const { hasAuth } = useAuth();
 
 const modal = useModal();
+
+const { bool: respModelVisible, setTrue: setRespModelVisible } = useBoolean();
+
+type ButtonDropdownKey = 'delete' | 'resetPassword' | 'userResponsibilities';
+
+/** operation options */
+const options: CommonType.ButtonDropdown<ButtonDropdownKey, Api.SystemManage.User>[] = [
+  {
+    key: 'delete',
+    label: $t('common.delete'),
+    show: hasAuth('sys:user:delete'),
+    handler: (_key, row) => handleDelete(row.id)
+  },
+  {
+    key: 'resetPassword',
+    label: $t('page.manage.user.resetPwd'),
+    show: hasAuth('sys:user:resetPassword'),
+    handler: (_key, row) => handleResetPassword(row.id)
+  },
+  {
+    key: 'userResponsibilities',
+    show: hasAuth('sys:user:responsibilities'),
+    label: $t('page.manage.user.responsibilities'),
+    handler: (_key, row) => handleResponsibilities(row.id)
+  }
+];
+
+const { renderDropdown } = useButtonAuthDropdown(options);
 
 const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetUserList,
@@ -68,9 +99,7 @@ const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagi
         if (row.gender === null) {
           return null;
         }
-
         const label = $t(userGenderRecord[row.gender]);
-
         return <NTag type={userGenderTag[row.gender]}>{label}</NTag>;
       }
     },
@@ -98,9 +127,7 @@ const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagi
         if (row.status === null) {
           return null;
         }
-
         const label = $t(enableStatusRecord[row.status]);
-
         return <NTag type={enableStatusTag[row.status]}>{label}</NTag>;
       }
     },
@@ -108,7 +135,7 @@ const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagi
       key: 'operate',
       title: $t('common.operate'),
       align: 'center',
-      width: 220,
+      width: 150,
       render: row => (
         <div class="flex-center gap-8px">
           {hasAuth('sys:user:update') && (
@@ -116,30 +143,7 @@ const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagi
               {$t('common.edit')}
             </NButton>
           )}
-          {hasAuth('sys:user:delete') && (
-            <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
-              {{
-                default: () => $t('common.confirmDelete'),
-                trigger: () => (
-                  <NButton type="error" quaternary size="small">
-                    {$t('common.delete')}
-                  </NButton>
-                )
-              }}
-            </NPopconfirm>
-          )}
-          {hasAuth('sys:user:resetPassword') && (
-            <NPopconfirm onPositiveClick={() => handleResetPassword(row.id)}>
-              {{
-                default: () => $t('page.manage.user.confirmResetPwd'),
-                trigger: () => (
-                  <NButton type="warning" quaternary size="small">
-                    {$t('page.manage.user.resetPwd')}
-                  </NButton>
-                )
-              }}
-            </NPopconfirm>
-          )}
+          {renderDropdown(row)}
         </div>
       )
     }
@@ -149,9 +153,11 @@ const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagi
 const {
   drawerVisible,
   operateType,
+  editingId,
   editingData,
   handleAdd,
   handleEdit,
+  handleId,
   checkedRowKeys,
   onBatchDeleted,
   onDeleted
@@ -166,29 +172,52 @@ async function handleBatchDelete() {
   }
 }
 
+function edit(id: string) {
+  handleEdit(id);
+}
+
 async function handleDelete(id: string) {
-  // request
-  const { error, data: result } = await fetchDeleteUser(transDeleteParams([id]));
-  if (!error && result) {
-    await onDeleted();
-  }
+  modal.create({
+    title: $t('common.delete'),
+    content: $t('common.confirmDelete'),
+    preset: 'dialog',
+    negativeText: $t('common.cancel'),
+    positiveText: $t('common.confirm'),
+    onPositiveClick: async () => {
+      // request
+      const { error, data: result } = await fetchDeleteUser(transDeleteParams([id]));
+      if (!error && result) {
+        await onDeleted();
+      }
+    }
+  });
 }
 
 /** reset user password */
 async function handleResetPassword(id: string) {
-  // request
-  const { error, data: password } = await fetchResetUserPassword(id);
-  if (!error) {
-    modal.create({
-      title: '',
-      content: password,
-      preset: 'dialog'
-    });
-  }
+  modal.create({
+    title: $t('page.manage.user.resetPwd'),
+    content: $t('page.manage.user.confirmResetPwd'),
+    preset: 'dialog',
+    negativeText: $t('common.cancel'),
+    positiveText: $t('common.confirm'),
+    onPositiveClick: async () => {
+      // request
+      const { error, data: password } = await fetchResetUserPassword(id);
+      if (!error) {
+        modal.create({
+          title: '',
+          content: password,
+          preset: 'dialog'
+        });
+      }
+    }
+  });
 }
 
-function edit(id: string) {
-  handleEdit(id);
+async function handleResponsibilities(id: string) {
+  handleId(id);
+  setRespModelVisible();
 }
 </script>
 
@@ -218,11 +247,11 @@ function edit(id: string) {
         :flex-height="!appStore.isMobile"
         :loading="loading"
         :single-line="false"
-        :single-column="false"
         :row-key="row => row.id"
         :pagination="mobilePagination"
       />
       <UserOperateDrawer v-model:visible="drawerVisible" :operate-type="operateType" :row-data="editingData" @submitted="getDataByPage" />
+      <UserResponsibilitiesSetting v-model:visible="respModelVisible" :user-id="editingId" />
     </NCard>
   </div>
 </template>

@@ -94,3 +94,11 @@ export const schedulerTriggerStateTag: Record<Api.Monitor.SchedulerTriggerState,
 };
 
 export const schedulerTriggerStateOptions = transformRecordToOption(schedulerTriggerStateRecord);
+
+/** dict type */
+export const dictTypeRecord: Record<Api.SystemManage.DictType, App.I18n.I18nKey> = {
+  '1': 'page.manage.dict.dictType.system',
+  '2': 'page.manage.dict.dictType.business'
+};
+
+export const dictTypeOptions = transformRecordToOption(dictTypeRecord);

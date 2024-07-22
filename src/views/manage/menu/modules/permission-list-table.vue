@@ -85,7 +85,7 @@ const { columns, data, loading, mobilePagination, searchParams, getData, getData
       render: row => (
         <div class="flex-center gap-8px">
           {hasAuth('sys:permission:update') && (
-            <NButton type="primary" ghost size="small" onClick={() => handleEditButton(row.id)}>
+            <NButton type="primary" quaternary size="small" onClick={() => handleEditButton(row.id)}>
               {$t('common.edit')}
             </NButton>
           )}
@@ -94,7 +94,7 @@ const { columns, data, loading, mobilePagination, searchParams, getData, getData
               {{
                 default: () => $t('common.confirmDelete'),
                 trigger: () => (
-                  <NButton type="error" ghost size="small">
+                  <NButton type="error" quaternary size="small">
                     {$t('common.delete')}
                   </NButton>
                 )
@@ -153,7 +153,6 @@ watch(props.showData, () => {
         :flex-height="!appStore.isMobile"
         :loading="loading"
         :single-line="false"
-        :single-column="false"
         :row-key="row => row.id"
         :pagination="mobilePagination"
       />

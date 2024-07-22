@@ -9,7 +9,7 @@ export function useAuth() {
   const route = useRoute();
 
   const hasAuthModelPermissionMap: Record<Env.AuthButtonMode, string[]> = {
-    route_meta: route.meta.permissions ?? [],
+    route_meta: route?.meta.permissions ?? [],
     user_info: authStore.userInfo.permissions ?? []
   };
 

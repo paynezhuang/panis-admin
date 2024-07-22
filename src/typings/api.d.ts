@@ -136,7 +136,7 @@ declare namespace Api {
       userName: string;
       /** user gender */
       gender: UserGender | null;
-      /** user nick name */
+      /** user nickname */
       nickName: string;
       /** user real name */
       realName: string;
@@ -144,8 +144,6 @@ declare namespace Api {
       phone: string;
       /** user email */
       email: string;
-      /** user role code collection */
-      roleIds: string[];
       /** user status */
       status: Common.EnableStatus;
     }>;
@@ -156,10 +154,19 @@ declare namespace Api {
     >;
 
     /** user edit model */
-    type UserEdit = Pick<Api.SystemManage.User, 'userName' | 'gender' | 'nickName' | 'realName' | 'phone' | 'email' | 'roleIds' | 'status'>;
+    type UserEdit = Pick<Api.SystemManage.User, 'userName' | 'gender' | 'nickName' | 'realName' | 'phone' | 'email' | 'status'>;
 
     /** user list */
     type UserList = Common.PaginatingQueryRecord<User>;
+
+    /** user responsibilities */
+    type UserResponsibilities = {
+      userId: string;
+      roleIds: string[];
+      positionIds: string[];
+      orgUnitsIds: string[];
+      orgUnitsPrincipalIds: string[];
+    };
 
     /**
      * menu type
@@ -326,7 +333,7 @@ declare namespace Api {
       buttons: PermissionButton[];
     };
 
-    /** premission tree */
+    /** permission tree */
     type PermissionTree = {
       label: string;
       value: string;
@@ -338,6 +345,140 @@ declare namespace Api {
     type RolePermission = {
       roleId: string;
       permissionIds: string[];
+    };
+
+    /** position */
+    type Position = Common.CommonRecord<{
+      /** position name */
+      name: string;
+      /** position i18nKey */
+      i18nKey: string;
+      /** position code */
+      code: string;
+      /** abbr */
+      abbr: string;
+      /** position description */
+      description: string;
+      /** position sort */
+      sort: number;
+      /** position status */
+      status: Common.EnableStatus;
+    }>;
+
+    /** position page list */
+    type PositionPageList = Common.PaginatingQueryRecord<Position>;
+
+    /** position search params */
+    type PositionSearchParams = CommonType.RecordNullable<Pick<Api.SystemManage.Position, 'name' | 'status'> & CommonSearchParams>;
+
+    /** position edit model */
+    type PositionEdit = Pick<Api.SystemManage.Position, 'code' | 'name' | 'i18nKey' | 'abbr' | 'sort' | 'description' | 'status'>;
+
+    /**
+     * dict type
+     *
+     * - "1": system dict
+     * - "2": business dict
+     */
+    type DictType = '1' | '2';
+
+    /** dict */
+    type Dict = Common.CommonRecord<{
+      /** dict name */
+      name: string;
+      /** dict code */
+      code: string;
+      /** dict type */
+      type: DictType;
+      /** dict sort */
+      sort: number;
+      /** dict description */
+      description: string;
+      /** dict status */
+      status: Common.EnableStatus;
+    }>;
+
+    /** dict list */
+    type DictPageList = Common.PaginatingQueryRecord<Dict>;
+
+    /** dict search params */
+    type DictSearchParams = CommonType.RecordNullable<Pick<Api.SystemManage.Dict, 'name' | 'code'> & CommonSearchParams>;
+
+    /** dict edit model */
+    type DictEdit = Pick<Api.SystemManage.Dict, 'name' | 'code' | 'type' | 'sort' | 'description' | 'status'>;
+
+    /** dict tree * */
+    type DictTree = Pick<Api.SystemManage.Dict, 'id' | 'name' | 'code' | 'type' | 'description' | 'status'>;
+
+    /** dict item */
+    type DictItem = Common.CommonRecord<{
+      /** dict id */
+      dictId: string;
+      /** dict code */
+      dictCode: string;
+      /** dict item value */
+      value: string;
+      /** dict item label: zh_cn */
+      zhCN: string;
+      /** dict item label: en_us */
+      enUS: string;
+      /** dict item sort */
+      sort: number;
+      /** dict item description */
+      description: string;
+      /** dict item status */
+      status: Common.EnableStatus;
+    }>;
+
+    /** dict item page list */
+    type DictItemPageList = Common.PaginatingQueryRecord<DictItem>;
+
+    /** dict item search params */
+    type DictItemSearchParams = CommonType.RecordNullable<
+      Pick<Api.SystemManage.DictItem, 'dictId' | 'value' | 'zhCN' | 'enUS' | 'description'> & CommonSearchParams
+    >;
+
+    /** dict item edit model */
+    type DictItemEdit = Pick<Api.SystemManage.DictItem, 'value' | 'zhCN' | 'enUS' | 'sort' | 'description' | 'status'>;
+
+    type OrgUnits = Common.CommonRecord<{
+      /** parent org id */
+      parentId: UnionKey.StrNum;
+      /** org name */
+      name: string;
+      /** org code */
+      code: string;
+      /** org abbr */
+      abbr: string;
+      /** org level */
+      level: number;
+      /** org ancestors */
+      ancestors: string;
+      /** org sort */
+      description: string;
+      /** org sort */
+      sort: number;
+      /** org status */
+      status: Common.EnableStatus;
+      /** children org */
+      children?: OrgUnits[] | null;
+    }>;
+
+    /** OrgUnits page list */
+    type OrgUnitsPageList = Common.PaginatingQueryRecord<OrgUnits>;
+
+    /** OrgUnits search params */
+    type OrgUnitsSearchParams = CommonType.RecordNullable<Pick<Api.SystemManage.OrgUnits, 'name' | 'status'> & CommonSearchParams>;
+
+    /** OrgUnits edit model */
+    type OrgUnitsEdit = Pick<
+      Api.SystemManage.OrgUnits,
+      'id' | 'parentId' | 'name' | 'code' | 'abbr' | 'level' | 'ancestors' | 'description' | 'status' | 'sort'
+    >;
+
+    /** OrgUnits tree */
+    type OrgUnitsTree = Pick<Api.SystemManage.OrgUnits, 'id' | 'name' | 'code'> & {
+      children?: OrgUnitsTree[];
     };
   }
 

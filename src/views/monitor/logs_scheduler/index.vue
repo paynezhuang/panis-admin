@@ -142,7 +142,6 @@ const { checkedRowKeys } = useTableOperate(data, getData);
         :flex-height="!appStore.isMobile"
         :loading="loading"
         :single-line="false"
-        :single-column="false"
         :row-key="row => row.id"
         :pagination="mobilePagination"
       />

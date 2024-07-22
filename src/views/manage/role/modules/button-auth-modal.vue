@@ -75,7 +75,7 @@ watch(visible, () => {
 
 <template>
   <NModal v-model:show="visible" :title="title" preset="card" :segmented="false" class="w-1080px">
-    <NCheckboxGroup v-model:value="checks" class="max-h-500px overflow-auto" size="small">
+    <NCheckboxGroup v-model:value="checks" class="h-500px overflow-auto" size="small">
       <NDescriptions label-placement="left" bordered :column="1">
         <NDescriptionsItem v-for="item in permissionData" :key="item.menuId" :label="$t(item.i18nKey)">
           <NGrid :y-gap="8" :cols="4">
