@@ -1,5 +1,6 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm, NTag } from 'naive-ui';
+import type { Ref } from 'vue';
 import { ref } from 'vue';
 import { useAuth } from '@/hooks/business/auth';
 import { useTable, useTableOperate } from '@/hooks/common/table';
@@ -20,6 +21,8 @@ const appStore = useAppStore();
 const { hasAuth } = useAuth();
 
 const operateType = ref<OperateType>('add');
+
+const editingData: Ref<Api.SystemManage.OrgUnits | null> = ref(null);
 
 const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetOrgUnitsPageList,
@@ -128,7 +131,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
   ]
 });
 
-const { drawerVisible, openDrawer, handleAdd, editingData, checkedRowKeys, onDeleted, onBatchDeleted } = useTableOperate(data, getData);
+const { drawerVisible, openDrawer, handleAdd, checkedRowKeys, onDeleted, onBatchDeleted } = useTableOperate(data, getData);
 
 function edit(item: Api.SystemManage.OrgUnits) {
   operateType.value = 'edit';

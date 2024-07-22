@@ -1,7 +1,7 @@
 # PanisAdmin 后台管理系统
 
 ![Node](https://img.shields.io/badge/Node-18-blue.svg)
-![Version](https://img.shields.io/badge/Version-1.0.2-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.0.3-blue.svg)
 [![License](https://img.shields.io/badge/License-Apache%20License%202.0-B9D6AF.svg)](./LICENSE)
 <br/>
 [![Author](https://img.shields.io/badge/Author-paynezhuang-green.svg)](https://github.com/paynezhuang)

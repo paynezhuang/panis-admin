@@ -1,10 +1,11 @@
 import { computed, effectScope, onScopeDispose, reactive, ref, watch } from 'vue';
 import type { Ref } from 'vue';
-import { type PaginationProps } from 'naive-ui';
+import type { PaginationProps } from 'naive-ui';
+import { jsonClone } from '@sa/utils';
 import { useBoolean, useHookTable } from '@sa/hooks';
-import { cloneDeep } from 'lodash-es';
 import { useAppStore } from '@/store/modules/app';
 import { $t } from '@/locales';
+
 type TableData = NaiveUI.TableData;
 type GetTableData<A extends NaiveUI.TableApiFn> = NaiveUI.GetTableData<A>;
 type TableColumn<T> = NaiveUI.TableColumn<T>;
@@ -12,6 +13,7 @@ type TableColumn<T> = NaiveUI.TableColumn<T>;
 export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTableConfig<A>) {
   const scope = effectScope();
   const appStore = useAppStore();
+
   const isMobile = computed(() => appStore.isMobile);
 
   const { apiFn, apiParams, immediate, showTotal } = config;
@@ -30,10 +32,12 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
     columns: config.columns,
     transformer: res => {
       const { records = [], page = 1, pageSize = 20, total = 0 } = res.data || {};
+      // Ensure that the size is greater than 0, If it is less than 0, it will cause paging calculation errors.
+      const rPageSize = pageSize <= 0 ? 20 : pageSize;
       const recordsWithIndex = records.map((item, index) => {
         return {
           ...item,
-          index: (page - 1) * pageSize + index + 1
+          index: (page - 1) * rPageSize + index + 1
         };
       });
 
@@ -232,7 +236,7 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
     editingId.value = id;
 
     const findItem = data.value.find(item => item.id === id) || null;
-    editingData.value = cloneDeep(findItem);
+    editingData.value = jsonClone(findItem);
 
     openDrawer();
   }
@@ -247,7 +251,7 @@ export function useTableOperate<T extends TableData = TableData>(data: Ref<T[]>,
     }
 
     const findItem = data.value.find(item => item.id === targetId) || null;
-    editingData.value = cloneDeep(findItem);
+    editingData.value = jsonClone(findItem);
   }
 
   /** get the target id , If no ID is entered, retrieve the row key; otherwise, it is 0 */

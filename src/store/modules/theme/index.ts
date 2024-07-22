@@ -5,7 +5,7 @@ import { useEventListener, usePreferredColorScheme } from '@vueuse/core';
 import { getPaletteColorByNumber } from '@sa/color';
 import { SetupStoreId } from '@/enum';
 import { localStg } from '@/utils/storage';
-import { addThemeVarsToHtml, createThemeToken, getNaiveTheme, initThemeSettings, toggleCssDarkMode, toggleGrayscaleMode } from './shared';
+import { addThemeVarsToGlobal, createThemeToken, getNaiveTheme, initThemeSettings, toggleCssDarkMode, toggleGrayscaleMode } from './shared';
 
 /** Theme store */
 export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
@@ -116,10 +116,18 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     settings.value.layout.mode = mode;
   }
 
-  /** Setup theme vars to html */
-  function setupThemeVarsToHtml() {
-    const { themeTokens, darkThemeTokens } = createThemeToken(themeColors.value, settings.value.recommendColor);
-    addThemeVarsToHtml(themeTokens, darkThemeTokens);
+  /** Setup theme vars to global */
+  function setupThemeVarsToGlobal() {
+    const { themeTokens, darkThemeTokens } = createThemeToken(themeColors.value, settings.value.tokens, settings.value.recommendColor);
+    addThemeVarsToGlobal(themeTokens, darkThemeTokens);
+  }
+  /**
+   * Set layout reverse horizontal mix
+   *
+   * @param reverse Reverse horizontal mix
+   */
+  function setLayoutReverseHorizontalMix(reverse: boolean) {
+    settings.value.layout.reverseHorizontalMix = reverse;
   }
 
   /** Cache theme settings */
@@ -159,7 +167,7 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     watch(
       themeColors,
       val => {
-        setupThemeVarsToHtml();
+        setupThemeVarsToGlobal();
         localStg.set('themeColor', val.primary);
       },
       { immediate: true }
@@ -182,6 +190,7 @@ export const useThemeStore = defineStore(SetupStoreId.Theme, () => {
     setThemeScheme,
     toggleThemeScheme,
     updateThemeColors,
-    setThemeLayout
+    setThemeLayout,
+    setLayoutReverseHorizontalMix
   };
 });

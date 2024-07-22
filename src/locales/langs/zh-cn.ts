@@ -25,6 +25,7 @@ const local: App.I18n.Schema = {
     deleteSuccess: '删除成功',
     confirmDelete: '确认删除吗？',
     edit: '编辑',
+    warning: '警告',
     error: '错误',
     index: '序号',
     keywordSearch: '请输入关键词搜索',
@@ -72,13 +73,14 @@ const local: App.I18n.Schema = {
       dark: '暗黑模式',
       auto: '跟随系统'
     },
-    grayscale: '灰度模式',
+    grayscale: '灰色模式',
     layoutMode: {
       title: '布局模式',
       vertical: '左侧菜单模式',
       'vertical-mix': '左侧菜单混合模式',
       horizontal: '顶部菜单模式',
-      'horizontal-mix': '顶部菜单混合模式'
+      'horizontal-mix': '顶部菜单混合模式',
+      reverseHorizontalMix: '一级菜单与子级菜单位置反转'
     },
     recommendColor: '应用推荐算法的颜色',
     recommendColorDesc: '推荐颜色的算法参照',
