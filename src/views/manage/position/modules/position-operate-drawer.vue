@@ -47,7 +47,6 @@ function createDefaultModel(): Model {
   return {
     name: '',
     code: '',
-    i18nKey: '',
     abbr: '',
     description: '',
     sort: 1,
@@ -107,9 +106,6 @@ watch(visible, () => {
         </NFormItem>
         <NFormItem :label="$t('page.manage.position.abbr')" path="abbr">
           <NInput v-model:value="model.abbr" :placeholder="$t('page.manage.position.form.abbr')" />
-        </NFormItem>
-        <NFormItem :label="$t('page.manage.position.i18nKey')" path="i18nKey">
-          <NInput v-model:value="model.i18nKey" :placeholder="$t('page.manage.position.form.i18nKey')" />
         </NFormItem>
         <NFormItem :label="$t('page.manage.position.status')" path="status">
           <NRadioGroup v-model:value="model.status">

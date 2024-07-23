@@ -351,8 +351,6 @@ declare namespace Api {
     type Position = Common.CommonRecord<{
       /** position name */
       name: string;
-      /** position i18nKey */
-      i18nKey: string;
       /** position code */
       code: string;
       /** abbr */
@@ -372,7 +370,7 @@ declare namespace Api {
     type PositionSearchParams = CommonType.RecordNullable<Pick<Api.SystemManage.Position, 'name' | 'status'> & CommonSearchParams>;
 
     /** position edit model */
-    type PositionEdit = Pick<Api.SystemManage.Position, 'code' | 'name' | 'i18nKey' | 'abbr' | 'sort' | 'description' | 'status'>;
+    type PositionEdit = Pick<Api.SystemManage.Position, 'code' | 'name' | 'abbr' | 'sort' | 'description' | 'status'>;
 
     /**
      * dict type
