@@ -131,7 +131,12 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
   ]
 });
 
-const { drawerVisible, openDrawer, handleAdd, checkedRowKeys, onDeleted, onBatchDeleted } = useTableOperate(data, getData);
+const { drawerVisible, openDrawer, checkedRowKeys, onDeleted, onBatchDeleted } = useTableOperate(data, getData);
+
+function handleAdd() {
+  operateType.value = 'add';
+  openDrawer();
+}
 
 function edit(item: Api.SystemManage.OrgUnits) {
   operateType.value = 'edit';
