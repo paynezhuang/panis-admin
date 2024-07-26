@@ -140,7 +140,7 @@ init(null);
             :data="tree"
             :pattern="name"
             block-line
-            class="py-3"
+            class="flex-col-stretch py-3"
             key-field="id"
             virtual-scroll
             :show-irrelevant-nodes="false"

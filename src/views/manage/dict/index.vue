@@ -179,7 +179,7 @@ onMounted(() => init());
             :data="dictTreeList"
             :pattern="name"
             block-line
-            class="py-3"
+            class="flex-col-stretch py-3"
             key-field="id"
             label-field="name"
             virtual-scroll
