@@ -28,7 +28,7 @@ declare namespace NaiveUI {
 
   type TableColumn<T> = TableColumnWithKey<T> | DataTableSelectionColumn<T> | DataTableExpandColumn<T>;
 
-  type TableApiFn<T = any, R = Api.SystemManage.CommonSearchParams> = (params: R) => Promise<FlatResponseData<Api.Common.PaginatingQueryRecord<T>>>;
+  type TableApiFn<T = any, R = Api.Common.CommonSearchParams> = (params: R) => Promise<FlatResponseData<Api.Common.PaginatingQueryRecord<T>>>;
 
   /**
    * the type of table operation
