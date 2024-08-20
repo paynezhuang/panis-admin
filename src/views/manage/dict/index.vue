@@ -52,6 +52,7 @@ const dictData: DictTree = reactive({
 
 /** add */
 function handleAdd() {
+  operateType.value = 'add';
   openDictDrawer();
 }
 
