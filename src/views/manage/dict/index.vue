@@ -1,4 +1,5 @@
 <script setup lang="tsx">
+import type { VNodeChild } from 'vue';
 import { h, onMounted, reactive, ref, shallowRef } from 'vue';
 import { NButton, NButtonGroup, NPopconfirm, NSpace, NText } from 'naive-ui';
 import { $t } from '@/locales';
@@ -110,25 +111,9 @@ function recursive(item: Api.SystemManage.DictTree): DictTree {
 }
 
 /** render label */
-function renderLabel({ option }: { option: NaiveUI.TreeOption }) {
+function renderLabel({ option }: { option: NaiveUI.TreeOption }): VNodeChild {
   const flag = option.status === '0';
-  return [
-    h(
-      NText,
-      { delete: flag, strong: flag },
-      {
-        default: () => option.name
-      }
-    ),
-    h('br'),
-    h(
-      NText,
-      { delete: flag, strong: flag, depth: 3 },
-      {
-        default: () => option.code
-      }
-    )
-  ];
+  return <NText delete={flag}>{option.name}</NText>;
 }
 
 /** edit */
@@ -208,6 +193,12 @@ onMounted(() => init());
   }
   .n-tree-node-content {
     --uno: px-8px py-4px;
+  }
+  .n-tree-node-content__suffix {
+    display: none;
+  }
+  .n-tree-node-content:hover .n-tree-node-content__suffix {
+    display: inline-flex;
   }
 }
 </style>
