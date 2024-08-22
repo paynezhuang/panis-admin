@@ -8,6 +8,7 @@ import { fetchDeleteDict, fetchGetDictList } from '@/service/api';
 import SvgIcon from '@/components/custom/svg-icon.vue';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
+import { copy } from '@/utils/clipboard';
 import DictOperateDrawer from './modules/dict-operate-drawer.vue';
 import DictItemPageTable from './modules/dict-item-page-table.vue';
 
@@ -67,6 +68,18 @@ function recursive(item: Api.SystemManage.DictTree): DictTree {
         {},
         {
           default: () => [
+            h(
+              NButton,
+              {
+                size: 'tiny',
+                quaternary: true,
+                onClick: event => {
+                  event.stopPropagation();
+                  copy(item.code);
+                }
+              },
+              { icon: () => h(SvgIcon, { icon: 'ic:baseline-content-copy' }) }
+            ),
             hasAuth('sys:dict:update') &&
               h(
                 NButton,

@@ -1,6 +1,5 @@
 <script setup lang="tsx">
-import { NButton, NFlex, NPopconfirm, NText } from 'naive-ui';
-import type { VNodeChild } from 'vue';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { computed, watch } from 'vue';
 import { $t } from '@/locales';
 import { transDeleteParams } from '@/utils/common';
@@ -9,8 +8,6 @@ import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useAppStore } from '@/store/modules/app';
 import { useAuth } from '@/hooks/business/auth';
 import { useDict } from '@/hooks/business/dict';
-import SvgIcon from '@/components/custom/svg-icon.vue';
-import { copy } from '@/utils/clipboard';
 import DictItemSearch from './dict-item-search.vue';
 import DictItemOperateDrawer from './dict-item-operate-drawer.vue';
 
@@ -128,20 +125,6 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
 
 const { drawerVisible, operateType, handleAdd, handleEdit, editingId, checkedRowKeys, onDeleted, onBatchDeleted } = useTableOperate(data, getData);
 
-function initTitle(): VNodeChild {
-  return (
-    <NFlex>
-      <NText>{props.dict.name}</NText>
-      <NText>{props.dict.code}</NText>
-      <NButton quaternary size="small" onClick={() => copy(props.dict.code)}>
-        {{
-          icon: () => <SvgIcon icon="ic:baseline-content-copy" class={'text-icon'} />
-        }}
-      </NButton>
-    </NFlex>
-  );
-}
-
 /** edit */
 function edit(id: string) {
   handleEdit(id);
@@ -170,7 +153,12 @@ watch(dictId, () => {
 <template>
   <div class="h-full flex-col-stretch gap-8px overflow-hidden lt-sm:overflow-auto">
     <DictItemSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
-    <NCard :title="() => initTitle()" :bordered="false" class="sm:flex-1-hidden card-wrapper" content-class="flex-col">
+    <NCard
+      :title="dict.name + `(` + dict.code + `) ` + $t('page.manage.dictItem.title')"
+      :bordered="false"
+      class="sm:flex-1-hidden card-wrapper"
+      content-class="flex-col"
+    >
       <TableHeaderOperation
         v-model:columns="columnChecks"
         :checked-row-keys="checkedRowKeys"
