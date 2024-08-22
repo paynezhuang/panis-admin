@@ -2,6 +2,7 @@
 export const themeSettings: App.Theme.ThemeSetting = {
   themeScheme: 'light',
   grayscale: false,
+  colourWeakness: false,
   recommendColor: false,
   themeColor: '#646cff',
   otherColor: {
@@ -18,7 +19,7 @@ export const themeSettings: App.Theme.ThemeSetting = {
   },
   page: {
     animate: true,
-    animateMode: 'fade'
+    animateMode: 'fade-slide'
   },
   header: {
     height: 56,
@@ -47,6 +48,10 @@ export const themeSettings: App.Theme.ThemeSetting = {
     fixed: false,
     height: 48,
     right: true
+  },
+  watermark: {
+    visible: false,
+    text: 'PanisAdmin'
   },
   tokens: {
     light: {
@@ -77,4 +82,9 @@ export const themeSettings: App.Theme.ThemeSetting = {
  *
  * If publish new version, use `overrideThemeSettings` to override certain theme settings
  */
-export const overrideThemeSettings: Partial<App.Theme.ThemeSetting> = {};
+export const overrideThemeSettings: Partial<App.Theme.ThemeSetting> = {
+  watermark: {
+    visible: false,
+    text: 'SoybeanAdmin'
+  }
+};
