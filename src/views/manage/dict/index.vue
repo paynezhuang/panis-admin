@@ -157,7 +157,7 @@ onMounted(() => init());
 </script>
 
 <template>
-  <div class="h-full-hidden gap-8px">
+  <div class="flex">
     <NGrid :x-gap="8" :y-gap="8" item-responsive responsive="screen" cols="1 s:1 m:5 l:5 xl:5 2xl:5" class="h-full-hidden">
       <NGridItem span="1" class="h-full-hidden">
         <NCard :title="$t('page.manage.dict.title')" :bordered="false" size="small" class="h-full sm:flex-1-hidden" content-class="h-full-hidden">
