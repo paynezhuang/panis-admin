@@ -2,13 +2,13 @@
 import type { Ref } from 'vue';
 import { h, reactive, ref, shallowRef } from 'vue';
 import { useBoolean } from '@sa/hooks';
+import { NTag } from 'naive-ui';
 import { $t } from '@/locales';
 import { fetchDeleteMenu, fetchGetAllPages, fetchGetMenuTree } from '@/service/api';
 import SvgIcon from '@/components/custom/svg-icon.vue';
-import { enableStatusRecord, enableStatusTag, menuTypeRecord, menuTypeTag } from '@/constants/business';
-import { yesOrNoRecord, yesOrNoTag } from '@/constants/common';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
+import { useDict } from '@/hooks/business/dict';
 import PermissionListTable from './modules/permission-list-table.vue';
 import MenuOperateDrawer, { type OperateType } from './modules/menu-operate-drawer.vue';
 
@@ -17,6 +17,8 @@ const { bool: detailVisible, setBool: setDetailVisible, setFalse: hideDetail } =
 const { bool: menuDrawerVisible, setTrue: openMenuDrawer } = useBoolean();
 
 const { hasAuth } = useAuth();
+
+const { dcitType, dictLabel } = useDict();
 
 const operateType = ref<OperateType>('add');
 
@@ -173,20 +175,20 @@ init(null);
           </template>
           <NDescriptions label-placement="left" size="small" bordered :column="2">
             <NDescriptionsItem :label="$t('page.manage.menu.type')">
-              <NTag :type="menuTypeTag[showData.type]">{{ $t(menuTypeRecord[showData.type]) }}</NTag>
+              <NTag :type="dcitType('menu_type', showData.type)">{{ dictLabel('menu_type', showData.type) }}</NTag>
             </NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.status')">
-              <NTag :type="enableStatusTag[showData.status]">{{ $t(enableStatusRecord[showData.status]) }}</NTag>
+              <NTag :type="dcitType('status', showData.status)">{{ dictLabel('status', showData.status) }}</NTag>
             </NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.name')">{{ showData.name }}</NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.i18nKey')">{{ showData.i18nKey }}</NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.routeName')">{{ showData.routeName }}</NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.routePath')">{{ showData.routePath }}</NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.hideInMenu')">
-              <NTag :type="yesOrNoTag[showData.hide]">{{ $t(yesOrNoRecord[showData.hide]) }}</NTag>
+              <NTag :type="dcitType('feature_status', showData.hide)">{{ dictLabel('feature_status', showData.hide) }}</NTag>
             </NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.keepAlive')">
-              <NTag :type="yesOrNoTag[showData.keepAlive || 'N']">{{ $t(yesOrNoRecord[showData.keepAlive || 'N']) }}</NTag>
+              <NTag :type="dcitType('feature_status', showData.keepAlive || 'N')">{{ dictLabel('feature_status', showData.keepAlive || 'N') }}</NTag>
             </NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.href')" :span="2">{{ showData.href }}</NDescriptionsItem>
           </NDescriptions>

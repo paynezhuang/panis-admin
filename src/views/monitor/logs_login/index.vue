@@ -1,10 +1,9 @@
 <script setup lang="tsx">
-import { NTag } from 'naive-ui';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { fetchGetLoginLogList } from '@/service/api';
-import { logsLoginStatusRecord, logsLoginStatusTag } from '@/constants/business';
+import { useDict } from '@/hooks/business/dict';
 import LogsLoginSearch from './modules/login-search.vue';
 
 defineOptions({
@@ -12,6 +11,8 @@ defineOptions({
 });
 
 const appStore = useAppStore();
+
+const { dictTag } = useDict();
 
 const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetLoginLogList,
@@ -45,15 +46,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       title: $t('page.monitor.logs.login.status'),
       align: 'center',
       minWidth: 100,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-
-        const label = $t(logsLoginStatusRecord[row.status]);
-
-        return <NTag type={logsLoginStatusTag[row.status]}>{label}</NTag>;
-      }
+      render: row => dictTag('login_status', row.status)
     },
     {
       key: 'ip',

@@ -1,10 +1,10 @@
 <script setup lang="tsx">
-import { NCard, NSpace, NTag, NText } from 'naive-ui';
+import { NCard, NSpace, NText } from 'naive-ui';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { fetchGetSchedulerLogList } from '@/service/api';
-import { logsSchedulerStatusRecord, logsSchedulerStatusTag } from '@/constants/business';
+import { useDict } from '@/hooks/business/dict';
 import LogsSchedulerSearch from './modules/scheduler-search.vue';
 
 defineOptions({
@@ -12,6 +12,8 @@ defineOptions({
 });
 
 const appStore = useAppStore();
+
+const { dictTag } = useDict();
 
 const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetSchedulerLogList,
@@ -61,15 +63,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       title: $t('page.monitor.logs.scheduler.status'),
       align: 'center',
       minWidth: 100,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-
-        const label = $t(logsSchedulerStatusRecord[row.status]);
-
-        return <NTag type={logsSchedulerStatusTag[row.status]}>{label}</NTag>;
-      }
+      render: row => dictTag('scheduler_execute_staus', row.status)
     },
     {
       key: 'useTime',

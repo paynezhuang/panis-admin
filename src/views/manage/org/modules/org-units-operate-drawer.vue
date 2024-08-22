@@ -2,9 +2,9 @@
 import { computed, reactive, watch } from 'vue';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { $t } from '@/locales';
-import { enableStatusOptions } from '@/constants/business';
 import { fetchAddOrgUnits, fetchUpdateOrgUnits } from '@/service/api';
 import { getLevelAndAncestors } from '@/views/manage/org/modules/shared';
+import { useDict } from '@/hooks/business/dict';
 
 defineOptions({
   name: 'OrgUnitsOperateDrawer'
@@ -30,6 +30,8 @@ const emit = defineEmits<Emits>();
 const visible = defineModel<boolean>('visible', {
   default: false
 });
+
+const { dictOptions } = useDict();
 
 const { formRef, validate, restoreValidation } = useNaiveForm();
 const { defaultRequiredRule } = useFormRules();
@@ -126,7 +128,7 @@ watch(visible, () => {
         </NFormItem>
         <NFormItem :label="$t('page.manage.orgUnits.status')" path="status">
           <NRadioGroup v-model:value="model.status">
-            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+            <NRadio v-for="item in dictOptions('status')" :key="item.value" :value="item.value" :label="item.label" />
           </NRadioGroup>
         </NFormItem>
         <NFormItem :label="$t('page.manage.orgUnits.sort')" path="sort">

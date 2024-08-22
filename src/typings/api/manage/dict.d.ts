@@ -48,6 +48,8 @@ declare namespace Api {
       zhCN: string;
       /** dict item label: en_us */
       enUS: string;
+      /** dict item type */
+      type: string;
       /** dict item sort */
       sort: number;
       /** dict item description */
@@ -65,6 +67,16 @@ declare namespace Api {
     >;
 
     /** dict item edit model */
-    type DictItemEdit = Pick<Api.SystemManage.DictItem, 'value' | 'zhCN' | 'enUS' | 'sort' | 'description' | 'status'>;
+    type DictItemEdit = Pick<Api.SystemManage.DictItem, 'value' | 'zhCN' | 'enUS' | 'type' | 'sort' | 'description' | 'status'>;
+
+    /** dict options */
+    type DictOptions = {
+      label: string;
+      value: string;
+      type: NaiveUI.ThemeColor;
+    };
+
+    /** dict store search params */
+    type DictStoreSearchParams = CommonType.RecordNullable<{ language: string; code?: string }>;
   }
 }

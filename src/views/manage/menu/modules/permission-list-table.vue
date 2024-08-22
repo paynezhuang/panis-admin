@@ -1,13 +1,13 @@
 <script setup lang="tsx">
 import { watch } from 'vue';
-import { NButton, NPopconfirm, NTag } from 'naive-ui';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { fetchDeletePermission, fetchGetPermissionList } from '@/service/api';
 import { $t } from '@/locales';
 import { useTable, useTableOperate } from '@/hooks/common/table';
-import { enableStatusRecord, enableStatusTag } from '@/constants/business';
 import { useAppStore } from '@/store/modules/app';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
+import { useDict } from '@/hooks/business/dict';
 import PermissionOperateDrawer from './permission-operate-drawer.vue';
 
 defineOptions({
@@ -24,6 +24,8 @@ const props = defineProps<Props>();
 const appStore = useAppStore();
 
 const { hasAuth } = useAuth();
+
+const { dictTag } = useDict();
 
 const { columns, data, loading, mobilePagination, searchParams, getData, getDataByPage } = useTable({
   apiFn: fetchGetPermissionList,
@@ -51,15 +53,7 @@ const { columns, data, loading, mobilePagination, searchParams, getData, getData
       title: $t('page.manage.menu.status'),
       align: 'center',
       width: 50,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-
-        const label = $t(enableStatusRecord[row.status]);
-
-        return <NTag type={enableStatusTag[row.status]}>{label}</NTag>;
-      }
+      render: row => dictTag('status', row.status)
     },
     {
       key: 'sort',

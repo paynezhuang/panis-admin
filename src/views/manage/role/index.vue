@@ -1,13 +1,13 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm, NTag } from 'naive-ui';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { useBoolean } from '@sa/hooks';
 import { fetchDeleteRole, fetchGetRoleList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
-import { enableStatusRecord, enableStatusTag } from '@/constants/business';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
+import { useDict } from '@/hooks/business/dict';
 import RoleOperateDrawer from './modules/role-operate-drawer.vue';
 import RoleSearch from './modules/role-search.vue';
 import MenuAuthModal from './modules/menu-auth-modal.vue';
@@ -20,6 +20,8 @@ const { bool: menuModalVisible, setTrue: openMenuModal } = useBoolean();
 const { bool: buttonModalVisible, setTrue: openButtonModal } = useBoolean();
 
 const { hasAuth } = useAuth();
+
+const { dictTag } = useDict();
 
 const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetRoleList,
@@ -61,15 +63,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       title: $t('page.manage.role.status'),
       align: 'center',
       width: 100,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-
-        const label = $t(enableStatusRecord[row.status]);
-
-        return <NTag type={enableStatusTag[row.status]}>{label}</NTag>;
-      }
+      render: row => dictTag('status', row.status)
     },
     {
       key: 'sort',

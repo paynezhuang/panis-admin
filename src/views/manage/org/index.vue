@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm, NTag } from 'naive-ui';
+import { NButton, NPopconfirm } from 'naive-ui';
 import type { Ref } from 'vue';
 import { ref } from 'vue';
 import { useAuth } from '@/hooks/business/auth';
@@ -8,7 +8,7 @@ import { $t } from '@/locales';
 import { fetchDeleteOrgUnits, fetchGetOrgUnitsPageList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { transDeleteParams } from '@/utils/common';
-import { enableStatusRecord, enableStatusTag } from '@/constants/business';
+import { useDict } from '@/hooks/business/dict';
 import OrgUnitsOperateDrawer, { type OperateType } from './modules/org-units-operate-drawer.vue';
 import OrgUnitsSearch from './modules/org-units-search.vue';
 
@@ -19,6 +19,8 @@ defineOptions({
 const appStore = useAppStore();
 
 const { hasAuth } = useAuth();
+
+const { dictTag } = useDict();
 
 const operateType = ref<OperateType>('add');
 
@@ -85,15 +87,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       align: 'center',
       width: 60,
       minWidth: 60,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-
-        const label = $t(enableStatusRecord[row.status]);
-
-        return <NTag type={enableStatusTag[row.status]}>{label}</NTag>;
-      }
+      render: row => dictTag('status', row.status)
     },
     {
       key: 'operate',

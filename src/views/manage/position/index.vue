@@ -1,12 +1,12 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm, NTag } from 'naive-ui';
-import { enableStatusRecord, enableStatusTag } from '@/constants/business';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { $t } from '@/locales';
 import { fetchDeletePosition, fetchGetPositionPageList } from '@/service/api';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useAppStore } from '@/store/modules/app';
 import { useAuth } from '@/hooks/business/auth';
 import { transDeleteParams } from '@/utils/common';
+import { useDict } from '@/hooks/business/dict';
 import PositionSearch from './modules/position-search.vue';
 import PositionOperateDrawer from './modules/position-operate-drawer.vue';
 
@@ -17,6 +17,8 @@ defineOptions({
 const appStore = useAppStore();
 
 const { hasAuth } = useAuth();
+
+const { dictTag } = useDict();
 
 const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetPositionPageList,
@@ -77,15 +79,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       title: $t('page.manage.position.status'),
       align: 'center',
       width: 80,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-
-        const label = $t(enableStatusRecord[row.status]);
-
-        return <NTag type={enableStatusTag[row.status]}>{label}</NTag>;
-      }
+      render: row => dictTag('status', row.status)
     },
     {
       key: 'operate',

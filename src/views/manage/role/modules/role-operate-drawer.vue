@@ -2,8 +2,8 @@
 import { computed, reactive, watch } from 'vue';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { $t } from '@/locales';
-import { enableStatusOptions } from '@/constants/business';
 import { fetchAddRole, fetchUpdateRoleInfo } from '@/service/api';
+import { useDict } from '@/hooks/business/dict';
 
 defineOptions({
   name: 'RoleOperateDrawer'
@@ -23,6 +23,8 @@ interface Emits {
 }
 
 const emit = defineEmits<Emits>();
+
+const { dictOptions } = useDict();
 
 const visible = defineModel<boolean>('visible', {
   default: false
@@ -105,7 +107,7 @@ watch(visible, () => {
         </NFormItem>
         <NFormItem :label="$t('page.manage.role.status')" path="status">
           <NRadioGroup v-model:value="model.status">
-            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+            <NRadio v-for="item in dictOptions('status')" :key="item.value" :value="item.value" :label="item.label" />
           </NRadioGroup>
         </NFormItem>
         <NFormItem :label="$t('page.manage.role.description')" path="description">

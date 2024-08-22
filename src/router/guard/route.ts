@@ -4,6 +4,7 @@ import { getRouteName } from '@/router/elegant/transform';
 import { useAuthStore } from '@/store/modules/auth';
 import { useRouteStore } from '@/store/modules/route';
 import { localStg } from '@/utils/storage';
+import { useDictStore } from '@/store/modules/dict';
 
 /**
  * create route guard
@@ -90,6 +91,7 @@ export function createRouteGuard(router: Router) {
 async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw | null> {
   const authStore = useAuthStore();
   const routeStore = useRouteStore();
+  const dictStore = useDictStore();
 
   const notFoundRoute: RouteKey = 'not-found';
   const isNotFoundRoute = to.name === notFoundRoute;
@@ -155,10 +157,14 @@ async function initRoute(to: RouteLocationNormalized): Promise<RouteLocationRaw 
     return location;
   }
 
+  // initalize the user info
   await authStore.initUserInfo();
 
   // initialize the auth route
   await routeStore.initAuthRoute();
+
+  // initialize the dict item
+  await dictStore.init();
 
   // the route is captured by the "not-found" route because the auth route is not initialized
   // after the auth route is initialized, redirect to the original route

@@ -8,7 +8,7 @@ import {
   fetchSaveUserResponsibilities
 } from '@/service/api';
 import { $t } from '@/locales';
-import { extractOptionsFromTree } from '@/views/manage/user/modules/shared';
+import { extractOptionsFromTree } from '../modules/shared';
 
 defineOptions({
   name: 'UserResponsibilitiesSetting'

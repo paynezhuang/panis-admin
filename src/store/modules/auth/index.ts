@@ -9,12 +9,14 @@ import { localStg } from '@/utils/storage';
 import { $t } from '@/locales';
 import { useRouteStore } from '../route';
 import { useTabStore } from '../tab';
+import { useDictStore } from '../dict';
 import { clearAuthStorage, getToken } from './shared';
 
 export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   const route = useRoute();
   const routeStore = useRouteStore();
   const tabStore = useTabStore();
+  const dictStore = useDictStore();
   const { toLogin, redirectFromLogin } = useRouterPush(false);
   const { loading: loginLoading, startLoading, endLoading } = useLoading();
 
@@ -72,6 +74,8 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
       if (pass) {
         await routeStore.initAuthRoute();
+
+        await dictStore.init();
 
         if (redirect) {
           await redirectFromLogin();

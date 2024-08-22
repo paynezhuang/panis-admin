@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { $t } from '@/locales';
-import { enableStatusOptions } from '@/constants/business';
-import { translateOptions } from '@/utils/common';
+import { useDict } from '@/hooks/business/dict';
 
 defineOptions({
   name: 'OrgUnitsSearch'
@@ -15,6 +14,8 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const model = defineModel<Api.SystemManage.OrgUnitsSearchParams>('model', { required: true });
+
+const { dictOptions } = useDict();
 
 function reset() {
   emit('reset');
@@ -40,7 +41,7 @@ function search() {
                 v-model:value="model.status"
                 size="small"
                 :placeholder="$t('page.manage.orgUnits.form.status')"
-                :options="translateOptions(enableStatusOptions)"
+                :options="dictOptions('status')"
                 clearable
               />
             </NFormItemGi>

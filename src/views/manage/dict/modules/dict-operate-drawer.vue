@@ -2,9 +2,8 @@
 import { computed, reactive, watch } from 'vue';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { $t } from '@/locales';
-import { dictTypeOptions, enableStatusOptions } from '@/constants/business';
 import { fetchAddDict, fetchGetEditDict, fetchUpdateDict } from '@/service/api';
-import { translateOptions } from '@/utils/common';
+import { useDict } from '@/hooks/business/dict';
 
 defineOptions({
   name: 'DictOperateDrawer'
@@ -31,6 +30,8 @@ const visible = defineModel<boolean>('visible', {
 
 const { formRef, validate, restoreValidation } = useNaiveForm();
 const { defaultRequiredRule } = useFormRules();
+
+const { dictOptions } = useDict();
 
 const title = computed(() => {
   const titles: Record<NaiveUI.TableOperateType, string> = {
@@ -105,14 +106,14 @@ watch(visible, () => {
           <NInput v-model:value="model.name" :placeholder="$t('page.manage.dict.form.name')" />
         </NFormItem>
         <NFormItem :label="$t('page.manage.dict.code')" path="code">
-          <NInput v-model:value="model.code" :placeholder="$t('page.manage.dict.form.code')" />
+          <NInput v-model:value="model.code" :placeholder="$t('page.manage.dict.form.code')" :disabled="isEdit" />
         </NFormItem>
         <NFormItem :label="$t('page.manage.dict.type')" path="type">
-          <NSelect v-model:value="model.type" :options="translateOptions(dictTypeOptions)" :placeholder="$t('page.manage.dict.form.type')"></NSelect>
+          <NSelect v-model:value="model.type" :options="dictOptions('dict_type')" :placeholder="$t('page.manage.dict.form.type')" />
         </NFormItem>
         <NFormItem :label="$t('page.manage.dict.status')" path="status">
           <NRadioGroup v-model:value="model.status">
-            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+            <NRadio v-for="item in dictOptions('status')" :key="item.value" :value="item.value" :label="item.label" />
           </NRadioGroup>
         </NFormItem>
         <NFormItem :label="$t('page.manage.dict.sort')" path="sort">

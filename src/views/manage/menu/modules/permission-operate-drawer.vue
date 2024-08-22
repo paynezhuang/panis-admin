@@ -3,8 +3,8 @@ import { computed, reactive, watch } from 'vue';
 import { NFormItem, NText } from 'naive-ui';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { fetchAddPermission, fetchUpdatePermissionInfo } from '@/service/api';
-import { enableStatusOptions } from '@/constants/business';
 import { $t } from '@/locales';
+import { useDict } from '@/hooks/business/dict';
 
 defineOptions({
   name: 'PermissionOperateDrawer'
@@ -31,6 +31,8 @@ const emit = defineEmits<Emits>();
 const visible = defineModel<boolean>('visible', {
   default: false
 });
+
+const { dictOptions } = useDict();
 
 const { formRef, validate, restoreValidation } = useNaiveForm();
 const { defaultRequiredRule } = useFormRules();
@@ -127,7 +129,7 @@ watch(visible, () => {
         </NFormItem>
         <NFormItem :label="$t('page.manage.permission.status')" path="status">
           <NRadioGroup v-model:value="model.status">
-            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+            <NRadio v-for="item in dictOptions('status')" :key="item.value" :value="item.value" :label="item.label" />
           </NRadioGroup>
         </NFormItem>
         <NFormItemGi :label="$t('page.manage.permission.sort')" path="sort">

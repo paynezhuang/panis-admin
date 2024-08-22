@@ -536,6 +536,7 @@ const local: App.I18n.Schema = {
         enUS: '英文',
         color: '#颜色',
         sort: '排序',
+        type: '类型',
         status: '状态',
         description: '描述',
         form: {
@@ -543,6 +544,7 @@ const local: App.I18n.Schema = {
           zhCN: '请输入字典项中文',
           enUS: '请输入字典项英文',
           color: '请选择颜色',
+          type: '请选择类型',
           sort: '请输入排序',
           status: '请选择字典项状态',
           description: '请输入字典描述'

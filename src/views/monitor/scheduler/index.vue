@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm, NTag } from 'naive-ui';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { h } from 'vue';
 import { useAppStore } from '@/store/modules/app';
 import { $t } from '@/locales';
@@ -7,9 +7,9 @@ import { useTable, useTableOperate } from '@/hooks/common/table';
 import { fetchDeleteScheduler, fetchGetSchedulerList } from '@/service/api';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
-import { schedulerTriggerStateRecord, schedulerTriggerStateTag } from '@/constants/business';
 import SvgIcon from '@/components/custom/svg-icon.vue';
 import { useButtonAuthDropdown } from '@/hooks/common/button-auth-dropdown';
+import { useDict } from '@/hooks/business/dict';
 import SchedulerSearch from './modules/scheduler-search.vue';
 import SchedulerOperateDrawer from './modules/scheduler-operate-drawer.vue';
 import type { ButtonDropdownKey } from './modules/shared';
@@ -22,6 +22,8 @@ defineOptions({
 const appStore = useAppStore();
 
 const { hasAuth } = useAuth();
+
+const { dictTag } = useDict();
 
 /** operation options */
 const options: CommonType.ButtonDropdown<ButtonDropdownKey, Api.Monitor.Scheduler>[] = [
@@ -90,15 +92,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       title: $t('page.monitor.scheduler.triggerState'),
       align: 'center',
       width: 100,
-      render: row => {
-        if (row.triggerState === null) {
-          return null;
-        }
-
-        const label = $t(schedulerTriggerStateRecord[row.triggerState]);
-
-        return <NTag type={schedulerTriggerStateTag[row.triggerState]}>{label}</NTag>;
-      }
+      render: row => dictTag('scheduler_trigger_status', row.triggerState)
     },
     {
       key: 'jobName',

@@ -3,7 +3,7 @@ import { computed, reactive, watch } from 'vue';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { fetchAddUser, fetchGetEditUserInfo, fetchUpdateUserInfo } from '@/service/api';
 import { $t } from '@/locales';
-import { enableStatusOptions, userGenderOptions } from '@/constants/business';
+import { useDict } from '@/hooks/business/dict';
 
 defineOptions({
   name: 'UserOperateDrawer'
@@ -23,6 +23,8 @@ interface Emits {
 }
 
 const emit = defineEmits<Emits>();
+
+const { dictOptions } = useDict();
 
 const visible = defineModel<boolean>('visible', {
   default: false
@@ -111,7 +113,7 @@ watch(visible, () => {
         </NFormItem>
         <NFormItem :label="$t('page.manage.user.gender')" path="gender">
           <NRadioGroup v-model:value="model.gender">
-            <NRadio v-for="item in userGenderOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+            <NRadio v-for="item in dictOptions('gender')" :key="item.value" :value="item.value" :label="item.label" />
           </NRadioGroup>
         </NFormItem>
         <NFormItem :label="$t('page.manage.user.nickName')" path="nickName">
@@ -128,7 +130,7 @@ watch(visible, () => {
         </NFormItem>
         <NFormItem :label="$t('page.manage.user.status')" path="status">
           <NRadioGroup v-model:value="model.status">
-            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+            <NRadio v-for="item in dictOptions('status')" :key="item.value" :value="item.value" :label="item.label" />
           </NRadioGroup>
         </NFormItem>
       </NForm>

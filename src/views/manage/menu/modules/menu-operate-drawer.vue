@@ -3,12 +3,11 @@ import type { SelectOption } from 'naive-ui';
 import { computed, reactive, watch } from 'vue';
 import type { LastLevelRouteKey } from '@elegant-router/types';
 import { getLocalIcons } from '@/utils/icon';
-import { enableStatusOptions, menuIconTypeOptions, menuTypeOptions } from '@/constants/business';
 import SvgIcon from '@/components/custom/svg-icon.vue';
 import { $t } from '@/locales';
 import { fetchAddMenu, fetchGetEditMenuInfo, fetchUpdateMenuInfo } from '@/service/api';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
-import { yesOrNoOptions } from '@/constants/common';
+import { useDict } from '@/hooks/business/dict';
 import {
   getLayoutAndPage,
   getPathParamFromRoutePath,
@@ -50,6 +49,8 @@ const emit = defineEmits<Emits>();
 const visible = defineModel<boolean>('visible', {
   default: false
 });
+
+const { dictOptions } = useDict();
 
 const { formRef, validate, restoreValidation } = useNaiveForm();
 const { defaultRequiredRule } = useFormRules();
@@ -241,7 +242,7 @@ watch(
         <NGrid>
           <NFormItemGi span="12" :label="$t('page.manage.menu.type')" path="type">
             <NRadioGroup v-model:value="model.type" :disabled="disabledMenuType">
-              <NRadio v-for="item in menuTypeOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+              <NRadio v-for="item in dictOptions('menu_type')" :key="item.value" :value="item.value" :label="item.label" />
             </NRadioGroup>
           </NFormItemGi>
           <NFormItemGi span="12" :label="$t('page.manage.menu.sort')" path="sort">
@@ -249,22 +250,22 @@ watch(
           </NFormItemGi>
           <NFormItemGi span="12" :label="$t('page.manage.menu.status')" path="status">
             <NRadioGroup v-model:value="model.status">
-              <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+              <NRadio v-for="item in dictOptions('status')" :key="item.value" :value="item.value" :label="item.label" />
             </NRadioGroup>
           </NFormItemGi>
           <NFormItemGi span="12" :label="$t('page.manage.menu.hideInMenu')" path="hide">
             <NRadioGroup v-model:value="model.hide">
-              <NRadio v-for="item in yesOrNoOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+              <NRadio v-for="item in dictOptions('feature_status')" :key="item.value" :value="item.value" :label="item.label" />
             </NRadioGroup>
           </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.keepAlive')" path="keepAlive">
             <NRadioGroup v-model:value="model.keepAlive">
-              <NRadio v-for="item in yesOrNoOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+              <NRadio v-for="item in dictOptions('feature_status')" :key="item.value" :value="item.value" :label="item.label" />
             </NRadioGroup>
           </NFormItemGi>
           <NFormItemGi span="12" :label="$t('page.manage.menu.multiTab')" path="multiTab">
             <NRadioGroup v-model:value="model.multiTab">
-              <NRadio v-for="item in yesOrNoOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+              <NRadio v-for="item in dictOptions('feature_status')" :key="item.value" :value="item.value" :label="item.label" />
             </NRadioGroup>
           </NFormItemGi>
           <NFormItemGi span="12" :label="$t('page.manage.menu.fixedIndexInTab')" path="fixedIndexInTab">
@@ -281,7 +282,7 @@ watch(
           </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.iconTypeTitle')" path="iconType">
             <NRadioGroup v-model:value="model.iconType">
-              <NRadio v-for="item in menuIconTypeOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+              <NRadio v-for="item in dictOptions('menu_icon_type')" :key="item.value" :value="item.value" :label="item.label" />
             </NRadioGroup>
           </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.icon')" path="icon">

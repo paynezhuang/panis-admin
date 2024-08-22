@@ -1,13 +1,13 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm, NTag } from 'naive-ui';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { computed, watch } from 'vue';
-import { enableStatusRecord, enableStatusTag } from '@/constants/business';
 import { $t } from '@/locales';
 import { transDeleteParams } from '@/utils/common';
 import { fetchDeleteDictItem, fetchGetDictItemPageList } from '@/service/api';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useAppStore } from '@/store/modules/app';
 import { useAuth } from '@/hooks/business/auth';
+import { useDict } from '@/hooks/business/dict';
 import DictItemSearch from './dict-item-search.vue';
 import DictItemOperateDrawer from './dict-item-operate-drawer.vue';
 
@@ -25,6 +25,8 @@ const dictId = computed(() => props.dict?.id);
 const appStore = useAppStore();
 
 const { hasAuth } = useAuth();
+
+const { dictTag } = useDict();
 
 const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetDictItemPageList,
@@ -78,13 +80,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       title: $t('page.manage.dictItem.status'),
       align: 'center',
       width: 80,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-        const label = $t(enableStatusRecord[row.status]);
-        return <NTag type={enableStatusTag[row.status]}>{label}</NTag>;
-      }
+      render: row => dictTag('status', row.status)
     },
     {
       key: 'description',

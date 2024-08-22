@@ -1,21 +1,23 @@
 <script setup lang="tsx">
-import { NButton, NTag, useModal } from 'naive-ui';
+import { NButton, useModal } from 'naive-ui';
 import { fetchDeleteUser, fetchGetUserList, fetchResetUserPassword } from '@/service/api';
 import { $t } from '@/locales';
 import { useAppStore } from '@/store/modules/app';
-import { enableStatusRecord, enableStatusTag, userGenderRecord, userGenderTag } from '@/constants/business';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
 import { useButtonAuthDropdown } from '@/hooks/common/button-auth-dropdown';
 import UserResponsibilitiesSetting from '@/views/manage/user/modules/user-responsibilities-modal.vue';
 import { useBoolean } from '~/packages/hooks';
+import { useDict } from '@/hooks/business/dict';
 import UserOperateDrawer from './modules/user-operate-drawer.vue';
 import UserSearch from './modules/user-search.vue';
 
 const appStore = useAppStore();
 
 const { hasAuth } = useAuth();
+
+const { dictTag } = useDict();
 
 const modal = useModal();
 
@@ -95,13 +97,7 @@ const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagi
       title: $t('page.manage.user.gender'),
       align: 'center',
       width: 100,
-      render: row => {
-        if (row.gender === null) {
-          return null;
-        }
-        const label = $t(userGenderRecord[row.gender]);
-        return <NTag type={userGenderTag[row.gender]}>{label}</NTag>;
-      }
+      render: row => dictTag('gender', row.gender)
     },
     {
       key: 'phone',
@@ -123,13 +119,7 @@ const { columns, columnChecks, data, getData, getDataByPage, loading, mobilePagi
       title: $t('page.manage.user.status'),
       align: 'center',
       width: 100,
-      render: row => {
-        if (row.status === null) {
-          return null;
-        }
-        const label = $t(enableStatusRecord[row.status]);
-        return <NTag type={enableStatusTag[row.status]}>{label}</NTag>;
-      }
+      render: row => dictTag('status', row.status)
     },
     {
       key: 'operate',

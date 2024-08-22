@@ -2,8 +2,9 @@
 import { computed, reactive, watch } from 'vue';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { $t } from '@/locales';
-import { enableStatusOptions } from '@/constants/business';
+import { themeColorOptions } from '@/constants/common';
 import { fetchAddDictItem, fetchGetEditDictItem, fetchUpdateDictItem } from '@/service/api';
+import { useDict } from '@/hooks/business/dict';
 
 defineOptions({
   name: 'DictItemOperateDrawer'
@@ -33,6 +34,8 @@ const visible = defineModel<boolean>('visible', {
 const { formRef, validate, restoreValidation } = useNaiveForm();
 const { defaultRequiredRule } = useFormRules();
 
+const { dictOptions } = useDict();
+
 const title = computed(() => {
   const titles: Record<NaiveUI.TableOperateType, string> = {
     add: $t('page.manage.dictItem.addDictItem'),
@@ -52,6 +55,7 @@ function createDefaultModel(): Model {
     value: '',
     zhCN: '',
     enUS: '',
+    type: 'default',
     description: '',
     sort: 1,
     status: '1'
@@ -116,11 +120,14 @@ watch(visible, () => {
         </NFormItem>
         <NFormItem :label="$t('page.manage.dictItem.status')" path="status">
           <NRadioGroup v-model:value="model.status">
-            <NRadio v-for="item in enableStatusOptions" :key="item.value" :value="item.value" :label="$t(item.label)" />
+            <NRadio v-for="item in dictOptions('status')" :key="item.value" :value="item.value" :label="item.label" />
           </NRadioGroup>
         </NFormItem>
-        <NFormItem :label="$t('page.manage.dict.sort')" path="sort">
-          <NInputNumber v-model:value="model.sort" :placeholder="$t('page.manage.dict.form.sort')" />
+        <NFormItem :label="$t('page.manage.dictItem.sort')" path="sort">
+          <NInputNumber v-model:value="model.sort" :placeholder="$t('page.manage.dictItem.form.sort')" />
+        </NFormItem>
+        <NFormItem :label="$t('page.manage.dictItem.type')" path="type">
+          <NSelect v-model:value="model.type" :placeholder="$t('page.manage.dictItem.form.type')" :options="themeColorOptions" />
         </NFormItem>
         <NFormItem :label="$t('page.manage.dictItem.description')" path="description">
           <NInput v-model:value="model.description" :placeholder="$t('page.manage.dictItem.form.description')" />

@@ -535,6 +535,7 @@ const local: App.I18n.Schema = {
         zhCN: 'Simplified Chinese',
         enUS: 'English',
         color: 'Color',
+        type: 'Type',
         sort: 'Sort',
         status: 'Status',
         description: 'Description',
@@ -543,6 +544,7 @@ const local: App.I18n.Schema = {
           zhCN: 'Please enter item simplified Chinese',
           enUS: 'Please enter item English',
           color: 'Please enter color',
+          type: 'Please select type',
           sort: 'Please enter sort',
           status: 'Please select item status',
           description: 'Please enter item description'

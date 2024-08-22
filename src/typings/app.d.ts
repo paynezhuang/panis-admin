@@ -717,6 +717,7 @@ declare namespace App {
             zhCN: string;
             enUS: string;
             sort: string;
+            type: string;
             color: string;
             description: string;
             status: string;
@@ -725,6 +726,7 @@ declare namespace App {
               zhCN: string;
               enUS: string;
               sort: string;
+              type: string;
               color: string;
               description: string;
               status: string;

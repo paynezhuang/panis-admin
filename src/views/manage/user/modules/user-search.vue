@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useBoolean } from '@sa/hooks';
 import { $t } from '@/locales';
-import { enableStatusOptions } from '@/constants/business';
-import { translateOptions } from '@/utils/common';
+import { useDict } from '@/hooks/business/dict';
 
 const { bool: visible, toggle: toggleVisible } = useBoolean();
 
@@ -18,6 +17,8 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const model = defineModel<Api.SystemManage.UserSearchParams>('model', { required: true });
+
+const { dictOptions } = useDict();
 
 async function reset() {
   emit('reset');
@@ -45,7 +46,7 @@ async function search() {
                 v-model:value="model.status"
                 size="small"
                 :placeholder="$t('page.manage.user.form.status')"
-                :options="translateOptions(enableStatusOptions)"
+                :options="dictOptions('status')"
                 clearable
               />
             </NFormItemGi>

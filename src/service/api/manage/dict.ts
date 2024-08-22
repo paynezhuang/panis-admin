@@ -105,4 +105,21 @@ export function fetchDeleteDictItem(data: Api.Common.DeleteParams) {
   });
 }
 
+/** get all item dict Map */
+export function fetchGetAllDictItemMap() {
+  return request<Map<String, Api.SystemManage.DictOptions[]>>({
+    url: '/sys_dict_item/all_dict',
+    method: 'GET'
+  });
+}
+
+/** get item dict Map */
+export function fetchGetDictItemMap(data: Api.SystemManage.DictStoreSearchParams) {
+  return request<Api.SystemManage.DictOptions[]>({
+    url: '/sys_dict_item/map_options',
+    method: 'GET',
+    data
+  });
+}
+
 // =============== Dict End  ===============
