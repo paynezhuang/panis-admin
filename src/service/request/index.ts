@@ -1,5 +1,5 @@
 import type { AxiosResponse } from 'axios';
-import { BACKEND_ERROR_CODE, createFlatRequest, createRequest } from '@sa/axios';
+import { BACKEND_ERROR_CODE, REQUEST_LANGUAGE, createFlatRequest, createRequest } from '@sa/axios';
 import { useAuthStore } from '@/store/modules/auth';
 import { $t } from '@/locales';
 import { localStg } from '@/utils/storage';
@@ -21,6 +21,10 @@ export const request = createFlatRequest<App.Service.Response, RequestInstanceSt
       // set token
       const token = localStg.get('token');
       const Authorization = token ? `Bearer ${token}` : null;
+
+      // set language
+      const language = localStg.get('lang') || 'zh-CN';
+      headers.set(REQUEST_LANGUAGE, language);
 
       // set refresh nonce
       if (request.state.isRefreshingToken) {
