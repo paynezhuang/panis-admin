@@ -4,7 +4,7 @@ import { useAuthStore } from '@/store/modules/auth';
 import { $t } from '@/locales';
 import { localStg } from '@/utils/storage';
 import { getServiceBaseURL } from '@/utils/service';
-import { handleRefreshToken, showErrorMsg } from './shared';
+import { getAuthorization, getLanguage, handleExpiredRequest, showErrorMsg } from './shared';
 import type { RequestInstanceState } from './type';
 
 const isHttpProxy = import.meta.env.DEV && import.meta.env.VITE_HTTP_PROXY === 'Y';
@@ -16,33 +16,21 @@ export const request = createFlatRequest<App.Service.Response, RequestInstanceSt
   },
   {
     async onRequest(config) {
-      const { headers } = config;
+      const Authorization = getAuthorization();
+      const language = getLanguage();
 
-      // set token
-      const token = localStg.get('token');
-      const Authorization = token ? `Bearer ${token}` : null;
-
-      // set language
-      const language = localStg.get('lang') || 'zh-CN';
-      headers.set(REQUEST_LANGUAGE, language);
-
-      // set refresh nonce
-      if (request.state.isRefreshingToken) {
-        // Use the refresh nonce code returned by the backend to refresh the token.
-        headers.set('Refresh-Nonce', request.state.refreshNonce);
-      }
-
-      Object.assign(headers, { Authorization });
+      Object.assign(config.headers, { Authorization, [REQUEST_LANGUAGE]: language });
 
       return config;
     },
     isBackendSuccess(response) {
       // when the backend response code is "0000"(default), it means the request is success
       // to change this logic by yourself, you can modify the `VITE_SERVICE_SUCCESS_CODE` in `.env` file
-      return response.data.code === Number(import.meta.env.VITE_SERVICE_SUCCESS_CODE);
+      return String(response.data.code) === import.meta.env.VITE_SERVICE_SUCCESS_CODE;
     },
     async onBackendFail(response, instance) {
       const authStore = useAuthStore();
+      const responseCode = String(response.data.code);
       function handleLogout() {
         authStore.resetStore();
       }
@@ -53,8 +41,6 @@ export const request = createFlatRequest<App.Service.Response, RequestInstanceSt
         request.state.errMsgStack = request.state.errMsgStack.filter(msg => msg !== response.data.message);
       }
 
-      const responseCode = String(response.data.code);
-
       // when the backend response code is in `logoutCodes`, it means the user will be logged out and redirected to login page
       const logoutCodes = import.meta.env.VITE_SERVICE_LOGOUT_CODES?.split(',') || [];
       if (logoutCodes.includes(responseCode)) {
@@ -64,7 +50,9 @@ export const request = createFlatRequest<App.Service.Response, RequestInstanceSt
 
       // when the backend response code is in `modalLogoutCodes`, it means the user will be logged out by displaying a modal
       const modalLogoutCodes = import.meta.env.VITE_SERVICE_MODAL_LOGOUT_CODES?.split(',') || [];
-      if (modalLogoutCodes.includes(responseCode)) {
+      if (modalLogoutCodes.includes(responseCode) && !request.state.errMsgStack?.includes(response.data.message)) {
+        request.state.errMsgStack = [...(request.state.errMsgStack || []), response.data.message];
+
         // prevent the user from refreshing the page
         window.addEventListener('beforeunload', handleLogout);
 
@@ -88,16 +76,14 @@ export const request = createFlatRequest<App.Service.Response, RequestInstanceSt
       // when the backend response code is in `expiredTokenCodes`, it means the token is expired, and refresh token
       // the api `refreshToken` can not return error code in `expiredTokenCodes`, otherwise it will be a dead loop, should return `logoutCodes` or `modalLogoutCodes`
       const expiredTokenCodes = import.meta.env.VITE_SERVICE_EXPIRED_TOKEN_CODES?.split(',') || [];
-      if (expiredTokenCodes.includes(responseCode) && !request.state.isRefreshingToken) {
-        request.state.isRefreshingToken = true;
-        // backend response data : refresh nonce
-        request.state.refreshNonce = String(response.data.data);
-        const refreshConfig = await handleRefreshToken(response.config);
+      if (expiredTokenCodes.includes(responseCode)) {
+        const success = await handleExpiredRequest(request.state);
+        if (success) {
+          const Authorization = getAuthorization();
+          const language = getLanguage();
+          Object.assign(response.config.headers, { Authorization, [REQUEST_LANGUAGE]: language });
 
-        request.state.isRefreshingToken = false;
-
-        if (refreshConfig) {
-          return instance.request(refreshConfig) as Promise<AxiosResponse>;
+          return instance.request(response.config) as Promise<AxiosResponse>;
         }
       }
 

@@ -54,7 +54,7 @@ const local: App.I18n.Schema = {
       yes: '是',
       no: '否'
     },
-    moreOperation: '更多操作',
+    moreOperation: '更多',
     createUser: '创建用户',
     createTime: '创建时间',
     updateUser: '更新用户',
