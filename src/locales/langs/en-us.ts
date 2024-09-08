@@ -45,6 +45,8 @@ const local: App.I18n.Schema = {
     trigger: 'Trigger',
     update: 'Update',
     updateSuccess: 'Update Success',
+    save: 'Save',
+    saveSuccess: 'Save Success',
     userCenter: 'User Center',
     openUp: 'Open Up',
     putAway: 'Put Away',
@@ -201,6 +203,8 @@ const local: App.I18n.Schema = {
     monitor_logs_error: 'Error Logs',
     monitor_logs_scheduler: 'Scheduler Logs',
     monitor_scheduler: 'Scheduler',
+    tools: 'Tools Manage',
+    'tools_generate-table': 'Generate Table',
     'multi-menu': 'Multi Menu',
     'multi-menu_first': 'Menu One',
     'multi-menu_first_child': 'Menu One Child',
@@ -339,6 +343,85 @@ const local: App.I18n.Schema = {
         repeatedErrorMsg2: 'Custom Request Error 2'
       }
     },
+    tools: {
+      common: {
+        renderType: {
+          input: 'Input',
+          select: 'Select',
+          radio: 'Radio'
+        },
+        searchType: {
+          equal: 'Equal',
+          noEqual: 'No Equal',
+          like: 'Like',
+          leftLike: 'Left Like',
+          rightLike: 'Right Like',
+          greaterThan: 'Greater Than',
+          greaterThanOrEqual: 'Greater Than or Equal',
+          lessThan: 'Less Than',
+          lessThanOrEqual: 'Less Than or Equal',
+          in: 'In',
+          notIn: 'Not In',
+          between: 'Between',
+          notBetween: 'Not Between'
+        }
+      },
+      generateTable: {
+        tableName: 'Table Name',
+        tableComment: 'Table Comment',
+        tablePrefix: 'Table Prefix',
+        parentPackage: 'Parent Package Name',
+        moduleName: 'Module Name',
+        parentMenuName: 'Parent Menu Name',
+        author: 'Author',
+        status: 'Status',
+        form: {
+          tableName: 'Please enter table name',
+          tableNameSelect: 'Please select table name',
+          tableComment: 'Please enter table comment',
+          tablePrefix: 'Please enter table prefix',
+          parentPackage: 'Please enter parent package name',
+          moduleName: 'Please enter module name',
+          parentMenuName: 'Please select parent menu name',
+          author: 'Please enter author'
+        },
+        addGenerate: 'Add Generate',
+        editGenerate: 'Edit Generate Table:{tableName}',
+        isNotDevEnvTip: 'The current is not a development environment, and data cannot be added'
+      },
+      generateTableColumn: {
+        ordinalPosition: 'Ordinal Position',
+        columnName: 'Column Name',
+        propertyName: 'Property Name',
+        columnComment: 'Column Comment',
+        dataType: 'Data Type',
+        javaType: 'Java Type',
+        typescriptType: 'TypeScript Type',
+        list: 'List',
+        search: 'Search',
+        searchType: 'Search Condition',
+        required: 'Required',
+        added: 'Added',
+        edit: 'Edit',
+        renderType: 'Render Type',
+        dictCode: 'Data Dictionary',
+        status: 'Enable Status',
+        cleanColumns: 'Clean Columns',
+        cleanColumnsConfirm:
+          'Are you sure you want to clean up the generated table fields? It will delete the existing configured fields, and you can synchronize the database fields again.',
+        cleanSuccess: 'Clean Success',
+        syncColumns: 'Sync Database Columns',
+        syncColumnsConfirm: 'Are you sure you want to synchronize the database columns?',
+        syncSuccess: 'Sync Success',
+        baseInfo: 'Base Info',
+        columnInfo: 'Column Info',
+        resultInfo: 'Result Info',
+        generateSuccess: 'Generate Success',
+        downloadZip: 'Download ZIP',
+        previous: 'Previous',
+        next: 'Next'
+      }
+    },
     manage: {
       common: {
         status: {
@@ -420,6 +503,7 @@ const local: App.I18n.Schema = {
         sort: 'Sort',
         keepAlive: 'Keep Alive',
         href: 'Href',
+        iframeUrl: 'Iframe URL',
         hideInMenu: 'Hide In Menu',
         activeMenu: 'Active Menu',
         multiTab: 'Multi Tab',
@@ -442,6 +526,7 @@ const local: App.I18n.Schema = {
           sort: 'Please enter sort',
           keepAlive: 'Please select whether to cache route',
           href: 'Please enter href',
+          iframeUrl: 'Please enter iframe url',
           hideInMenu: 'Please select whether to hide menu',
           activeMenu: 'Please select route name of the highlighted menu',
           multiTab: 'Please select whether to support multiple tabs',

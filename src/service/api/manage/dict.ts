@@ -19,6 +19,14 @@ export function fetchGetDictList() {
   });
 }
 
+/** get all dict options list */
+export function fetchGetAllDictOptionsList() {
+  return request<CommonType.Option[]>({
+    url: '/sys_dict/all_options',
+    method: 'GET'
+  });
+}
+
 /** get dict edit */
 export function fetchGetEditDict(id: string) {
   return request<Api.SystemManage.Dict>({
@@ -51,13 +59,6 @@ export function fetchDeleteDict(data: Api.Common.DeleteParams) {
     url: '/sys_dict/',
     method: 'DELETE',
     data
-  });
-}
-
-export function fetchLoadCacheDict() {
-  return request<boolean>({
-    url: '/sys_dict/load_cache',
-    method: 'POST'
   });
 }
 

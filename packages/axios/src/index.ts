@@ -145,8 +145,7 @@ export function createFlatRequest<ResponseData = any, State = Record<string, unk
 
         return { data, error: null };
       }
-
-      return { data: response.data as MappedType<R, T>, error: null };
+      return { data: response.data as MappedType<R, T>, error: null, response };
     } catch (error) {
       return { data: null, error };
     }

@@ -442,6 +442,26 @@ export const generatedRoutes: GeneratedRoute[] = [
     ]
   },
   {
+    name: 'tools',
+    path: '/tools',
+    component: 'layout.base',
+    meta: {
+      title: 'tools',
+      i18nKey: 'route.tools'
+    },
+    children: [
+      {
+        name: 'tools_generate-table',
+        path: '/tools/generate-table',
+        component: 'view.tools_generate-table',
+        meta: {
+          title: 'tools_generate-table',
+          i18nKey: 'route.tools_generate-table'
+        }
+      }
+    ]
+  },
+  {
     name: 'user-center',
     path: '/user-center',
     component: 'layout.base$view.user-center',

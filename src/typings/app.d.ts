@@ -326,6 +326,8 @@ declare namespace App {
         trigger: string;
         update: string;
         updateSuccess: string;
+        save: string;
+        saveSuccess: string;
         userCenter: string;
         openUp: string;
         putAway: string;
@@ -531,6 +533,84 @@ declare namespace App {
             repeatedErrorMsg2: string;
           };
         };
+        tools: {
+          common: {
+            renderType: {
+              input: string;
+              select: string;
+              radio: string;
+            };
+            searchType: {
+              equal: string;
+              noEqual: string;
+              like: string;
+              leftLike: string;
+              rightLike: string;
+              greaterThan: string;
+              greaterThanOrEqual: string;
+              lessThan: string;
+              lessThanOrEqual: string;
+              in: string;
+              notIn: string;
+              between: string;
+              notBetween: string;
+            };
+          };
+          generateTable: {
+            tableName: string;
+            tableComment: string;
+            tablePrefix: string;
+            parentPackage: string;
+            moduleName: string;
+            parentMenuName: string;
+            author: string;
+            status: string;
+            form: {
+              tableName: string;
+              tableNameSelect: string;
+              tableComment: string;
+              tablePrefix: string;
+              parentPackage: string;
+              moduleName: string;
+              parentMenuName: string;
+              author: string;
+            };
+            addGenerate: string;
+            editGenerate: string;
+            isNotDevEnvTip: string;
+          };
+          generateTableColumn: {
+            ordinalPosition: string;
+            columnName: string;
+            propertyName: string;
+            columnComment: string;
+            dataType: string;
+            javaType: string;
+            typescriptType: string;
+            list: string;
+            search: string;
+            searchType: string;
+            required: string;
+            added: string;
+            edit: string;
+            renderType: string;
+            dictCode: string;
+            status: string;
+            cleanColumns: string;
+            cleanColumnsConfirm: string;
+            cleanSuccess: string;
+            syncColumns: string;
+            syncColumnsConfirm: string;
+            syncSuccess: string;
+            baseInfo: string;
+            columnInfo: string;
+            resultInfo: string;
+            generateSuccess: string;
+            downloadZip: string;
+            previous: string;
+            next: string;
+          };
+        };
         manage: {
           common: {
             status: {
@@ -612,6 +692,7 @@ declare namespace App {
             sort: string;
             keepAlive: string;
             href: string;
+            iframeUrl: string;
             hideInMenu: string;
             activeMenu: string;
             multiTab: string;
@@ -634,6 +715,7 @@ declare namespace App {
               sort: string;
               keepAlive: string;
               href: string;
+              iframeUrl: string;
               hideInMenu: string;
               activeMenu: string;
               multiTab: string;

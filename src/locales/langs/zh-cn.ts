@@ -45,6 +45,8 @@ const local: App.I18n.Schema = {
     trigger: '触发',
     update: '更新',
     updateSuccess: '更新成功',
+    save: '保存',
+    saveSuccess: '保存成功',
     userCenter: '个人中心',
     openUp: '展开',
     putAway: '收起',
@@ -201,6 +203,8 @@ const local: App.I18n.Schema = {
     monitor_logs_error: '错误日志',
     monitor_logs_scheduler: '调度日志',
     monitor_scheduler: '调度任务',
+    tools: '工具管理',
+    'tools_generate-table': '代码生成',
     'multi-menu': '多级菜单',
     'multi-menu_first': '菜单一',
     'multi-menu_first_child': '菜单一子菜单',
@@ -339,6 +343,84 @@ const local: App.I18n.Schema = {
         repeatedErrorMsg2: '自定义请求错误 2'
       }
     },
+    tools: {
+      common: {
+        renderType: {
+          input: '输入框',
+          select: '下拉框',
+          radio: '单选框'
+        },
+        searchType: {
+          equal: '等于',
+          noEqual: '不等于',
+          like: '模糊',
+          leftLike: '左模糊',
+          rightLike: '右模糊',
+          greaterThan: '大于',
+          greaterThanOrEqual: '大于等于',
+          lessThan: '小于',
+          lessThanOrEqual: '小于等于',
+          in: '包含',
+          notIn: '不包含',
+          between: '在区间内',
+          notBetween: '不在区间内'
+        }
+      },
+      generateTable: {
+        tableName: '表名',
+        tableComment: '表注释',
+        tablePrefix: '表前缀',
+        parentPackage: '生成父包名',
+        moduleName: '模块名',
+        parentMenuName: '上级菜单',
+        author: '作者',
+        status: '状态',
+        form: {
+          tableName: '请输入表名',
+          tableNameSelect: '请选择表名',
+          tableComment: '请输入表注释',
+          tablePrefix: '请输入表前缀',
+          parentPackage: '请输入生成父包名',
+          moduleName: '请输入模块名',
+          parentMenuName: '请选择上级菜单',
+          author: '请输入作者'
+        },
+        addGenerate: '新增生成',
+        editGenerate: '编辑生成表：{tableName}',
+        isNotDevEnvTip: '当前为非开发环境，不允许新增数据'
+      },
+      generateTableColumn: {
+        ordinalPosition: '表序号',
+        columnName: '字段名称',
+        propertyName: '属性名称',
+        columnComment: '字段注释',
+        dataType: '数据类型',
+        javaType: 'Java类型',
+        typescriptType: 'TypeScript类型',
+        list: '列表',
+        search: '查询',
+        searchType: '查询条件',
+        required: '必填',
+        added: '新增',
+        edit: '编辑',
+        renderType: '渲染类型',
+        dictCode: '数据字典',
+        status: '启用状态',
+        cleanColumns: '清空字段',
+        cleanColumnsConfirm: '你确定要清空生成表字段？它会删除现有配置字段，可二次同步数据库字段即可。',
+        cleanSuccess: '清空成功',
+        syncColumns: '同步数据库字段',
+        syncColumnsConfirm: '你确定要同步数据库字段？',
+        syncSuccess: '同步成功',
+        baseInfo: '基础信息',
+        columnInfo: '字段信息',
+        resultInfo: '结果信息',
+        generateSuccess: '生成成功',
+        downloadZip: '下载 ZIP 压缩包',
+        previous: '上一步',
+        next: '下一步'
+      }
+    },
     manage: {
       common: {
         status: {
@@ -420,6 +502,7 @@ const local: App.I18n.Schema = {
         sort: '排序',
         keepAlive: '缓存路由',
         href: '外链',
+        iframeUrl: '内嵌链接',
         hideInMenu: '隐藏菜单',
         activeMenu: '高亮的菜单',
         multiTab: '支持多页签',
@@ -442,6 +525,7 @@ const local: App.I18n.Schema = {
           sort: '请输入排序',
           keepAlive: '请选择是否缓存路由',
           href: '请输入外链',
+          iframeUrl: '请输入内嵌链接',
           hideInMenu: '请选择是否隐藏菜单',
           activeMenu: '请选择高亮的菜单的路由名称',
           multiTab: '请选择是否支持多标签',
