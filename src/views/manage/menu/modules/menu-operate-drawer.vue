@@ -83,6 +83,7 @@ function createDefaultModel(): Model {
     hide: 'N',
     sort: 0,
     href: '',
+    iframeUrl: '',
     keepAlive: 'Y',
     parentId: 0,
     multiTab: 'N',
@@ -311,6 +312,9 @@ watch(
           </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.href')" path="href">
             <NInput v-model:value="model.href" :placeholder="$t('page.manage.menu.form.href')" />
+          </NFormItemGi>
+          <NFormItemGi span="24" :label="$t('page.manage.menu.iframeUrl')" path="iframeUrl">
+            <NInput v-model:value="model.iframeUrl" :placeholder="$t('page.manage.menu.form.iframeUrl')" />
           </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.query')">
             <NDynamicInput

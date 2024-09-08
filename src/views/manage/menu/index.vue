@@ -41,6 +41,7 @@ const showData: MenuTreeModel = reactive({
   iconType: '1',
   status: '1',
   hide: 'N',
+  iframeUrl: '',
   sort: 0,
   parentId: '0'
 });
@@ -191,6 +192,7 @@ init(null);
               <NTag :type="dcitType('feature_status', showData.keepAlive || 'N')">{{ dictLabel('feature_status', showData.keepAlive || 'N') }}</NTag>
             </NDescriptionsItem>
             <NDescriptionsItem :label="$t('page.manage.menu.href')" :span="2">{{ showData.href }}</NDescriptionsItem>
+            <NDescriptionsItem :label="$t('page.manage.menu.iframeUrl')" :span="2">{{ showData.iframeUrl }}</NDescriptionsItem>
           </NDescriptions>
         </NCard>
         <PermissionListTable :show-data="showData" :all-pages="allPages" />

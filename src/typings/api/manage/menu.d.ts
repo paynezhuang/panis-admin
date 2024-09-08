@@ -58,6 +58,8 @@ declare namespace Api {
         hide: CommonType.YesOrNo;
         /** menu sort */
         sort: number;
+        /** Iframe URL */
+        iframeUrl: string;
         /** children menu */
         children?: Menu[];
         /** menu status */
@@ -82,6 +84,7 @@ declare namespace Api {
       | 'status'
       | 'hide'
       | 'href'
+      | 'iframeUrl'
       | 'keepAlive'
       | 'sort'
       | 'parentId'
@@ -108,6 +111,7 @@ declare namespace Api {
       | 'status'
       | 'hide'
       | 'href'
+      | 'iframeUrl'
       | 'keepAlive'
       | 'sort'
       | 'parentId'
