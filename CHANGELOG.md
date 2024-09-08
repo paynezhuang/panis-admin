@@ -1,6 +1,44 @@
 # Changelog
 
 
+## [v1.0.4](https://github.com/paynezhuang/panis-admin/compare/v1.0.3...v1.0.4) (2024-09-08)
+
+### &nbsp;&nbsp;&nbsp;🚀 Features
+
+- **projects**:
+  - add request language &nbsp;-&nbsp; by @paynezhuang [<samp>(b6f59)</samp>](https://github.com/paynezhuang/panis-admin/commit/b6f597d)
+  - Using data dictionary rendering. &nbsp;-&nbsp; by @paynezhuang [<samp>(b1e22)</samp>](https://github.com/paynezhuang/panis-admin/commit/b1e228e)
+  - Dict item add copy code &nbsp;-&nbsp; by @paynezhuang [<samp>(35d75)</samp>](https://github.com/paynezhuang/panis-admin/commit/35d75a8)
+  - merge remote project v1.3.2 -> v.1.3.4 &nbsp;-&nbsp; by @paynezhuang [<samp>(11fc6)</samp>](https://github.com/paynezhuang/panis-admin/commit/11fc61c)
+  - menu add iframeUrl field &nbsp;-&nbsp; by @paynezhuang [<samp>(e5fce)</samp>](https://github.com/paynezhuang/panis-admin/commit/e5fce4a)
+  - add code generator &nbsp;-&nbsp; by @paynezhuang [<samp>(521f6)</samp>](https://github.com/paynezhuang/panis-admin/commit/521f618)
+  - merge remote project v1.3.5 &nbsp;-&nbsp; by @paynezhuang [<samp>(d8579)</samp>](https://github.com/paynezhuang/panis-admin/commit/d8579ed)
+
+### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
+
+- **projects**:
+  - fix vertical-mix menu selected &nbsp;-&nbsp; by @paynezhuang [<samp>(87310)</samp>](https://github.com/paynezhuang/panis-admin/commit/873108e)
+  - fix org add drawer title &nbsp;-&nbsp; by @paynezhuang [<samp>(b6e6e)</samp>](https://github.com/paynezhuang/panis-admin/commit/b6e6e3c)
+  - remove position i18nKey fields &nbsp;-&nbsp; by @paynezhuang [<samp>(24491)</samp>](https://github.com/paynezhuang/panis-admin/commit/2449180)
+  - fix commonSearchParams value &nbsp;-&nbsp; by @paynezhuang [<samp>(f32ca)</samp>](https://github.com/paynezhuang/panis-admin/commit/f32cafd)
+  - Dict add error &nbsp;-&nbsp; by @paynezhuang [<samp>(723c8)</samp>](https://github.com/paynezhuang/panis-admin/commit/723c821)
+
+### &nbsp;&nbsp;&nbsp;💅 Refactors
+
+- **projects**:
+  - Split typings and services &nbsp;-&nbsp; by @paynezhuang [<samp>(eea35)</samp>](https://github.com/paynezhuang/panis-admin/commit/eea3517)
+  - Adjust the position of the data dictionary copy button. &nbsp;-&nbsp; by @paynezhuang [<samp>(ae746)</samp>](https://github.com/paynezhuang/panis-admin/commit/ae74605)
+
+### &nbsp;&nbsp;&nbsp;🎨 Styles
+
+- **projects**:
+  - tree Center the prompt when there is no data &nbsp;-&nbsp; by @paynezhuang [<samp>(d23a6)</samp>](https://github.com/paynezhuang/panis-admin/commit/d23a6cc)
+  - fix mobile loss show &nbsp;-&nbsp; by @paynezhuang [<samp>(6087a)</samp>](https://github.com/paynezhuang/panis-admin/commit/6087a1a)
+
+### &nbsp;&nbsp;&nbsp;❤️ Contributors
+
+[![paynezhuang](https://github.com/paynezhuang.png?size=48)](https://github.com/paynezhuang)&nbsp;&nbsp;
+
 ## [v1.0.3](https://github.com/paynezhuang/panis-admin/compare/v1.0.2...v1.0.3) (2024-07-22)
 
 ### &nbsp;&nbsp;&nbsp;🚀 Features
