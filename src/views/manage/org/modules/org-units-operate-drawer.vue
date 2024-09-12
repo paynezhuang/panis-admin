@@ -40,7 +40,7 @@ const title = computed(() => {
   const titles: Record<OperateType, string> = {
     add: $t('page.manage.orgUnits.addOrgUnits'),
     edit: $t('page.manage.orgUnits.editOrgUnits'),
-    addChild: $t('page.manage.orgUnits.addChildDepart')
+    addChild: $t('page.manage.orgUnits.addChildOrgUnits')
   };
   return titles[props.operateType];
 });

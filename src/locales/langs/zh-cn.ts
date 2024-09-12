@@ -658,7 +658,7 @@ const local: App.I18n.Schema = {
         },
         addOrgUnits: '新增组织',
         editOrgUnits: '编辑组织',
-        addChildDepart: '新增子部门'
+        addChildOrgUnits: '新增子组织'
       }
     },
     monitor: {

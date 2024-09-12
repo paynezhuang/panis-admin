@@ -659,7 +659,7 @@ const local: App.I18n.Schema = {
         },
         addOrgUnits: 'Add Organization',
         editOrgUnits: 'Edit Organization',
-        addChildDepart: 'Add Child Depart'
+        addChildOrgUnits: 'Add Child Organization'
       }
     },
     monitor: {

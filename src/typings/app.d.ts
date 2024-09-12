@@ -847,7 +847,7 @@ declare namespace App {
             };
             addOrgUnits: string;
             editOrgUnits: string;
-            addChildDepart: string;
+            addChildOrgUnits: string;
           };
         };
         monitor: {

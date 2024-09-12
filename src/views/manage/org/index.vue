@@ -99,7 +99,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
         <div class="flex-center gap-8px">
           {hasAuth('sys:org:units:add') && (
             <NButton type="primary" quaternary size="small" onClick={() => handleAddChildOrgUnits(row)}>
-              {$t('page.manage.orgUnits.addChildDepart')}
+              {$t('page.manage.orgUnits.addChildOrgUnits')}
             </NButton>
           )}
           {hasAuth('sys:org:units:update') && (
