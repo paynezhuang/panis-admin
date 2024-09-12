@@ -162,7 +162,7 @@ watch(visible, () => {
           filterable
           :max-tag-count="7"
           :options="orgUnitsPrincipalOptions"
-          :placeholder="$t('page.manage.user.form.userPosition')"
+          :placeholder="$t('page.manage.user.form.userOrgUnits')"
         />
       </NFormItemGi>
     </NGrid>
