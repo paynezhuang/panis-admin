@@ -59,10 +59,13 @@ const title = computed(() => {
 const tabIndex = ref(1);
 
 /** current operate type */
-const currentOperateType = ref<NaiveUI.TableOperateType>(props.operateType);
+// const currentOperateType = ref<NaiveUI.TableOperateType>(props.operateType);
+
+/** has saved */
+const hasSaved = ref(false);
 
 /** is edit */
-const isEdit = computed(() => currentOperateType.value === 'edit');
+const isEdit = computed(() => props.operateType === 'edit' || hasSaved.value);
 
 /** edit model */
 type Model = Api.Tools.GeneratorTableEdit;
@@ -111,6 +114,7 @@ async function handleInitModel() {
   if (props.operateType === 'add') {
     const { error, data } = await fetchGetAllDataTable();
     if (!error) {
+      hasSaved.value = false;
       dataTableOptions.value = data;
     }
   }
@@ -296,7 +300,8 @@ async function handleNext() {
         if (!error) {
           Object.assign(model, data);
           // Always set to 'edit' after successful save
-          currentOperateType.value = 'edit';
+          hasSaved.value = true;
+          // currentOperateType.value = 'edit';
         }
         return fetchGetGeneratorTableColumnList(model.id);
       })

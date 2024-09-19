@@ -387,7 +387,7 @@ const local: App.I18n.Schema = {
         },
         addGenerate: '新增生成',
         editGenerate: '编辑生成表：{tableName}',
-        isNotDevEnvTip: '当前为非开发环境，不允许新增数据'
+        isNotDevEnvTip: '当前为非开发环境，不允许新增编辑数据'
       },
       generateTableColumn: {
         ordinalPosition: '表序号',

@@ -139,9 +139,7 @@ async function handleDelete(id: string) {
 }
 
 function handleAdd() {
-  const isDev = import.meta.env.DEV;
-  if (!isDev) {
-    window.$message?.error($t('page.tools.generateTable.isNotDevEnvTip'));
+  if (!envCheck()) {
     return;
   }
   operateType.value = 'add';
@@ -149,9 +147,21 @@ function handleAdd() {
 }
 
 function edit(id: string) {
+  if (!envCheck()) {
+    return;
+  }
   handleData(id);
   operateType.value = 'edit';
   openModalVisible();
+}
+
+function envCheck() {
+  const isDev = import.meta.env.DEV;
+  if (!isDev) {
+    window.$message?.error($t('page.tools.generateTable.isNotDevEnvTip'));
+    return false;
+  }
+  return true;
 }
 
 async function handleBatchDelete() {

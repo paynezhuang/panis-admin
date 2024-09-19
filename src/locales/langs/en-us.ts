@@ -387,7 +387,7 @@ const local: App.I18n.Schema = {
         },
         addGenerate: 'Add Generate',
         editGenerate: 'Edit Generate Table:{tableName}',
-        isNotDevEnvTip: 'The current is not a development environment, and data cannot be added'
+        isNotDevEnvTip: 'The current is not a development environment, and data cannot be added or edited'
       },
       generateTableColumn: {
         ordinalPosition: 'Ordinal Position',
