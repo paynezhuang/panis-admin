@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm } from 'naive-ui';
-import { computed, watch } from 'vue';
+import { computed, reactive, watch } from 'vue';
 import { $t } from '@/locales';
 import { transDeleteParams } from '@/utils/common';
 import { fetchDeleteDictItem, fetchGetDictItemPageList } from '@/service/api';
@@ -28,100 +28,104 @@ const { hasAuth } = useAuth();
 
 const { dictTag } = useDict();
 
-const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
-  apiFn: fetchGetDictItemPageList,
-  apiParams: {
-    page: 1,
-    pageSize: 20,
-    dictId: dictId.value,
-    value: null,
-    description: null,
-    zhCN: null,
-    enUS: null
-  },
-  columns: () => [
-    {
-      type: 'selection',
-      align: 'center',
-      width: 48
-    },
-    {
-      key: 'index',
-      title: $t('common.index'),
-      width: 64,
-      align: 'center'
-    },
-    {
-      key: 'value',
-      title: $t('page.manage.dictItem.value'),
-      minWidth: 64,
-      align: 'center'
-    },
-    {
-      key: 'zhCN',
-      title: $t('page.manage.dictItem.zhCN'),
-      minWidth: 64,
-      align: 'center'
-    },
-    {
-      key: 'enUS',
-      title: $t('page.manage.dictItem.enUS'),
-      minWidth: 64,
-      align: 'center'
-    },
-    {
-      key: 'sort',
-      title: $t('page.manage.dictItem.sort'),
-      minWidth: 64,
-      align: 'center'
-    },
-    {
-      key: 'status',
-      title: $t('page.manage.dictItem.status'),
-      align: 'center',
-      width: 80,
-      render: row => dictTag('status', row.status)
-    },
-    {
-      key: 'description',
-      title: $t('page.manage.dictItem.description'),
-      minWidth: 64,
-      align: 'center',
-      ellipsis: {
-        tooltip: true
-      }
-    },
-
-    {
-      key: 'operate',
-      title: $t('common.operate'),
-      align: 'center',
-      width: 140,
-      fixed: 'right',
-      render: row => (
-        <div class="flex-center gap-8px">
-          {hasAuth('sys:dict:item:update') && (
-            <NButton type="primary" quaternary size="small" onClick={() => edit(row.id)}>
-              {$t('common.edit')}
-            </NButton>
-          )}
-          {hasAuth('sys:dict:item:delete') && (
-            <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
-              {{
-                default: () => $t('common.confirmDelete'),
-                trigger: () => (
-                  <NButton type="error" quaternary size="small">
-                    {$t('common.delete')}
-                  </NButton>
-                )
-              }}
-            </NPopconfirm>
-          )}
-        </div>
-      )
-    }
-  ]
+/** api params */
+const apiParams = reactive({
+  page: 1,
+  pageSize: 20,
+  dictId: dictId.value,
+  value: null,
+  description: null,
+  zhCN: null,
+  enUS: null
 });
+
+const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, updateSearchParams, resetSearchParams } =
+  useTable({
+    apiFn: fetchGetDictItemPageList,
+    apiParams,
+    columns: () => [
+      {
+        type: 'selection',
+        align: 'center',
+        width: 48
+      },
+      {
+        key: 'index',
+        title: $t('common.index'),
+        width: 64,
+        align: 'center'
+      },
+      {
+        key: 'value',
+        title: $t('page.manage.dictItem.value'),
+        minWidth: 64,
+        align: 'center'
+      },
+      {
+        key: 'zhCN',
+        title: $t('page.manage.dictItem.zhCN'),
+        minWidth: 64,
+        align: 'center'
+      },
+      {
+        key: 'enUS',
+        title: $t('page.manage.dictItem.enUS'),
+        minWidth: 64,
+        align: 'center'
+      },
+      {
+        key: 'sort',
+        title: $t('page.manage.dictItem.sort'),
+        minWidth: 64,
+        align: 'center'
+      },
+      {
+        key: 'status',
+        title: $t('page.manage.dictItem.status'),
+        align: 'center',
+        width: 80,
+        render: row => dictTag('status', row.status)
+      },
+      {
+        key: 'description',
+        title: $t('page.manage.dictItem.description'),
+        minWidth: 64,
+        align: 'center',
+        ellipsis: {
+          tooltip: true
+        }
+      },
+
+      {
+        key: 'operate',
+        title: $t('common.operate'),
+        align: 'center',
+        width: 140,
+        fixed: 'right',
+        render: row => (
+          <div class="flex-center gap-8px">
+            {hasAuth('sys:dict:item:update') && (
+              <NButton type="primary" quaternary size="small" onClick={() => edit(row.id)}>
+                {$t('common.edit')}
+              </NButton>
+            )}
+            {hasAuth('sys:dict:item:delete') && (
+              <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
+                {{
+                  default: () => $t('common.confirmDelete'),
+                  trigger: () => (
+                    <NButton type="error" quaternary size="small">
+                      {$t('common.delete')}
+                    </NButton>
+                  )
+                }}
+              </NPopconfirm>
+            )}
+          </div>
+        )
+      }
+    ]
+  });
 
 const { drawerVisible, operateType, handleAdd, handleEdit, editingId, checkedRowKeys, onDeleted, onBatchDeleted } = useTableOperate(data, getData);
 
@@ -144,8 +148,11 @@ function handleBatchDelete() {
   onBatchDeleted();
 }
 
+/** watch dictId */
 watch(dictId, () => {
-  searchParams.dictId = dictId.value;
+  updateSearchParams({ dictId: dictId.value });
+  // update apiParams
+  apiParams.dictId = dictId.value;
   getDataByPage();
 });
 </script>
