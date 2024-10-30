@@ -145,7 +145,8 @@ export function createFlatRequest<ResponseData = any, State = Record<string, unk
 
         return { data, error: null, response };
       }
-      return { data: response.data as MappedType<R, T>, error: null, response };
+
+      return { data: response.data as MappedType<R, T>, error: null };
     } catch (error) {
       return { data: null, error, response: (error as AxiosError<ResponseData>).response };
     }

@@ -18,6 +18,14 @@ declare namespace UnionKey {
   type StrNum = string | number;
 
   /**
+   * Reset cache strategy
+   *
+   * - close: re-cache when close page
+   * - refresh: re-cache when refresh page
+   */
+  type ResetCacheStrategy = 'close' | 'refresh';
+
+  /**
    * The layout mode
    *
    * - vertical: the vertical menu in left

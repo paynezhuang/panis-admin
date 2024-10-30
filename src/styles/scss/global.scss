@@ -1,2 +1,2 @@
-@import './scrollbar.scss';
-@import './naive-ui.scss';
+@forward 'scrollbar';
+@forward 'naive-ui';
