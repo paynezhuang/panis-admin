@@ -4,7 +4,7 @@ import { SetupStoreId } from '@/enum';
 import { fetchGetAllDictItemMap } from '@/service/api';
 
 export const useDictStore = defineStore(SetupStoreId.Dict, () => {
-  const dictItemMap = ref<Map<String, Api.SystemManage.DictOptions[]>>();
+  const dictItemMap = ref<Map<string, Api.SystemManage.DictOptions[]>>();
 
   /** Initialize dictionary data */
   async function init() {
