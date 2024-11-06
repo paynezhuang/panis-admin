@@ -232,7 +232,6 @@ async function handleResponsibilities(id: string) {
 }
 
 watch(orgIds, () => {
-  console.log('watch orgUnits:', props.orgUnits);
   updateSearchParams({ orgIds: orgIds.value });
   apiParams.orgIds = orgIds.value;
   getDataByPage();
