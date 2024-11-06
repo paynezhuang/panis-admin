@@ -1,3 +1,5 @@
+export type OperateType = NaiveUI.TableOperateType | 'addChild';
+
 /**
  * transform orgUnitsTree to NaiveUI.TreeOption
  *
@@ -21,4 +23,25 @@ export function extractOptionsFromTree(orgUnitsTree: Api.SystemManage.OrgUnitsTr
   orgUnitsTree.forEach(traverse);
 
   return principalOptions;
+}
+
+/**
+ * collect ids from item
+ *
+ * @param item orgUnitsTree
+ * @returns ids
+ */
+export function collectIdsFromItem(item: Api.SystemManage.OrgUnitsTree): string {
+  const idsSet: Set<string> = new Set();
+
+  function traverse(node: Api.SystemManage.OrgUnitsTree) {
+    idsSet.add(node.id);
+    if (node.children) {
+      node.children.forEach(traverse);
+    }
+  }
+
+  traverse(item);
+
+  return Array.from(idsSet).join(',');
 }

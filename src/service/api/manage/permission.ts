@@ -46,4 +46,12 @@ export function fetchGetPermissionTree() {
   });
 }
 
+/** get all permission annotations */
+export function fetchGetAllPermissionAnnotations() {
+  return request<Record<string, string>>({
+    url: '/annotation/permission',
+    method: 'GET'
+  });
+}
+
 // =============== Permission End  ===============

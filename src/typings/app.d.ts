@@ -675,6 +675,7 @@ declare namespace App {
               male: string;
               female: string;
             };
+            selectTreeIsEmptyTip: string;
           };
           menu: {
             home: string;
@@ -834,6 +835,7 @@ declare namespace App {
             editDictItem: string;
           };
           orgUnits: {
+            title: string;
             name: string;
             code: string;
             abbr: string;
@@ -851,6 +853,7 @@ declare namespace App {
             addOrgUnits: string;
             editOrgUnits: string;
             addChildOrgUnits: string;
+            unassigned: string;
           };
         };
         monitor: {

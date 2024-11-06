@@ -486,7 +486,8 @@ const local: App.I18n.Schema = {
           confidential: '保密',
           male: '男',
           female: '女'
-        }
+        },
+        selectTreeIsEmptyTip: '请选择组织查看用户列表'
       },
       menu: {
         home: '首页',
@@ -570,7 +571,7 @@ const local: App.I18n.Schema = {
           name: '请输入按钮名称',
           resource: '请输入权限资源',
           resourceIntroduction:
-            '此按钮可关联多个后端接口权限。请输入所需的每个权限，并使用英文分号（;）分隔它们。确保在用户操作该按钮时，系统会验证所有列出的接口权限，实现细粒度的权限管理。请确保您输入的权限准确无误，以免影响功能的正常使用。例如：sys:user:get;sys:user:update',
+            '此按钮可关联多个后端接口权限。请添加当前按钮所需的每个权限。确保在用户操作该按钮时，系统会验证所有列出的接口权限，实现细粒度的权限管理。请确保您输入的权限准确无误，以免影响功能的正常使用。\n例如更新用户涉及两个接口，则需要添加两个，分别是：sys:user:get;sys:user:update',
           status: '请选择按钮状态',
           sort: '请输入排序',
           description: '请输入按钮描述'
@@ -647,6 +648,7 @@ const local: App.I18n.Schema = {
         editDictItem: '编辑字典项'
       },
       orgUnits: {
+        title: '组织列表',
         name: '组织名称',
         code: '组织编码',
         abbr: '组织简称',
@@ -663,7 +665,8 @@ const local: App.I18n.Schema = {
         },
         addOrgUnits: '新增组织',
         editOrgUnits: '编辑组织',
-        addChildOrgUnits: '新增子组织'
+        addChildOrgUnits: '新增子组织',
+        unassigned: '未分配组织'
       }
     },
     monitor: {

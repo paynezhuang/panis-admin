@@ -1,6 +1,7 @@
 <script setup lang="tsx">
 import { watch } from 'vue';
 import { NButton, NPopconfirm } from 'naive-ui';
+import { useBoolean } from '@sa/hooks';
 import { fetchDeletePermission, fetchGetPermissionList } from '@/service/api';
 import { $t } from '@/locales';
 import { useTable, useTableOperate } from '@/hooks/common/table';
@@ -8,7 +9,7 @@ import { useAppStore } from '@/store/modules/app';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
 import { useDict } from '@/hooks/business/dict';
-import PermissionOperateDrawer from './permission-operate-drawer.vue';
+import PermissionOperateModal from './permission-operate-modal.vue';
 
 defineOptions({
   name: 'PermissionListTable'
@@ -26,6 +27,8 @@ const appStore = useAppStore();
 const { hasAuth } = useAuth();
 
 const { dictTag } = useDict();
+
+const { bool: modalVisible, setTrue: openModalVisible } = useBoolean();
 
 const { columns, data, loading, mobilePagination, searchParams, getData, getDataByPage } = useTable({
   apiFn: fetchGetPermissionList,
@@ -46,7 +49,8 @@ const { columns, data, loading, mobilePagination, searchParams, getData, getData
       key: 'resource',
       title: $t('page.manage.permission.resource'),
       align: 'center',
-      width: 200
+      width: 200,
+      ellipsis: true
     },
     {
       key: 'status',
@@ -101,16 +105,19 @@ const { columns, data, loading, mobilePagination, searchParams, getData, getData
   ]
 });
 
-const { drawerVisible, operateType, handleAdd, handleEdit, onDeleted, editingData } = useTableOperate(data, getData);
+const { operateType, handleData, onDeleted, editingData } = useTableOperate(data, getData);
 
 /** add permission button */
 function handleAddButton() {
-  handleAdd();
+  operateType.value = 'add';
+  openModalVisible();
 }
 
 /** edit permission button */
 function handleEditButton(id: string) {
-  handleEdit(id);
+  operateType.value = 'edit';
+  handleData(id);
+  openModalVisible();
 }
 
 /** delete permission button */
@@ -154,8 +161,8 @@ watch(props.showData, () => {
     <NCard v-else :bordered="false" size="small">
       <NEmpty :description="$t('page.manage.menu.menuTypeIsDirectory')" class="h-full justify-center" />
     </NCard>
-    <PermissionOperateDrawer
-      v-model:visible="drawerVisible"
+    <PermissionOperateModal
+      v-model:visible="modalVisible"
       :operate-type="operateType"
       :menu-data="showData"
       :row-data="editingData"

@@ -127,23 +127,29 @@ init(null);
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex overflow-hidden">
     <NGrid :x-gap="8" :y-gap="8" item-responsive responsive="screen" cols="1 s:1 m:5 l:5 xl:5 2xl:5" class="h-full-hidden">
       <NGridItem span="1" class="h-full-hidden">
         <NCard :title="$t('page.manage.menu.title')" :bordered="false" size="small" class="h-full sm:flex-1-hidden" content-class="h-full-hidden">
           <template #header-extra>
-            <NButton quaternary @click="init(null)">
-              <template #icon>
-                <SvgIcon icon="ic:round-refresh" />
-              </template>
-            </NButton>
+            <NFlex>
+              <NButton v-if="hasAuth('sys:menu:add')" ghost type="primary" size="small" @click="handleAddMenu()">
+                {{ $t('common.add') }}
+              </NButton>
+              <NButton quaternary @click="init(null)">
+                <template #icon>
+                  <SvgIcon icon="ic:round-refresh" />
+                </template>
+              </NButton>
+            </NFlex>
           </template>
           <NInput v-model:value="name" :placeholder="$t('page.manage.menu.form.name')" clearable />
           <NTree
             :data="tree"
             :pattern="name"
+            accordion
             block-line
-            class="flex-col-stretch py-3"
+            class="p-tree my-3 flex-col-stretch"
             key-field="id"
             virtual-scroll
             :show-irrelevant-nodes="false"
@@ -154,12 +160,9 @@ init(null);
       <NGridItem v-if="detailVisible" span="4" class="flex flex-col">
         <NCard :title="$t('page.manage.menu.detail')" :bordered="false" size="small" class="mb-2">
           <template #header-extra>
-            <NSpace>
+            <NFlex>
               <NButton v-if="showData.type === '1' && hasAuth('sys:menu:add')" type="primary" quaternary size="small" @click="handleAddChildMenu()">
                 {{ $t('page.manage.menu.addChildMenu') }}
-              </NButton>
-              <NButton v-if="hasAuth('sys:menu:add')" ghost type="primary" size="small" @click="handleAddMenu()">
-                {{ $t('common.add') }}
               </NButton>
               <NButton v-if="hasAuth('sys:menu:update')" ghost type="primary" size="small" @click="handleEditMenu()">
                 {{ $t('common.edit') }}
@@ -172,7 +175,7 @@ init(null);
                 </template>
                 {{ $t('common.confirmDelete') }}
               </NPopconfirm>
-            </NSpace>
+            </NFlex>
           </template>
           <NDescriptions label-placement="left" size="small" bordered :column="2">
             <NDescriptionsItem :label="$t('page.manage.menu.type')">

@@ -30,7 +30,7 @@ declare namespace Api {
     /** user search params */
     type UserSearchParams = CommonType.RecordNullable<
       Pick<Api.SystemManage.User, 'userName' | 'gender' | 'realName' | 'phone' | 'email' | 'status'> & Api.Common.CommonSearchParams
-    >;
+    > & { orgIds?: string };
 
     /** user edit model */
     type UserEdit = Pick<Api.SystemManage.User, 'userName' | 'gender' | 'nickName' | 'realName' | 'phone' | 'email' | 'status'>;

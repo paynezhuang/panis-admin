@@ -20,6 +20,14 @@ export function fetchAddOrgUnits(data: Api.SystemManage.OrgUnitsEdit) {
   });
 }
 
+/** get org info */
+export function fetchGetOrgUnits(id: string) {
+  return request<Api.SystemManage.OrgUnits>({
+    url: `/sys_org_units/${id}`,
+    method: 'GET'
+  });
+}
+
 /** update org info */
 export function fetchUpdateOrgUnits(data: Api.SystemManage.OrgUnitsEdit) {
   return request<boolean>({

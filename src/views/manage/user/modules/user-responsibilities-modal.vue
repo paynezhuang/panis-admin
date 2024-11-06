@@ -18,6 +18,12 @@ interface Props {
   userId: string;
 }
 
+interface Emits {
+  (e: 'submitted'): void;
+}
+
+const emit = defineEmits<Emits>();
+
 const props = defineProps<Props>();
 
 const visible = defineModel<boolean>('visible', {
@@ -102,6 +108,7 @@ async function handleSubmit() {
   const { error, data } = await fetchSaveUserResponsibilities(model);
   if (!error && data) {
     window.$message?.success($t('common.updateSuccess'));
+    emit('submitted');
     closeModal();
   }
 }

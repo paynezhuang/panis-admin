@@ -487,7 +487,8 @@ const local: App.I18n.Schema = {
           confidential: 'Confidential',
           male: 'Male',
           female: 'Female'
-        }
+        },
+        selectTreeIsEmptyTip: 'Please select the organization to view user items'
       },
       menu: {
         home: 'Home',
@@ -571,7 +572,7 @@ const local: App.I18n.Schema = {
           name: 'Please enter button name',
           resource: 'Please enter button resource',
           resourceIntroduction:
-            'This button can be associated with multiple backend interface permissions. Please enter each permission you require, separating them with a semicolon (;). Ensure that when the user operates the button, the system will verify the permissions of all listed interfaces to achieve fine-grained permission management. Please ensure that the permissions you enter are accurate to avoid affecting the normal use of functions.eg:sys:user:get;sys:user:update',
+            'This button can be associated with multiple backend interface permissions. Please add each permission required for the current button. Ensure that when the user operates the button, the system will verify all listed interface permissions to achieve fine-grained permission management. Please make sure that the permissions you enter are accurate and error-free to avoid affecting the normal use of the function.\nFor example, updating a user involves two interfaces, so two need to be added, namely: sys:user:get; sys:user:update',
           status: 'Please select button status',
           sort: 'Please enter sort',
           description: 'Please enter button description'
@@ -648,6 +649,7 @@ const local: App.I18n.Schema = {
         editDictItem: 'Edit Dict Item'
       },
       orgUnits: {
+        title: 'Organization List',
         name: 'Organization Name',
         code: 'Organization Code',
         abbr: 'Abbreviation',
@@ -664,7 +666,8 @@ const local: App.I18n.Schema = {
         },
         addOrgUnits: 'Add Organization',
         editOrgUnits: 'Edit Organization',
-        addChildOrgUnits: 'Add Child Organization'
+        addChildOrgUnits: 'Add Child Organization',
+        unassigned: 'Unassigned Organization'
       }
     },
     monitor: {
