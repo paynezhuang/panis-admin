@@ -1,7 +1,7 @@
-import { NButton, NCard, NModal, NSpace } from 'naive-ui';
+import { NButton, NCard, NFlex, NModal, NSpace } from 'naive-ui';
 
 /** set naive ui component default settings */
-export function setupComponentSetting() {
+export function setupNSetting() {
   NButton.props = {
     ...NButton.props,
     size: { type: String, default: 'small' }
@@ -23,6 +23,11 @@ export function setupComponentSetting() {
 
   NSpace.props = {
     ...NSpace.props,
+    size: { type: [String, Number], default: 'small' }
+  };
+
+  NFlex.props = {
+    ...NFlex.props,
     size: { type: [String, Number], default: 'small' }
   };
 }
