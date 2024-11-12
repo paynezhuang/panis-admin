@@ -4,6 +4,7 @@ import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { fetchGetOperationLogList } from '@/service/api';
+import { formatDateTime } from '@/utils/date';
 import LogsOperationSearch from './modules/operation-search.vue';
 
 defineOptions({
@@ -67,7 +68,8 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       key: 'createTime',
       title: $t('page.monitor.logs.operation.createTime'),
       align: 'center',
-      width: 200
+      width: 200,
+      render: row => formatDateTime(row.createTime)
     },
     {
       key: 'ip',

@@ -5,6 +5,7 @@ import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { fetchGetSchedulerLogList } from '@/service/api';
 import { useDict } from '@/hooks/business/dict';
+import { formatDateTime } from '@/utils/date';
 import LogsSchedulerSearch from './modules/scheduler-search.vue';
 
 defineOptions({
@@ -56,7 +57,8 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       title: $t('page.monitor.logs.scheduler.createTime'),
       align: 'center',
       minWidth: 200,
-      width: 200
+      width: 200,
+      render: row => formatDateTime(row.createTime)
     },
     {
       key: 'status',

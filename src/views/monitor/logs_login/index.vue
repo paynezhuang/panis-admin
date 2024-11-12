@@ -4,6 +4,7 @@ import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { fetchGetLoginLogList } from '@/service/api';
 import { useDict } from '@/hooks/business/dict';
+import { formatDateTime } from '@/utils/date';
 import LogsLoginSearch from './modules/login-search.vue';
 
 defineOptions({
@@ -91,7 +92,8 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       key: 'createTime',
       title: $t('page.monitor.logs.login.createTime'),
       align: 'center',
-      width: 200
+      width: 200,
+      render: row => formatDateTime(row.createTime)
     }
   ]
 });

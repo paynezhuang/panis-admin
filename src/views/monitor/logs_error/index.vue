@@ -4,6 +4,7 @@ import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { fetchGetErrorLogList } from '@/service/api';
+import { formatDateTime } from '@/utils/date';
 
 defineOptions({
   name: 'MonitorLogsError'
@@ -78,7 +79,8 @@ const { columns, columnChecks, data, loading, getData, mobilePagination } = useT
       key: 'createTime',
       title: $t('page.monitor.logs.error.createTime'),
       align: 'center',
-      width: 200
+      width: 200,
+      render: row => formatDateTime(row.createTime)
     },
     {
       key: 'ip',

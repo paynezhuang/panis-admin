@@ -8,6 +8,7 @@ import { fetchDeleteGeneratorTable, fetchGetGeneratorTableList } from '@/service
 import { useDict } from '@/hooks/business/dict';
 import { useAuth } from '@/hooks/business/auth';
 import { transDeleteParams } from '@/utils/common';
+import { formatDateTime } from '@/utils/date';
 import GenerateTableSearch from './modules/generate-table-search.vue';
 import GenerateTableOperateModal from './modules/generate-table-operate-modal.vue';
 
@@ -95,7 +96,8 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       key: 'createTime',
       title: $t('common.createTime'),
       align: 'center',
-      width: 200
+      width: 200,
+      render: row => formatDateTime(row.createTime)
     },
     {
       key: 'operate',

@@ -6,3 +6,9 @@ export enum SetupStoreId {
   Tab = 'tab-store',
   Dict = 'dict-store'
 }
+
+export enum DateTimePattern {
+  Date = 'YYYY-MM-DD',
+  Time = 'HH:mm:ss',
+  DateTime = 'YYYY-MM-DD HH:mm:ss'
+}

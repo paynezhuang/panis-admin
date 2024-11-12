@@ -10,6 +10,7 @@ import { useAuth } from '@/hooks/business/auth';
 import SvgIcon from '@/components/custom/svg-icon.vue';
 import { useButtonAuthDropdown } from '@/hooks/common/button-auth-dropdown';
 import { useDict } from '@/hooks/business/dict';
+import { formatDateTime } from '@/utils/date';
 import SchedulerSearch from './modules/scheduler-search.vue';
 import SchedulerOperateDrawer from './modules/scheduler-operate-drawer.vue';
 import type { ButtonDropdownKey } from './modules/shared';
@@ -177,7 +178,8 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       key: 'createTime',
       title: $t('common.createTime'),
       align: 'center',
-      width: 200
+      width: 200,
+      render: row => formatDateTime(row.createTime)
     },
     {
       key: 'operate',
