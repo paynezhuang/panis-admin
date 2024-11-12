@@ -50,7 +50,7 @@ function createDefaultModel(): Model {
     roleName: '',
     roleCode: '',
     description: '',
-    status: null,
+    status: '1',
     sort: 1
   };
 }
