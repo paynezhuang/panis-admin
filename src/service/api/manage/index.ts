@@ -5,3 +5,4 @@ export * from './permission';
 export * from './position';
 export * from './org-units';
 export * from './dict';
+export * from './notice';

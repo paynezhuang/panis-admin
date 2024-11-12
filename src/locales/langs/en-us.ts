@@ -199,6 +199,7 @@ const local: App.I18n.Schema = {
     manage_dict: 'Dictionary Manage',
     manage_position: 'Position Manage',
     manage_org: 'Organization Manage',
+    manage_notice: 'Notice Announcement',
     monitor: 'Monitor Manage',
     monitor_system: 'System Monitor',
     monitor_cache: 'Cache Monitor',
@@ -668,6 +669,22 @@ const local: App.I18n.Schema = {
         editOrgUnits: 'Edit Organization',
         addChildOrgUnits: 'Add Child Organization',
         unassigned: 'Unassigned Organization'
+      },
+      notice: {
+        category: 'Category',
+        title: 'Title',
+        content: 'Content',
+        releaseTime: 'Release Time',
+        remark: 'Remark',
+        status: 'Status',
+        form: {
+          category: 'Please select category',
+          title: 'Please enter title',
+          content: 'Please enter content',
+          releaseTime: 'Please enter release time',
+          remark: 'Please enter remark',
+          status: 'Please select status'
+        }
       }
     },
     monitor: {

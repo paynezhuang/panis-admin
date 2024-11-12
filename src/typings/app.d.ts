@@ -855,6 +855,22 @@ declare namespace App {
             addChildOrgUnits: string;
             unassigned: string;
           };
+          notice: {
+            category: string;
+            title: string;
+            content: string;
+            releaseTime: string;
+            remark: string;
+            status: string;
+            form: {
+              category: string;
+              title: string;
+              content: string;
+              releaseTime: string;
+              remark: string;
+              status: string;
+            };
+          };
         };
         monitor: {
           percentage: string;

@@ -239,6 +239,15 @@ export const generatedRoutes: GeneratedRoute[] = [
         }
       },
       {
+        name: 'manage_notice',
+        path: '/manage/notice',
+        component: 'view.manage_notice',
+        meta: {
+          title: 'manage_notice',
+          i18nKey: 'route.manage_notice'
+        }
+      },
+      {
         name: 'manage_org',
         path: '/manage/org',
         component: 'view.manage_org',

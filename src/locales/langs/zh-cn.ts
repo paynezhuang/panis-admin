@@ -199,6 +199,7 @@ const local: App.I18n.Schema = {
     manage_dict: '字典管理',
     manage_position: '岗位管理',
     manage_org: '组织管理',
+    manage_notice: '通知公告',
     monitor: '监控管理',
     monitor_system: '系统监控',
     monitor_cache: '缓存监控',
@@ -667,6 +668,22 @@ const local: App.I18n.Schema = {
         editOrgUnits: '编辑组织',
         addChildOrgUnits: '新增子组织',
         unassigned: '未分配组织'
+      },
+      notice: {
+        category: '分类',
+        title: '标题',
+        content: '内容',
+        releaseTime: '发布时间',
+        remark: '备注',
+        status: '状态',
+        form: {
+          category: '请选择分类',
+          title: '请输入标题',
+          content: '请输入内容',
+          releaseTime: '请输入发布时间',
+          remark: '请输入备注',
+          status: '请选择状态'
+        }
       }
     },
     monitor: {
