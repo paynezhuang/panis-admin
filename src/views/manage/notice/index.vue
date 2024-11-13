@@ -37,6 +37,11 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
   },
   columns: () => [
     {
+      type: 'selection',
+      align: 'center',
+      width: 48
+    },
+    {
       key: 'index',
       title: $t('common.index'),
       width: 64,
@@ -55,7 +60,10 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       title: $t('page.manage.notice.title'),
       align: 'center',
       width: 100,
-      minWidth: 100
+      minWidth: 100,
+      ellipsis: {
+        tooltip: true
+      }
     },
     {
       key: 'content',
@@ -63,8 +71,8 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       align: 'center',
       width: 200,
       minWidth: 200,
-      props: {
-        ellipsis: true
+      ellipsis: {
+        tooltip: true
       }
     },
     {
@@ -81,8 +89,8 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       align: 'center',
       width: 200,
       minWidth: 200,
-      props: {
-        ellipsis: true
+      ellipsis: {
+        tooltip: true
       }
     },
 
@@ -113,6 +121,7 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       key: 'operate',
       title: $t('common.operate'),
       align: 'center',
+      fixed: 'right',
       width: 200,
       minWidth: 200,
       render: row => (
