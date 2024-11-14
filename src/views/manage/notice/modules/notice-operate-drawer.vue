@@ -82,8 +82,6 @@ const isAdd = computed(() => props.operateType === 'add');
 
 async function handleSubmit() {
   await validate();
-  console.log(model);
-  // return;
   const func = isAdd.value ? fetchAddNotice : fetchUpdateNoticeInfo;
   const { error, data } = await func(model);
   if (!error && data) {
