@@ -3,7 +3,7 @@ import { $t } from '@/locales';
 import { useDict } from '@/hooks/business/dict';
 
 defineOptions({
-  name: 'MonFileRecordSearch'
+  name: 'MonFileSearch'
 });
 
 interface Emits {
@@ -13,7 +13,7 @@ interface Emits {
 
 const emit = defineEmits<Emits>();
 
-const model = defineModel<Api.Monitor.FileRecordSearchParams>('model', { required: true });
+const model = defineModel<Api.Monitor.FileSearchParams>('model', { required: true });
 
 const { dictOptions } = useDict();
 
@@ -32,19 +32,29 @@ function search() {
       <NGrid responsive="screen" item-responsive :x-gap="8" :y-gap="8" cols="1 s:1 m:5 l:5 xl:5 2xl:5">
         <NGridItem span="4">
           <NGrid responsive="screen" item-responsive :x-gap="8">
-            <NFormItemGi span="24 s:8 m:6" :label="$t('page.monitor.fileRecord.orderNo')" path="orderNo">
-              <NInput v-model:value="model.orderNo" size="small" :placeholder="$t('page.monitor.fileRecord.form.orderNo')" />
+            <NFormItemGi span="24 s:8 m:6" :label="$t('page.monitor.file.orderNo')" path="orderNo">
+              <NInput v-model:value="model.orderNo" size="small" :placeholder="$t('page.monitor.file.form.orderNo')" />
             </NFormItemGi>
-            <NFormItemGi span="24 s:8 m:6" :label="$t('page.monitor.fileRecord.category')" path="category">
+            <NFormItemGi span="24 s:8 m:6" :label="$t('page.monitor.file.category')" path="category">
               <NSelect
                 v-model:value="model.category"
                 size="small"
+                :placeholder="$t('page.monitor.file.form.category')"
                 :options="dictOptions('file_record_category')"
-                :placeholder="$t('page.monitor.fileRecord.form.category')"
+                clearable
               />
             </NFormItemGi>
-            <NFormItemGi span="24 s:8 m:6" :label="$t('page.monitor.fileRecord.name')" path="name">
-              <NInput v-model:value="model.name" size="small" :placeholder="$t('page.monitor.fileRecord.form.name')" />
+            <NFormItemGi span="24 s:8 m:6" :label="$t('page.monitor.file.location')" path="location">
+              <NSelect
+                v-model:value="model.location"
+                size="small"
+                :placeholder="$t('page.monitor.file.form.location')"
+                :options="dictOptions('file_record_location')"
+                clearable
+              />
+            </NFormItemGi>
+            <NFormItemGi span="24 s:8 m:6" :label="$t('page.monitor.file.name')" path="name">
+              <NInput v-model:value="model.name" size="small" :placeholder="$t('page.monitor.file.form.name')" />
             </NFormItemGi>
           </NGrid>
         </NGridItem>

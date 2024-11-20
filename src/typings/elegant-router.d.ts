@@ -57,7 +57,7 @@ declare module "@elegant-router/types" {
     "manage_user-detail": "/manage/user-detail/:id";
     "monitor": "/monitor";
     "monitor_cache": "/monitor/cache";
-    "monitor_file-record": "/monitor/file-record";
+    "monitor_file": "/monitor/file";
     "monitor_logs": "/monitor/logs";
     "monitor_logs_error": "/monitor/logs/error";
     "monitor_logs_login": "/monitor/logs/login";
@@ -172,7 +172,7 @@ declare module "@elegant-router/types" {
     | "manage_user-detail"
     | "manage_user"
     | "monitor_cache"
-    | "monitor_file-record"
+    | "monitor_file"
     | "monitor_logs_error"
     | "monitor_logs_login"
     | "monitor_logs_operation"
@@ -264,7 +264,7 @@ declare module "@elegant-router/types" {
         component: `view.${K}`;
       }
     : never;
-
+  
   /**
    * the center level route
    */
@@ -287,7 +287,7 @@ declare module "@elegant-router/types" {
         children: (CenterLevelRoute<GetChildRouteKey<K>> | LastLevelRoute<GetChildRouteKey<K>>)[];
       }
     : never;
-
+  
   /**
    * the custom first level route
    */

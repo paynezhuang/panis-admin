@@ -1082,23 +1082,22 @@ declare namespace App {
               error: string;
             };
           };
-          fileRecord: {
+          file: {
             orderNo: string;
             category: string;
+            location: string;
             name: string;
+            suffix: string;
             path: string;
-            length: string;
+            size: string;
             uuid: string;
             contentType: string;
             remark: string;
             form: {
               orderNo: string;
               category: string;
+              location: string;
               name: string;
-              path: string;
-              length: string;
-              contentType: string;
-              remark: string;
             };
           };
         };

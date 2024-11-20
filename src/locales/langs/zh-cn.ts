@@ -203,7 +203,7 @@ const local: App.I18n.Schema = {
     monitor: '监控管理',
     monitor_system: '系统监控',
     monitor_cache: '缓存监控',
-    'monitor_file-record': '文件记录',
+    monitor_file: '文件管理',
     monitor_logs: '日志管理',
     monitor_logs_login: '登录日志',
     monitor_logs_operation: '操作日志',
@@ -897,23 +897,22 @@ const local: App.I18n.Schema = {
           error: '错误'
         }
       },
-      fileRecord: {
+      file: {
         orderNo: '订单号码',
         category: '分类',
+        location: '存储位置',
         name: '文件名称',
+        suffix: '文件尾缀',
         path: '文件路径',
-        length: '文件大小',
-        uuid: 'UUID',
+        size: '文件大小',
+        uuid: '文件UUID',
         contentType: '文件类型',
         remark: '备注',
         form: {
           orderNo: '请输入订单号码',
           category: '请选择分类',
-          name: '请输入文件名称',
-          path: '请输入文件路径',
-          length: '请输入文件大小',
-          contentType: '请输入文件类型',
-          remark: '请输入备注'
+          location: '请选择存储位置',
+          name: '请输入文件名称'
         }
       }
     }

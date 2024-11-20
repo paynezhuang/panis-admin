@@ -323,12 +323,12 @@ export const generatedRoutes: GeneratedRoute[] = [
         }
       },
       {
-        name: 'monitor_file-record',
-        path: '/monitor/file-record',
-        component: 'view.monitor_file-record',
+        name: 'monitor_file',
+        path: '/monitor/file',
+        component: 'view.monitor_file',
         meta: {
-          title: 'monitor_file-record',
-          i18nKey: 'route.monitor_file-record'
+          title: 'monitor_file',
+          i18nKey: 'route.monitor_file'
         }
       },
       {
