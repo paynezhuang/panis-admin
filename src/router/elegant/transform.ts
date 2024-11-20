@@ -203,6 +203,7 @@ const routeMap: RouteMap = {
   "manage_user-detail": "/manage/user-detail/:id",
   "monitor": "/monitor",
   "monitor_cache": "/monitor/cache",
+  "monitor_file-record": "/monitor/file-record",
   "monitor_logs": "/monitor/logs",
   "monitor_logs_error": "/monitor/logs/error",
   "monitor_logs_login": "/monitor/logs/login",

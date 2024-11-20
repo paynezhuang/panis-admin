@@ -1082,6 +1082,25 @@ declare namespace App {
               error: string;
             };
           };
+          fileRecord: {
+            orderNo: string;
+            category: string;
+            name: string;
+            path: string;
+            length: string;
+            uuid: string;
+            contentType: string;
+            remark: string;
+            form: {
+              orderNo: string;
+              category: string;
+              name: string;
+              path: string;
+              length: string;
+              contentType: string;
+              remark: string;
+            };
+          };
         };
       };
       form: {

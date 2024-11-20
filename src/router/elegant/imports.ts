@@ -39,6 +39,7 @@ export const views: Record<LastLevelRouteKey, RouteComponent | (() => Promise<Ro
   "manage_user-detail": () => import("@/views/manage/user-detail/[id].vue"),
   manage_user: () => import("@/views/manage/user/index.vue"),
   monitor_cache: () => import("@/views/monitor/cache/index.vue"),
+  "monitor_file-record": () => import("@/views/monitor/file-record/index.vue"),
   monitor_logs_error: () => import("@/views/monitor/logs_error/index.vue"),
   monitor_logs_login: () => import("@/views/monitor/logs_login/index.vue"),
   monitor_logs_operation: () => import("@/views/monitor/logs_operation/index.vue"),

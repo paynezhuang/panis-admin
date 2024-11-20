@@ -203,6 +203,7 @@ const local: App.I18n.Schema = {
     monitor: 'Monitor Manage',
     monitor_system: 'System Monitor',
     monitor_cache: 'Cache Monitor',
+    'monitor_file-record': 'File Record',
     monitor_logs: 'Logs Monitor',
     monitor_logs_login: 'Login Logs',
     monitor_logs_operation: 'Operation Logs',
@@ -895,6 +896,25 @@ const local: App.I18n.Schema = {
           paused: 'Paused',
           blocked: 'Blocked',
           error: 'Error'
+        }
+      },
+      fileRecord: {
+        orderNo: 'Order No',
+        category: 'Category',
+        name: 'File Name',
+        path: 'File Path',
+        length: 'File Size',
+        uuid: 'File UUID',
+        contentType: 'File Type',
+        remark: 'Remark',
+        form: {
+          orderNo: 'Please enter order number',
+          category: 'Please enter category',
+          name: 'Please enter file name',
+          path: 'Please enter file path',
+          length: 'Please enter file size',
+          contentType: 'Please enter file type',
+          remark: 'Please enter remark'
         }
       }
     }
