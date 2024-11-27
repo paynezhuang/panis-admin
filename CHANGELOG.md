@@ -1,6 +1,53 @@
 # Changelog
 
 
+## [v1.0.5](https://github.com/paynezhuang/panis-admin/compare/v1.0.4...v1.0.5) (2024-11-27)
+
+### &nbsp;&nbsp;&nbsp;🚀 Features
+
+- **projects**:
+  - merge remote project v1.3.8 &nbsp;-&nbsp; by @paynezhuang [<samp>(e4a4e)</samp>](https://github.com/paynezhuang/panis-admin/commit/e4a4e59)
+  - all annotation permission & Organize search users &nbsp;-&nbsp; by @paynezhuang [<samp>(de9b5)</samp>](https://github.com/paynezhuang/panis-admin/commit/de9b5b6)
+  - Time field formatted display &nbsp;-&nbsp; by @paynezhuang [<samp>(61e0a)</samp>](https://github.com/paynezhuang/panis-admin/commit/61e0a02)
+  - Add notification announcement management &nbsp;-&nbsp; by @paynezhuang [<samp>(69b29)</samp>](https://github.com/paynezhuang/panis-admin/commit/69b294a)
+  - role status default value &nbsp;-&nbsp; by @paynezhuang [<samp>(f5fc0)</samp>](https://github.com/paynezhuang/panis-admin/commit/f5fc039)
+  - add file record module &nbsp;-&nbsp; by @paynezhuang [<samp>(c6bcb)</samp>](https://github.com/paynezhuang/panis-admin/commit/c6bcb5e)
+  - add file manage &nbsp;-&nbsp; by @paynezhuang [<samp>(3896f)</samp>](https://github.com/paynezhuang/panis-admin/commit/3896f31)
+  - merge remote project v1.3.9 &nbsp;-&nbsp; by @paynezhuang [<samp>(950af)</samp>](https://github.com/paynezhuang/panis-admin/commit/950af4d)
+
+### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
+
+- **projects**:
+  - Fix spelling errors &nbsp;-&nbsp; by @paynezhuang [<samp>(5f440)</samp>](https://github.com/paynezhuang/panis-admin/commit/5f440ba)
+  - Fix spelling errors &nbsp;-&nbsp; by @paynezhuang [<samp>(d34c0)</samp>](https://github.com/paynezhuang/panis-admin/commit/d34c0be)
+  - fix code generate isEdit status &nbsp;-&nbsp; by @paynezhuang [<samp>(e3a15)</samp>](https://github.com/paynezhuang/panis-admin/commit/e3a1558)
+  - fix dict reset search &nbsp;-&nbsp; by @paynezhuang [<samp>(8b95b)</samp>](https://github.com/paynezhuang/panis-admin/commit/8b95b33)
+  - Repair return response &nbsp;-&nbsp; by @paynezhuang [<samp>(3744f)</samp>](https://github.com/paynezhuang/panis-admin/commit/3744f86)
+
+### &nbsp;&nbsp;&nbsp;🔥 Performance
+
+- **projects**: update nsetting the name &nbsp;-&nbsp; by @paynezhuang [<samp>(64233)</samp>](https://github.com/paynezhuang/panis-admin/commit/642335c)
+
+### &nbsp;&nbsp;&nbsp;🛠 Optimizations
+
+- **projects**: Optimization type &nbsp;-&nbsp; by @paynezhuang [<samp>(611db)</samp>](https://github.com/paynezhuang/panis-admin/commit/611db7a)
+
+### &nbsp;&nbsp;&nbsp;💅 Refactors
+
+- **projects**: file record changed file &nbsp;-&nbsp; by @paynezhuang [<samp>(99d99)</samp>](https://github.com/paynezhuang/panis-admin/commit/99d99f9)
+
+### &nbsp;&nbsp;&nbsp;🎨 Styles
+
+- **projects**:
+  - Rename &nbsp;-&nbsp; by @paynezhuang [<samp>(499e4)</samp>](https://github.com/paynezhuang/panis-admin/commit/499e46a)
+  - delete console code &nbsp;-&nbsp; by @paynezhuang [<samp>(54cbb)</samp>](https://github.com/paynezhuang/panis-admin/commit/54cbb6c)
+  - Table field display style &nbsp;-&nbsp; by @paynezhuang [<samp>(8529b)</samp>](https://github.com/paynezhuang/panis-admin/commit/8529bcf)
+  - remove console log code &nbsp;-&nbsp; by @paynezhuang [<samp>(4fb71)</samp>](https://github.com/paynezhuang/panis-admin/commit/4fb71f0)
+
+### &nbsp;&nbsp;&nbsp;❤️ Contributors
+
+[![paynezhuang](https://github.com/paynezhuang.png?size=48)](https://github.com/paynezhuang)&nbsp;&nbsp;
+
 ## [v1.0.4](https://github.com/paynezhuang/panis-admin/compare/v1.0.3...v1.0.4) (2024-09-08)
 
 ### &nbsp;&nbsp;&nbsp;🚀 Features
