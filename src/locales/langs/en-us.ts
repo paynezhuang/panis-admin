@@ -58,7 +58,8 @@ const local: App.I18n.Schema = {
     createUser: 'Create User',
     createTime: 'Create Time',
     updateUser: 'Update User',
-    updateTime: 'Update Time'
+    updateTime: 'Update Time',
+    isNotDevEnvTip: 'Current is not a development environment, cannot perform this operation'
   },
   request: {
     logout: 'Logout user after request failed',
@@ -914,7 +915,10 @@ const local: App.I18n.Schema = {
           category: 'Please select category',
           location: 'Please select storage location',
           name: 'Please enter file name'
-        }
+        },
+        upload: 'Upload File',
+        uploadSuccess: 'Upload Success',
+        preview: 'Preview'
       }
     }
   },

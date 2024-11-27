@@ -58,7 +58,8 @@ const local: App.I18n.Schema = {
     createUser: '创建用户',
     createTime: '创建时间',
     updateUser: '更新用户',
-    updateTime: '更新时间'
+    updateTime: '更新时间',
+    isNotDevEnvTip: '当前非开发环境，无法进行此操作'
   },
   request: {
     logout: '请求失败后登出用户',
@@ -913,7 +914,10 @@ const local: App.I18n.Schema = {
           category: '请选择分类',
           location: '请选择存储位置',
           name: '请输入文件名称'
-        }
+        },
+        upload: '上传文件',
+        uploadSuccess: '上传成功',
+        preview: '预览'
       }
     }
   },

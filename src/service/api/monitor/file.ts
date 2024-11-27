@@ -20,4 +20,24 @@ export function fetchDeleteFile(data: Api.Common.DeleteParams) {
   });
 }
 
+/** upload file */
+export function fetchUploadFile(data: FormData) {
+  return request<boolean>({
+    url: '/mon_file/upload',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data
+  });
+}
+
+/** preview file */
+export function fetchPreviewFile(id: string) {
+  return request<string>({
+    url: `/mon_file/preview/${id}`,
+    method: 'GET'
+  });
+}
+
 // =============== File End  ===============

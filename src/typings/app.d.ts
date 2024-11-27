@@ -342,6 +342,7 @@ declare namespace App {
         createTime: string;
         updateUser: string;
         updateTime: string;
+        isNotDevEnvTip: string;
       };
       request: {
         logout: string;
@@ -1099,6 +1100,9 @@ declare namespace App {
               location: string;
               name: string;
             };
+            upload: string;
+            uploadSuccess: string;
+            preview: string;
           };
         };
       };
