@@ -311,6 +311,14 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     return getSelectedMenuKeyPathByKey(selectedKey, menus.value);
   }
 
+  async function onRouteSwitchWhenLoggedIn() {
+    authStore.initUserInfo();
+  }
+
+  async function onRouteSwitchWhenNotLoggedIn() {
+    // some global init logic if it does not need to be logged in
+  }
+
   return {
     resetStore,
     routeHome,
@@ -327,6 +335,8 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
     isInitAuthRoute,
     setIsInitAuthRoute,
     getIsAuthRouteExist,
-    getSelectedMenuKeyPath
+    getSelectedMenuKeyPath,
+    onRouteSwitchWhenLoggedIn,
+    onRouteSwitchWhenNotLoggedIn
   };
 });
