@@ -20,7 +20,7 @@ declare namespace Api {
     >;
 
     /** role edit model */
-    type RoleEdit = Pick<Api.SystemManage.Role, 'roleName' | 'roleCode' | 'description' | 'status' | 'sort'>;
+    type RoleEdit = Pick<Api.SystemManage.Role, 'id' | 'roleName' | 'roleCode' | 'description' | 'status' | 'sort'>;
 
     /** role list */
     type RoleList = Common.PaginatingQueryRecord<Role>;

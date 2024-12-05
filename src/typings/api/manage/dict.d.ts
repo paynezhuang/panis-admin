@@ -31,7 +31,7 @@ declare namespace Api {
     type DictSearchParams = CommonType.RecordNullable<Pick<Api.SystemManage.Dict, 'name' | 'code'> & Api.Common.CommonSearchParams>;
 
     /** dict edit model */
-    type DictEdit = Pick<Api.SystemManage.Dict, 'name' | 'code' | 'type' | 'sort' | 'description' | 'status'>;
+    type DictEdit = Pick<Api.SystemManage.Dict, 'id' | 'name' | 'code' | 'type' | 'sort' | 'description' | 'status'>;
 
     /** dict tree * */
     type DictTree = Pick<Api.SystemManage.Dict, 'id' | 'name' | 'code' | 'type' | 'description' | 'status'>;
@@ -67,7 +67,7 @@ declare namespace Api {
     >;
 
     /** dict item edit model */
-    type DictItemEdit = Pick<Api.SystemManage.DictItem, 'value' | 'zhCN' | 'enUS' | 'type' | 'sort' | 'description' | 'status'>;
+    type DictItemEdit = Pick<Api.SystemManage.DictItem, 'id' | 'value' | 'zhCN' | 'enUS' | 'type' | 'sort' | 'description' | 'status'>;
 
     /** dict options */
     type DictOptions = {

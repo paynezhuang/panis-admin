@@ -23,6 +23,6 @@ declare namespace Api {
     type PositionSearchParams = CommonType.RecordNullable<Pick<Api.SystemManage.Position, 'name' | 'status'> & Api.Common.CommonSearchParams>;
 
     /** position edit model */
-    type PositionEdit = Pick<Api.SystemManage.Position, 'code' | 'name' | 'abbr' | 'sort' | 'description' | 'status'>;
+    type PositionEdit = Pick<Api.SystemManage.Position, 'id' | 'code' | 'name' | 'abbr' | 'sort' | 'description' | 'status'>;
   }
 }

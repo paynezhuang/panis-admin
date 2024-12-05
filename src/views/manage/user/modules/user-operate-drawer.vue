@@ -47,6 +47,7 @@ const model: Model = reactive(createDefaultModel());
 
 function createDefaultModel(): Model {
   return {
+    id: '',
     userName: '',
     gender: '0',
     nickName: '',

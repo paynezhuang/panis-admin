@@ -47,6 +47,7 @@ const model: Model = reactive(createDefaultModel());
 
 function createDefaultModel(): Model {
   return {
+    id: '',
     roleName: '',
     roleCode: '',
     description: '',
@@ -55,7 +56,7 @@ function createDefaultModel(): Model {
   };
 }
 
-type RuleKey = Exclude<keyof Model, 'description' | 'sort'>;
+type RuleKey = Exclude<keyof Model, 'id' | 'description' | 'sort'>;
 
 const rules: Record<RuleKey, App.Global.FormRule> = {
   roleName: defaultRequiredRule,

@@ -33,7 +33,7 @@ declare namespace Api {
     > & { orgIds?: string };
 
     /** user edit model */
-    type UserEdit = Pick<Api.SystemManage.User, 'userName' | 'gender' | 'nickName' | 'realName' | 'phone' | 'email' | 'status'>;
+    type UserEdit = Pick<Api.SystemManage.User, 'id' | 'userName' | 'gender' | 'nickName' | 'realName' | 'phone' | 'email' | 'status'>;
 
     /** user list */
     type UserList = Common.PaginatingQueryRecord<User>;

@@ -68,6 +68,7 @@ const model: Model = reactive(createDefaultModel());
 
 function createDefaultModel(): Model {
   return {
+    id: '',
     type: '1',
     name: '',
     i18nKey: null,

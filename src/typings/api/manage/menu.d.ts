@@ -73,6 +73,7 @@ declare namespace Api {
     /** menu edit model */
     type MenuEdit = Pick<
       Api.SystemManage.Menu,
+      | 'id'
       | 'type'
       | 'name'
       | 'i18nKey'

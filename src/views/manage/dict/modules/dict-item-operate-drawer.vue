@@ -50,6 +50,7 @@ const model: Model = reactive(createDefaultModel());
 
 function createDefaultModel(): Model {
   return {
+    id: '',
     dictId: props.dict.id,
     dictCode: props.dict.code,
     value: '',
