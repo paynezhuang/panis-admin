@@ -19,7 +19,7 @@ export function fetchLogin(userName: string, password: string) {
 
 /** user logout */
 export function fetchLogout() {
-  return request<Boolean>({
+  return request<boolean>({
     url: '/auth/logout',
     method: 'post'
   });
