@@ -73,8 +73,6 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
       const pass = await loginByToken(loginToken);
 
       if (pass) {
-        await routeStore.initAuthRoute();
-
         await dictStore.init();
 
         await redirectFromLogin(redirect);
