@@ -107,6 +107,7 @@ export function useTable<A extends NaiveUI.TableApiFn>(config: NaiveUI.NaiveTabl
     page: 1,
     pageSize: 20,
     showSizePicker: true,
+    itemCount: 0,
     showQuickJumper: true,
     pageSizes: [20, 40, 60, 80, 100],
     onUpdatePage: async (page: number) => {

@@ -89,7 +89,10 @@ const isWrapperScrollMode = computed(() => themeStore.layout.scrollMode === 'wra
       <NSwitch v-model:value="themeStore.watermark.visible" />
     </SettingItem>
     <SettingItem v-if="themeStore.watermark.visible" key="8-1" :label="$t('theme.watermark.text')">
-      <NInput v-model:value="themeStore.watermark.text" autosize type="text" size="small" class="w-120px" placeholder="SoybeanAdmin" />
+      <NInput v-model:value="themeStore.watermark.text" autosize type="text" size="small" class="w-120px" placeholder="PanisAdmin" />
+    </SettingItem>
+    <SettingItem key="9" :label="$t('theme.header.multilingual.visible')">
+      <NSwitch v-model:value="themeStore.header.multilingual.visible" />
     </SettingItem>
   </TransitionGroup>
 </template>
