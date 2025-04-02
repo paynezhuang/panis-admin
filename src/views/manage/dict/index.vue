@@ -160,7 +160,7 @@ onMounted(() => init());
   <div class="flex overflow-hidden">
     <NGrid :x-gap="8" :y-gap="8" item-responsive responsive="screen" cols="1 s:1 m:5 l:5 xl:5 2xl:5">
       <NGridItem span="1" class="h-full-hidden">
-        <NCard :title="$t('page.manage.dict.title')" :bordered="false" size="small" class="h-full sm:flex-1-hidden" content-class="h-full-hidden ">
+        <NCard :title="$t('page.manage.dict.title')" :bordered="false" size="small" class="h-full sm:flex-1-hidden" content-class="h-full-hidden">
           <template #header-extra>
             <NSpace>
               <NButton v-if="hasAuth('sys:dict:add')" ghost type="primary" @click="handleAdd()">
@@ -173,19 +173,21 @@ onMounted(() => init());
               </NButton>
             </NSpace>
           </template>
-          <NInput v-model:value="name" clearable :placeholder="$t('common.keywordSearch')" />
-          <NTree
-            :data="dictTreeList"
-            :pattern="name"
-            block-line
-            class="p-tree my-3 flex-col-stretch"
-            key-field="id"
-            label-field="name"
-            virtual-scroll
-            :render-label="renderLabel"
-            :show-irrelevant-nodes="false"
-            @update-selected-keys="(_key, _option, { node, action }) => handleSelectKeys(node, action)"
-          />
+          <div class="h-full flex flex-col">
+            <NInput v-model:value="name" class="mb-2" clearable :placeholder="$t('common.keywordSearch')" />
+            <NTree
+              :data="dictTreeList"
+              :pattern="name"
+              block-line
+              class="p-tree flex-col-stretch"
+              key-field="id"
+              label-field="name"
+              virtual-scroll
+              :render-label="renderLabel"
+              :show-irrelevant-nodes="false"
+              @update-selected-keys="(_key, _option, { node, action }) => handleSelectKeys(node, action)"
+            />
+          </div>
         </NCard>
       </NGridItem>
       <NGridItem span="4">
