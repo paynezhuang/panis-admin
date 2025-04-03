@@ -120,10 +120,16 @@ const showLayout = computed(() => model.parentId === 0);
 
 const showPage = computed(() => model.type === '2');
 
+// has external link
+const hasExternalLink = computed(() => Boolean(model.href || model.iframeUrl));
+
 const pageOptions = computed(() => {
   const allPages = [...props.allPages];
 
-  if (model.routeName && !allPages.includes(model.routeName)) {
+  // has external link add iframe-page
+  if (hasExternalLink.value) {
+    allPages.unshift('iframe-page');
+  } else if (model.routeName && !allPages.includes(model.routeName)) {
     allPages.unshift(model.routeName);
   }
 
@@ -235,6 +241,13 @@ watch(
     handleUpdateI18nKeyByRouteName();
   }
 );
+
+watch(
+  () => hasExternalLink.value,
+  () => {
+    model.page = 'iframe-page';
+  }
+);
 </script>
 
 <template>
@@ -300,7 +313,7 @@ watch(
             </template>
           </NFormItemGi>
           <NFormItemGi span="24" :label="$t('page.manage.menu.routePath')" path="routePath">
-            <NInput v-model:value="model.routePath" :placeholder="$t('page.manage.menu.form.routePath')" />
+            <NInput v-model:value="model.routePath" disabled :placeholder="$t('page.manage.menu.form.routePath')" />
           </NFormItemGi>
           <NFormItemGi v-if="showLayout" span="24" :label="$t('page.manage.menu.layout')" path="layout">
             <NSelect v-model:value="model.layout" :options="layoutOptions" :placeholder="$t('page.manage.menu.form.layout')" />
