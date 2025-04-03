@@ -170,20 +170,22 @@ onMounted(() => init());
           </NButton>
         </NFlex>
       </template>
-      <NInput v-model:value="name" clearable :placeholder="$t('common.keywordSearch')" />
-      <NTree
-        :pattern="name"
-        :data="orgUnitsTreeData"
-        accordion
-        block-line
-        key-field="id"
-        label-field="name"
-        virtual-scroll
-        :show-irrelevant-nodes="false"
-        :render-suffix="renderSuffix"
-        class="p-tree my-3 flex-col-stretch"
-        @update-selected-keys="(_key, _option, { node, action }) => handleSelectKeys(node, action)"
-      />
+      <div class="h-full flex flex-col">
+        <NInput v-model:value="name" class="mb-2" clearable :placeholder="$t('common.keywordSearch')" />
+        <NTree
+          :pattern="name"
+          :data="orgUnitsTreeData"
+          accordion
+          block-line
+          key-field="id"
+          label-field="name"
+          virtual-scroll
+          :show-irrelevant-nodes="false"
+          :render-suffix="renderSuffix"
+          class="p-tree my-3 flex-col-stretch"
+          @update-selected-keys="(_key, _option, { node, action }) => handleSelectKeys(node, action)"
+        />
+      </div>
     </NCard>
     <OrgUnitsOperateDrawer v-model:visible="visible" :operate-type="operateType" :row-data="editingData" @submitted="init" />
   </div>

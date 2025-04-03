@@ -41,6 +41,7 @@ const showData: MenuTreeModel = reactive({
   iconType: '1',
   status: '1',
   hide: 'N',
+  href: '',
   iframeUrl: '',
   sort: 0,
   parentId: '0'
@@ -143,18 +144,20 @@ init(null);
               </NButton>
             </NFlex>
           </template>
-          <NInput v-model:value="name" :placeholder="$t('page.manage.menu.form.name')" clearable />
-          <NTree
-            :data="tree"
-            :pattern="name"
-            accordion
-            block-line
-            class="p-tree my-3 flex-col-stretch"
-            key-field="id"
-            virtual-scroll
-            :show-irrelevant-nodes="false"
-            @update-selected-keys="(_key, _option, { node, action }) => handleSelectKeys(node, action)"
-          />
+          <div class="h-full flex flex-col">
+            <NInput v-model:value="name" class="mb-2" clearable :placeholder="$t('page.manage.menu.form.name')" />
+            <NTree
+              :data="tree"
+              :pattern="name"
+              accordion
+              block-line
+              class="p-tree flex-col-stretch"
+              key-field="id"
+              virtual-scroll
+              :show-irrelevant-nodes="false"
+              @update-selected-keys="(_key, _option, { node, action }) => handleSelectKeys(node, action)"
+            />
+          </div>
         </NCard>
       </NGridItem>
       <NGridItem v-if="detailVisible" span="4" class="flex flex-col">
