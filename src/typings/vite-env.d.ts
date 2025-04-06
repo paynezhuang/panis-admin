@@ -11,6 +11,7 @@ declare namespace Env {
   type AuthButtonMode = 'user_info' | 'route_meta';
 
   /** Interface for import.meta */
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   interface ImportMeta extends ImportMetaEnv {
     /** The base url of the application */
     readonly VITE_BASE_URL: string;
@@ -107,6 +108,10 @@ declare namespace Env {
     readonly VITE_STORAGE_PREFIX?: string;
     /** Whether to automatically detect updates after configuring application packaging */
     readonly VITE_AUTOMATICALLY_DETECT_UPDATE?: CommonType.YesOrNo;
+    /** show proxy url log in terminal */
+    readonly VITE_PROXY_LOG?: CommonType.YesOrNo;
+    /** The launch editor */
+    readonly VITE_DEVTOOLS_LAUNCH_EDITOR?: import('vite-plugin-vue-devtools').VitePluginVueDevToolsOptions['launchEditor'];
   }
 }
 
