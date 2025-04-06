@@ -1,13 +1,16 @@
 <script setup lang="tsx">
+import type { UploadCustomRequestOptions, UploadInst } from 'naive-ui';
 import { NButton, NPopconfirm } from 'naive-ui';
 import { useBoolean } from '@sa/hooks';
-import { fetchDeleteRole, fetchGetRoleList } from '@/service/api';
+import { ref } from 'vue';
+import { fetchDeleteRole, fetchExportRoleData, fetchGetRoleList, fetchImportRoleData } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { $t } from '@/locales';
 import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
 import { useDict } from '@/hooks/business/dict';
+import { downloadBlob } from '@/utils/download';
 import RoleOperateDrawer from './modules/role-operate-drawer.vue';
 import RoleSearch from './modules/role-search.vue';
 import MenuAuthModal from './modules/menu-auth-modal.vue';
@@ -22,6 +25,9 @@ const { bool: buttonModalVisible, setTrue: openButtonModal } = useBoolean();
 const { hasAuth } = useAuth();
 
 const { dictTag } = useDict();
+
+// 定义上传组件的 ref
+const uploadRef = ref<UploadInst | null>(null);
 
 const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetRoleList,
@@ -149,6 +155,30 @@ function handleButtonAuth(id: string) {
   handleId(id);
   openButtonModal();
 }
+
+// export role data
+async function exportData() {
+  const { error, response } = await fetchExportRoleData();
+  if (!error && response) {
+    downloadBlob(response);
+  }
+}
+
+// custom request upload
+async function customRequest({ file, onFinish }: UploadCustomRequestOptions) {
+  const formData = new FormData();
+  formData.append('file', file.file as File);
+  fetchImportRoleData(formData)
+    .then(({ error, data: result }) => {
+      if (!error && result) {
+        onFinish();
+        uploadRef.value?.clear();
+        getData();
+        window.$message?.success($t('common.uploadSuccess'));
+      }
+    })
+    .catch(() => uploadRef.value?.clear());
+}
 </script>
 
 <template>
@@ -161,10 +191,23 @@ function handleButtonAuth(id: string) {
         :loading="loading"
         add-auth="sys:role:add"
         delete-auth="sys:role:delete"
+        export-auth="sys:role:export"
         @add="handleAdd"
         @delete="handleBatchDelete"
         @refresh="getData"
-      />
+        @export="exportData"
+      >
+        <template #suffix>
+          <NUpload v-if="hasAuth('sys:role:import')" ref="uploadRef" :custom-request="customRequest" :max="1" :show-file-list="false">
+            <NButton size="small" type="primary" ghost>
+              <template #icon>
+                <icon-ic:baseline-cloud-upload class="text-icon" />
+              </template>
+              {{ $t('page.monitor.file.upload') }}
+            </NButton>
+          </NUpload>
+        </template>
+      </TableHeaderOperation>
       <NDataTable
         v-model:checked-row-keys="checkedRowKeys"
         remote

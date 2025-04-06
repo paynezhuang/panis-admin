@@ -59,7 +59,8 @@ const local: App.I18n.Schema = {
     createTime: 'Create Time',
     updateUser: 'Update User',
     updateTime: 'Update Time',
-    isNotDevEnvTip: 'Current is not a development environment, cannot perform this operation'
+    isNotDevEnvTip: 'Current is not a development environment, cannot perform this operation',
+    uploadSuccess: 'Upload Success'
   },
   request: {
     logout: 'Logout user after request failed',

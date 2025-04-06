@@ -13,12 +13,14 @@ interface Props {
   checkedRowKeys?: string[];
   addAuth?: string;
   deleteAuth?: string;
+  exportAuth?: string;
 }
 
 interface Emits {
   (e: 'add'): void;
   (e: 'delete'): void;
   (e: 'refresh'): void;
+  (e: 'export'): void;
 }
 
 const appsotre = useAppStore();
@@ -48,11 +50,15 @@ function batchDelete() {
 function refresh() {
   emit('refresh');
 }
+
+function exportData() {
+  emit('export');
+}
 </script>
 
 <template>
   <NGrid x-gap="8" y-gap="8" :cols="12" class="mb-2">
-    <NGridItem span="10">
+    <NGridItem span="9">
       <NSpace justify="start">
         <slot name="prefix"></slot>
         <slot name="default">
@@ -77,19 +83,24 @@ function refresh() {
         <slot name="suffix"></slot>
       </NSpace>
     </NGridItem>
-    <NGi v-if="!isMobile" span="2">
+    <NGridItem v-if="!isMobile" span="3">
       <NSpace justify="end">
         <slot name="extra-prefix"></slot>
         <slot name="default">
+          <NButton v-if="exportAuth && hasAuth(exportAuth)" size="small" quaternary @click="exportData">
+            <template #icon>
+              <icon-material-symbols:file-save-rounded class="text-icon" />
+            </template>
+          </NButton>
           <NButton size="small" quaternary @click="refresh">
             <template #icon>
-              <icon-ic:outline-refresh class="text-icon" :class="{ 'animate-spin': loading }" />
+              <icon-ic:round-refresh class="text-icon" :class="{ 'animate-spin': loading }" />
             </template>
           </NButton>
           <TableColumnSetting v-model:columns="columns" />
         </slot>
         <slot name="extra-suffix"></slot>
       </NSpace>
-    </NGi>
+    </NGridItem>
   </NGrid>
 </template>

@@ -50,6 +50,27 @@ export function fetchGetAllRoles() {
   });
 }
 
+/** export role data */
+export function fetchExportRoleData() {
+  return request<boolean, 'blob'>({
+    url: '/sys_role/export',
+    method: 'POST',
+    responseType: 'blob'
+  });
+}
+
+/** import role data */
+export function fetchImportRoleData(data: FormData) {
+  /** upload file */
+  return request<boolean>({
+    url: '/sys_role/import',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data
+  });
+}
 // =============== Role End  ===============
 
 // =============== Role Menu Begin ===============

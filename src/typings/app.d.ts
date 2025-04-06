@@ -348,6 +348,7 @@ declare namespace App {
         updateUser: string;
         updateTime: string;
         isNotDevEnvTip: string;
+        uploadSuccess: string;
       };
       request: {
         logout: string;
