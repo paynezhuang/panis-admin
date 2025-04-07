@@ -2,15 +2,15 @@
 import type { VNodeChild } from 'vue';
 import { h, onMounted, reactive, ref, shallowRef } from 'vue';
 import { NButton, NButtonGroup, NPopconfirm, NSpace, NText } from 'naive-ui';
-import { $t } from '@/locales';
-import { useBoolean } from '~/packages/hooks/src';
 import { fetchDeleteDict, fetchGetDictList } from '@/service/api';
-import SvgIcon from '@/components/custom/svg-icon.vue';
-import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
+import { transDeleteParams } from '@/utils/common';
 import { copy } from '@/utils/clipboard';
+import SvgIcon from '@/components/custom/svg-icon.vue';
+import { $t } from '@/locales';
 import DictOperateDrawer from './modules/dict-operate-drawer.vue';
 import DictItemPageTable from './modules/dict-item-page-table.vue';
+import { useBoolean } from '~/packages/hooks/src';
 
 defineOptions({
   name: 'DictPage'
@@ -190,7 +190,7 @@ onMounted(() => init());
           </div>
         </NCard>
       </NGridItem>
-      <NGridItem span="4">
+      <NGridItem span="4" class="h-full overflow-auto">
         <DictItemPageTable v-if="dictItemVisible" :dict="dictData" />
         <NCard v-else :bordered="false" size="small" class="h-full">
           <NEmpty :description="$t('page.manage.dict.selectTreeIsEmptyTip')" class="h-full justify-center" />

@@ -1,14 +1,14 @@
 <script setup lang="tsx">
 import type { Ref } from 'vue';
 import { h, reactive, ref, shallowRef } from 'vue';
-import { useBoolean } from '@sa/hooks';
 import { NTag } from 'naive-ui';
-import { $t } from '@/locales';
+import { useBoolean } from '@sa/hooks';
 import { fetchDeleteMenu, fetchGetAllPages, fetchGetMenuTree } from '@/service/api';
-import SvgIcon from '@/components/custom/svg-icon.vue';
-import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
 import { useDict } from '@/hooks/business/dict';
+import { transDeleteParams } from '@/utils/common';
+import { $t } from '@/locales';
+import SvgIcon from '@/components/custom/svg-icon.vue';
 import PermissionListTable from './modules/permission-list-table.vue';
 import MenuOperateDrawer, { type OperateType } from './modules/menu-operate-drawer.vue';
 
@@ -203,7 +203,7 @@ init(null);
         </NCard>
         <PermissionListTable :show-data="showData" :all-pages="allPages" />
       </NGridItem>
-      <NGridItem v-else span="4">
+      <NGridItem v-else span="4" class="h-full overflow-auto">
         <NCard :bordered="false" size="small" class="h-full">
           <NEmpty :description="$t('page.manage.menu.selectTreeIsEmptyTip')" class="h-full justify-center" />
         </NCard>

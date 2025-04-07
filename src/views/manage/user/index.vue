@@ -28,7 +28,7 @@ const handleSelect = (visible: boolean, item: Api.SystemManage.OrgUnitsTree) => 
   <div class="flex overflow-hidden">
     <NGrid :x-gap="8" :y-gap="8" item-responsive responsive="screen" cols="1 s:1 m:5 l:5 xl:5 2xl:5" class="h-full-hidden">
       <NGridItem span="1" class="h-full-hidden"><OrgUnitTree @select="handleSelect" /></NGridItem>
-      <NGridItem span="4">
+      <NGridItem span="4" class="h-full overflow-auto">
         <UserPageTable v-if="userItemVisible" :org-units="orgUnitsData" />
         <NCard v-else :bordered="false" size="small" class="h-full">
           <NEmpty :description="$t('page.manage.user.selectTreeIsEmptyTip')" class="h-full justify-center" />
