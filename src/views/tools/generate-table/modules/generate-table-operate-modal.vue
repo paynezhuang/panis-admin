@@ -2,7 +2,7 @@
 import { computed, reactive, ref, shallowRef, watch } from 'vue';
 import { NButton, NFormItemGi, NInput, NSelect, NSpace, NSwitch } from 'naive-ui';
 import { useLoading } from '@sa/hooks';
-import { $t } from '@/locales';
+import { renderTypeOptions, searchTypeOptions } from '@/constants/common';
 import {
   fetchAddGeneratorTable,
   fetchCleanGeneratorTableColumn,
@@ -15,11 +15,11 @@ import {
   fetchUpdateGeneratorTableList,
   fetchZipCodeGenerate
 } from '@/service/api';
-import { useFormRules, useNaiveForm } from '@/hooks/common/form';
-import { renderTypeOptions, searchTypeOptions } from '@/constants/common';
 import { useAppStore } from '@/store/modules/app';
+import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { useAuth } from '@/hooks/business/auth';
 import { downloadBlob } from '@/utils/download';
+import { $t } from '@/locales';
 import { getPrefix } from './shared';
 
 defineOptions({
@@ -420,7 +420,7 @@ watch(visible, () => {
           <NDataTable
             :loading="loading"
             :columns="columns"
-            :scroll-x="962"
+            :scroll-x="2350"
             size="small"
             class="sm:h-full"
             :flex-height="!appStore.isMobile"
