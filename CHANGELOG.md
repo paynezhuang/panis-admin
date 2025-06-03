@@ -1,6 +1,34 @@
 # Changelog
 
 
+## [v1.0.6](https://github.com/paynezhuang/panis-admin/compare/v1.0.5...v1.0.6) (2025-06-03)
+
+### &nbsp;&nbsp;&nbsp;🚀 Features
+
+- **projects**:
+  - Edit function adds an id field &nbsp;-&nbsp; by @paynezhuang [<samp>(f569f)</samp>](https://github.com/paynezhuang/panis-admin/commit/f569f78)
+  - merge remote project v1.3.10 &nbsp;-&nbsp; by @paynezhuang [<samp>(0649a)</samp>](https://github.com/paynezhuang/panis-admin/commit/0649a90)
+  - merge remote project v1.3.11 &nbsp;-&nbsp; by @paynezhuang [<samp>(118cf)</samp>](https://github.com/paynezhuang/panis-admin/commit/118cf62)
+  - add role export and import &nbsp;-&nbsp; by @paynezhuang [<samp>(59555)</samp>](https://github.com/paynezhuang/panis-admin/commit/59555cb)
+  - merge remote project v1.3.13 &nbsp;-&nbsp; by @paynezhuang [<samp>(1dcad)</samp>](https://github.com/paynezhuang/panis-admin/commit/1dcad8d)
+  - add DataScope &nbsp;-&nbsp; by @paynezhuang [<samp>(cc828)</samp>](https://github.com/paynezhuang/panis-admin/commit/cc82891)
+  - merge remote project v1.3.13 for Last updated June &nbsp;-&nbsp; by @paynezhuang [<samp>(67b64)</samp>](https://github.com/paynezhuang/panis-admin/commit/67b64cd)
+
+### &nbsp;&nbsp;&nbsp;🐞 Bug Fixes
+
+- **projects**:
+  - Fix type error &nbsp;-&nbsp; by @paynezhuang [<samp>(b09c9)</samp>](https://github.com/paynezhuang/panis-admin/commit/b09c9aa)
+  - fix menu add iframe-page &nbsp;-&nbsp; by @paynezhuang [<samp>(d56eb)</samp>](https://github.com/paynezhuang/panis-admin/commit/d56eba8)
+  - Fix horizontal scrolling width &nbsp;-&nbsp; by @paynezhuang [<samp>(904e7)</samp>](https://github.com/paynezhuang/panis-admin/commit/904e7b6)
+- **styles**:
+  - fix menu data overflow &nbsp;-&nbsp; by @paynezhuang [<samp>(21898)</samp>](https://github.com/paynezhuang/panis-admin/commit/2189825)
+  - fix data overflow &nbsp;-&nbsp; by @paynezhuang [<samp>(78a95)</samp>](https://github.com/paynezhuang/panis-admin/commit/78a95ba)
+  - fix mobile style &nbsp;-&nbsp; by @paynezhuang [<samp>(f7853)</samp>](https://github.com/paynezhuang/panis-admin/commit/f7853d7)
+
+### &nbsp;&nbsp;&nbsp;❤️ Contributors
+
+[![paynezhuang](https://github.com/paynezhuang.png?size=48)](https://github.com/paynezhuang)&nbsp;&nbsp;
+
 ## [v1.0.5](https://github.com/paynezhuang/panis-admin/compare/v1.0.4...v1.0.5) (2024-11-27)
 
 ### &nbsp;&nbsp;&nbsp;🚀 Features
