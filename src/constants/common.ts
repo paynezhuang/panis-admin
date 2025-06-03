@@ -1,5 +1,5 @@
-import { $t } from '@/locales';
 import { transformRecordToOption } from '@/utils/common';
+import { $t } from '@/locales';
 
 const themeColorRecord: Record<NaiveUI.ThemeColor, string> = {
   default: 'Default',
@@ -56,3 +56,13 @@ const searchTypeRecord: Record<SearchType, string> = {
 };
 
 export const searchTypeOptions = transformRecordToOption(searchTypeRecord);
+
+/** generate code logic type */
+type LogicType = 'and' | 'or';
+
+const logicTypeRecord: Record<LogicType, string> = {
+  and: 'AND',
+  or: 'OR'
+};
+
+export const logicTypeOptions = transformRecordToOption(logicTypeRecord);

@@ -39,5 +39,35 @@ declare namespace Api {
       roleId: string;
       permissionIds: string[];
     };
+
+    /** role data scope */
+    type RoleDataScope = {
+      roleId: string;
+      dataScopeIds: string[];
+    };
+
+    /** data scope tree */
+    type DataScopeTree = {
+      menuId: number;
+      menuName: string;
+      children: DataScopePermission[];
+    };
+
+    /** data scope permission */
+    type DataScopePermission = {
+      permissionId: number;
+      permissionResource: string;
+      permissionName: string;
+      children: DataScopeRule[];
+    };
+
+    /** data scope rule */
+    type DataScopeRule = {
+      id: string;
+      name: string;
+      code: string;
+      sort: number;
+      scopeType: string;
+    };
   }
 }

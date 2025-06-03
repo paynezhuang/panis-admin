@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue';
 import { NText } from 'naive-ui';
-import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { fetchAddPermission, fetchGetAllPermissionAnnotations, fetchUpdatePermissionInfo } from '@/service/api';
-import { $t } from '@/locales';
+import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { useDict } from '@/hooks/business/dict';
+import { $t } from '@/locales';
 
 defineOptions({
   name: 'PermissionOperateDrawer'

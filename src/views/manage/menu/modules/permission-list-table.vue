@@ -3,13 +3,14 @@ import { watch } from 'vue';
 import { NButton, NPopconfirm } from 'naive-ui';
 import { useBoolean } from '@sa/hooks';
 import { fetchDeletePermission, fetchGetPermissionList } from '@/service/api';
-import { $t } from '@/locales';
-import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useAppStore } from '@/store/modules/app';
-import { transDeleteParams } from '@/utils/common';
+import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useAuth } from '@/hooks/business/auth';
 import { useDict } from '@/hooks/business/dict';
+import { transDeleteParams } from '@/utils/common';
+import { $t } from '@/locales';
 import PermissionOperateModal from './permission-operate-modal.vue';
+import PermissionDataRulesModal from './permission-data-rules-modal.vue';
 
 defineOptions({
   name: 'PermissionListTable'
@@ -29,6 +30,8 @@ const { hasAuth } = useAuth();
 const { dictTag } = useDict();
 
 const { bool: modalVisible, setTrue: openModalVisible } = useBoolean();
+
+const { bool: dataRulesModalVisible, setTrue: openDataRulesModalVisible } = useBoolean();
 
 const { columns, data, loading, mobilePagination, searchParams, getData, getDataByPage } = useTable({
   apiFn: fetchGetPermissionList,
@@ -78,13 +81,18 @@ const { columns, data, loading, mobilePagination, searchParams, getData, getData
       key: 'operate',
       title: $t('common.operate'),
       align: 'center',
-      width: 80,
+      width: 100,
       fixed: 'right',
       render: row => (
         <div class="flex-center gap-8px">
           {hasAuth('sys:permission:update') && (
             <NButton type="primary" quaternary size="small" onClick={() => handleEditButton(row.id)}>
               {$t('common.edit')}
+            </NButton>
+          )}
+          {hasAuth('sys:data:scope:page') && (
+            <NButton type="warning" quaternary size="small" onClick={() => handleDataRulesButton(row.id)}>
+              {$t('page.manage.permission.dataRules')}
             </NButton>
           )}
           {hasAuth('sys:permission:delete') && (
@@ -118,6 +126,12 @@ function handleEditButton(id: string) {
   operateType.value = 'edit';
   handleData(id);
   openModalVisible();
+}
+
+/** data rules button */
+function handleDataRulesButton(id: string) {
+  handleData(id);
+  openDataRulesModalVisible();
 }
 
 /** delete permission button */
@@ -168,5 +182,6 @@ watch(props.showData, () => {
       :row-data="editingData"
       @submitted="getDataByPage()"
     />
+    <PermissionDataRulesModal v-model:visible="dataRulesModalVisible" :menu-data="showData" :permission-data="editingData" />
   </div>
 </template>

@@ -450,6 +450,7 @@ const local: App.I18n.Schema = {
         description: 'Role Description',
         menuAuth: 'Menu Auth',
         buttonAuth: 'Button Auth',
+        dataScopeAuth: 'Data Scope Auth',
         form: {
           roleName: 'Please enter role name',
           roleCode: 'Please enter role code',
@@ -574,6 +575,7 @@ const local: App.I18n.Schema = {
         description: 'Button Description',
         addButton: 'Add Button',
         editButton: 'Edit Button',
+        dataRules: 'Data Rules',
         form: {
           menuName: 'Please enter menu name',
           name: 'Please enter button name',
@@ -690,6 +692,41 @@ const local: App.I18n.Schema = {
           releaseTime: 'Please enter release time',
           remark: 'Please enter remark',
           status: 'Please select status'
+        }
+      },
+      dataScope: {
+        title: 'Data Scope List',
+        name: 'Name',
+        code: 'Code',
+        menuName: 'Menu Name',
+        permissionResource: 'Permission Resource',
+        permissionName: 'Permission Name',
+        scopeType: 'Scope Type',
+        scopeTypeName: 'Scope Type Name',
+        customFields: 'Custom Fields',
+        customRules: 'Custom Rules',
+        description: 'Description',
+        sort: 'Sort',
+        status: 'Status',
+        form: {
+          title: 'Data Scope',
+          name: 'Please enter name',
+          code: 'Please enter code',
+          menuName: 'Please select menu name',
+          permissionName: 'Please select permission name',
+          permissionResource: 'Please select permission resource',
+          scopeTypeName: 'Please enter scope type name',
+          scopeType: 'Please select scope type',
+          customFields: 'Please enter custom fields',
+          customRules: 'Please enter custom rules',
+          description: 'Please enter description',
+          sort: 'Please enter sort',
+          status: 'Please select status',
+          field: 'Please enter field',
+          operator: 'Please select operator',
+          value: 'Please enter value',
+          logic: 'Please select logic',
+          variable: 'System Variable'
         }
       }
     },

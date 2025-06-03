@@ -1,6 +1,6 @@
-import { NTag, NText } from 'naive-ui';
 import type { VNode } from 'vue';
 import { h } from 'vue';
+import { NTag, NText } from 'naive-ui';
 import { useDictStore } from '@/store/modules/dict';
 
 export function useDict() {

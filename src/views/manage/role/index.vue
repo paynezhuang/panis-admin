@@ -1,20 +1,21 @@
 <script setup lang="tsx">
-import type { UploadCustomRequestOptions, UploadInst } from 'naive-ui';
-import { NButton, NPopconfirm } from 'naive-ui';
-import { useBoolean } from '@sa/hooks';
 import { ref } from 'vue';
+import type { UploadCustomRequestOptions, UploadInst } from 'naive-ui';
+import { NButton, NDropdown, NPopconfirm } from 'naive-ui';
+import { useBoolean } from '@sa/hooks';
 import { fetchDeleteRole, fetchExportRoleData, fetchGetRoleList, fetchImportRoleData } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
-import { $t } from '@/locales';
-import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
 import { useDict } from '@/hooks/business/dict';
+import { transDeleteParams } from '@/utils/common';
 import { downloadBlob } from '@/utils/download';
+import { $t } from '@/locales';
 import RoleOperateDrawer from './modules/role-operate-drawer.vue';
 import RoleSearch from './modules/role-search.vue';
 import MenuAuthModal from './modules/menu-auth-modal.vue';
 import ButtonAuthModal from './modules/button-auth-modal.vue';
+import DataScopeAuthModal from './modules/data-scope-auth-modal.vue';
 
 const appStore = useAppStore();
 
@@ -22,12 +23,60 @@ const { bool: menuModalVisible, setTrue: openMenuModal } = useBoolean();
 
 const { bool: buttonModalVisible, setTrue: openButtonModal } = useBoolean();
 
+const { bool: dataScopeModalVisible, setTrue: openDataScopeModal } = useBoolean();
+
 const { hasAuth } = useAuth();
 
 const { dictTag } = useDict();
 
 // 定义上传组件的 ref
 const uploadRef = ref<UploadInst | null>(null);
+
+// 定义操作项权限映射表
+const operationMap = [
+  {
+    key: 'edit',
+    label: $t('common.edit'),
+    auth: hasAuth('sys:role:update'),
+    handler: (id: string) => edit(id)
+  },
+  {
+    key: 'menuAuth',
+    label: $t('page.manage.role.menuAuth'),
+    auth: hasAuth('sys:role:menu:add'),
+    handler: (id: string) => handleMenuAuth(id)
+  },
+  {
+    key: 'buttonAuth',
+    label: $t('page.manage.role.buttonAuth'),
+    auth: hasAuth('sys:role:permission:add'),
+    handler: (id: string) => handleButtonAuth(id)
+  },
+  {
+    key: 'dataScopeAuth',
+    label: $t('page.manage.role.dataScopeAuth'),
+    auth: hasAuth('sys:role:data:scope:add'),
+    handler: (id: string) => handleDataScopeAuth(id)
+  }
+] as const;
+
+// 定义下拉菜单选项
+const getDropdownOptions = () => {
+  return operationMap
+    .filter(item => item.auth)
+    .map(item => ({
+      label: item.label,
+      key: item.key
+    }));
+};
+
+// 处理下拉菜单选择
+const handleSelect = (key: string, id: string) => {
+  const operation = operationMap.find(item => item.key === key);
+  if (operation) {
+    operation.handler(id);
+  }
+};
 
 const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagination, searchParams, resetSearchParams } = useTable({
   apiFn: fetchGetRoleList,
@@ -87,43 +136,38 @@ const { columns, columnChecks, data, loading, getData, getDataByPage, mobilePagi
       key: 'operate',
       title: $t('common.operate'),
       align: 'center',
-      width: 300,
-      render: row => (
-        <div class="flex-center gap-8px">
-          {hasAuth('sys:role:menu:add') && (
-            <NButton type="primary" quaternary size="small" onClick={() => handleMenuAuth(row.id)}>
-              {$t('page.manage.role.menuAuth')}
-            </NButton>
-          )}
-          {hasAuth('sys:role:permission:add') && (
-            <NButton type="primary" quaternary size="small" onClick={() => handleButtonAuth(row.id)}>
-              {$t('page.manage.role.buttonAuth')}
-            </NButton>
-          )}
-          {hasAuth('sys:role:update') && (
-            <NButton type="primary" quaternary size="small" onClick={() => edit(row.id)}>
-              {$t('common.edit')}
-            </NButton>
-          )}
-          {hasAuth('sys:role:delete') && (
-            <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
-              {{
-                default: () => $t('common.confirmDelete'),
-                trigger: () => (
-                  <NButton type="error" quaternary size="small">
-                    {$t('common.delete')}
-                  </NButton>
-                )
-              }}
-            </NPopconfirm>
-          )}
-        </div>
-      )
+      width: 120,
+      render: row => {
+        const options = getDropdownOptions();
+        return (
+          <div class="flex-center gap-8px">
+            {options.length > 0 && (
+              <NDropdown trigger="hover" options={options} onSelect={key => handleSelect(key, row.id)}>
+                <NButton type="primary" quaternary size="small">
+                  {$t('common.operate')}
+                </NButton>
+              </NDropdown>
+            )}
+            {hasAuth('sys:role:delete') && (
+              <NPopconfirm onPositiveClick={() => handleDelete(row.id)}>
+                {{
+                  default: () => $t('common.confirmDelete'),
+                  trigger: () => (
+                    <NButton type="error" quaternary size="small">
+                      {$t('common.delete')}
+                    </NButton>
+                  )
+                }}
+              </NPopconfirm>
+            )}
+          </div>
+        );
+      }
     }
   ]
 });
 
-const { drawerVisible, operateType, editingId, editingData, handleId, handleAdd, handleEdit, checkedRowKeys, onBatchDeleted, onDeleted } =
+const { drawerVisible, operateType, editingId, editingData, handleId, handleData, handleAdd, handleEdit, checkedRowKeys, onBatchDeleted, onDeleted } =
   useTableOperate(data, getData);
 
 async function handleBatchDelete() {
@@ -154,6 +198,11 @@ function handleMenuAuth(id: string) {
 function handleButtonAuth(id: string) {
   handleId(id);
   openButtonModal();
+}
+
+function handleDataScopeAuth(id: string) {
+  handleData(id);
+  openDataScopeModal();
 }
 
 // export role data
@@ -226,6 +275,7 @@ async function customRequest({ file, onFinish }: UploadCustomRequestOptions) {
       <RoleOperateDrawer v-model:visible="drawerVisible" :operate-type="operateType" :row-data="editingData" @submitted="getDataByPage" />
       <MenuAuthModal v-model:visible="menuModalVisible" :role-id="editingId" />
       <ButtonAuthModal v-model:visible="buttonModalVisible" :role-id="editingId" />
+      <DataScopeAuthModal v-model:visible="dataScopeModalVisible" :role-id="editingData?.id || ''" :role-name="editingData?.roleName || ''" />
     </NCard>
   </div>
 </template>

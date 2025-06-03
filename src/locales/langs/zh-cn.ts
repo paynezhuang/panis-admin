@@ -449,6 +449,7 @@ const local: App.I18n.Schema = {
         description: '角色描述',
         menuAuth: '菜单权限',
         buttonAuth: '按钮权限',
+        dataScopeAuth: '数据权限',
         form: {
           roleName: '请输入角色名称',
           roleCode: '请输入角色编码',
@@ -573,6 +574,7 @@ const local: App.I18n.Schema = {
         description: '按钮描述',
         addButton: '新增按钮',
         editButton: '编辑按钮',
+        dataRules: '数据规则',
         form: {
           menuName: '请输入菜单名称',
           name: '请输入按钮名称',
@@ -689,6 +691,41 @@ const local: App.I18n.Schema = {
           releaseTime: '请输入发布时间',
           remark: '请输入备注',
           status: '请选择状态'
+        }
+      },
+      dataScope: {
+        title: '数据权限列表',
+        name: '名称',
+        code: '编码',
+        menuName: '菜单名称',
+        permissionResource: '权限资源',
+        permissionName: '权限名称',
+        scopeType: '类型',
+        scopeTypeName: '类型名称',
+        customFields: '自定义字段',
+        customRules: '自定义规则',
+        description: '描述',
+        sort: '排序',
+        status: '状态',
+        form: {
+          title: '数据权限',
+          name: '请输入名称',
+          code: '请输入编码',
+          menuName: '请选择菜单名称',
+          permissionResource: '请选择权限资源',
+          permissionName: '请选择权限名称',
+          scopeType: '请选择类型',
+          scopeTypeName: '请输入类型名称',
+          customFields: '请输入自定义字段',
+          customRules: '请输入自定义规则',
+          description: '请输入描述',
+          sort: '请输入排序',
+          status: '请选择状态',
+          field: '请输入字段',
+          operator: '请选择操作符',
+          value: '请输入值',
+          logic: '请选择逻辑运算符',
+          variable: '系统变量'
         }
       }
     },
