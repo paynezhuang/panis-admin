@@ -44,22 +44,6 @@ function createDefaultModel(): Api.SystemManage.RoleDataScope {
   };
 }
 
-/** data scope tree data */
-// const dataScopeData = shallowRef<Api.SystemManage.DataScopeTree[]>([]);
-
-/** 扁平化的数据权限规则列表，用于快速查找和构建提交数据 将三层嵌套结构（菜单 -> 权限资源 -> 权限规则）扁平化为一维数组 只包含最底层的权限规则数据 */
-// const flatDataScopes = computed(() => {
-//   return dataScopeData.value.flatMap(
-//     menu =>
-//       // 遍历每个菜单下的权限资源
-//       menu.children?.flatMap(
-//         permission =>
-//           // 提取权限资源下的所有权限规则，如果没有则返回空数组
-//           permission.children || []
-//       ) || [] // 如果菜单没有子项则返回空数组
-//   );
-// });
-
 /**
  * 将后端数据转换为 NTree 组件所需的树形结构
  *
