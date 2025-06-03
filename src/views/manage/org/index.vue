@@ -1,14 +1,14 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm } from 'naive-ui';
 import type { Ref } from 'vue';
 import { ref } from 'vue';
-import { useAuth } from '@/hooks/business/auth';
-import { useTable, useTableOperate } from '@/hooks/common/table';
-import { $t } from '@/locales';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { fetchDeleteOrgUnits, fetchGetOrgUnitsPageList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
-import { transDeleteParams } from '@/utils/common';
+import { useAuth } from '@/hooks/business/auth';
+import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useDict } from '@/hooks/business/dict';
+import { transDeleteParams } from '@/utils/common';
+import { $t } from '@/locales';
 import OrgUnitsOperateDrawer, { type OperateType } from './modules/org-units-operate-drawer.vue';
 import OrgUnitsSearch from './modules/org-units-search.vue';
 

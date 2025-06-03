@@ -1,13 +1,13 @@
 <script setup lang="tsx">
-import type { SelectOption } from 'naive-ui';
 import { computed, reactive, watch } from 'vue';
+import type { SelectOption } from 'naive-ui';
 import type { LastLevelRouteKey } from '@elegant-router/types';
-import { getLocalIcons } from '@/utils/icon';
-import SvgIcon from '@/components/custom/svg-icon.vue';
-import { $t } from '@/locales';
 import { fetchAddMenu, fetchGetEditMenuInfo, fetchUpdateMenuInfo } from '@/service/api';
 import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { useDict } from '@/hooks/business/dict';
+import { getLocalIcons } from '@/utils/icon';
+import SvgIcon from '@/components/custom/svg-icon.vue';
+import { $t } from '@/locales';
 import {
   getLayoutAndPage,
   getPathParamFromRoutePath,

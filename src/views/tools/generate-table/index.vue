@@ -1,14 +1,14 @@
 <script setup lang="tsx">
 import { NButton, NPopconfirm } from 'naive-ui';
 import { useBoolean } from '@sa/hooks';
+import { fetchDeleteGeneratorTable, fetchGetGeneratorTableList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
-import { $t } from '@/locales';
-import { fetchDeleteGeneratorTable, fetchGetGeneratorTableList } from '@/service/api';
 import { useDict } from '@/hooks/business/dict';
 import { useAuth } from '@/hooks/business/auth';
 import { transDeleteParams } from '@/utils/common';
 import { formatDateTime } from '@/utils/date';
+import { $t } from '@/locales';
 import GenerateTableSearch from './modules/generate-table-search.vue';
 import GenerateTableOperateModal from './modules/generate-table-operate-modal.vue';
 

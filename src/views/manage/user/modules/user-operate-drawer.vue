@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, reactive, watch } from 'vue';
-import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { fetchAddUser, fetchGetEditUserInfo, fetchUpdateUserInfo } from '@/service/api';
-import { $t } from '@/locales';
+import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 import { useDict } from '@/hooks/business/dict';
+import { $t } from '@/locales';
 
 defineOptions({
   name: 'UserOperateDrawer'

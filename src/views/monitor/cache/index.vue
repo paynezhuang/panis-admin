@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onActivated, ref, watch } from 'vue';
-import { $t } from '@/locales';
 import { fetchGetCacheRedisInfo } from '@/service/api';
-import { useEcharts } from '@/hooks/common/echarts';
 import { useAppStore } from '@/store/modules/app';
+import { useEcharts } from '@/hooks/common/echarts';
+import { $t } from '@/locales';
 
 defineOptions({
   name: 'MonitorCacheRedis'

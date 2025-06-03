@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { $t } from '@/locales';
 import { useDict } from '@/hooks/business/dict';
+import { $t } from '@/locales';
 
 defineOptions({
   name: 'PositionSearch'

@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { SetupStoreId } from '@/enum';
+import { defineStore } from 'pinia';
 import { fetchGetAllDictItemMap } from '@/service/api';
+import { SetupStoreId } from '@/enum';
 
 export const useDictStore = defineStore(SetupStoreId.Dict, () => {
   const dictItemMap = ref<Map<string, Api.SystemManage.DictOptions[]>>();

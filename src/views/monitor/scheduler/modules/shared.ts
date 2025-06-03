@@ -1,6 +1,6 @@
 import type { Api } from '@vitejs/plugin-vue';
-import { $t } from '@/locales';
 import { fetchImmediateJob, fetchPauseJob, fetchPauseJobGroup, fetchResumeJob, fetchResumeJobGroup } from '@/service/api';
+import { $t } from '@/locales';
 
 export type ButtonDropdownKey = 'immediate' | 'pause' | 'pauseGroup' | 'resume' | 'resumeGroup';
 

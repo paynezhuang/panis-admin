@@ -1,10 +1,10 @@
 <script setup lang="tsx">
+import { fetchGetLoginLogList } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
-import { $t } from '@/locales';
-import { fetchGetLoginLogList } from '@/service/api';
 import { useDict } from '@/hooks/business/dict';
 import { formatDateTime } from '@/utils/date';
+import { $t } from '@/locales';
 import LogsLoginSearch from './modules/login-search.vue';
 
 defineOptions({

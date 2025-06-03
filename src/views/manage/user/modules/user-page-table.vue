@@ -1,19 +1,19 @@
 <script setup lang="tsx">
-import { NButton, useModal } from 'naive-ui';
 import { computed, reactive, watch } from 'vue';
+import { NButton, useModal } from 'naive-ui';
 import { fetchDeleteUser, fetchGetUserList, fetchResetUserPassword } from '@/service/api';
-import { $t } from '@/locales';
 import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
-import { transDeleteParams } from '@/utils/common';
 import { useAuth } from '@/hooks/business/auth';
 import { useButtonAuthDropdown } from '@/hooks/common/button-auth-dropdown';
-import UserResponsibilitiesSetting from '@/views/manage/user/modules/user-responsibilities-modal.vue';
-import { useBoolean } from '~/packages/hooks';
 import { useDict } from '@/hooks/business/dict';
+import { transDeleteParams } from '@/utils/common';
+import UserResponsibilitiesSetting from '@/views/manage/user/modules/user-responsibilities-modal.vue';
+import { $t } from '@/locales';
 import UserOperateDrawer from './user-operate-drawer.vue';
 import UserSearch from './user-search.vue';
 import { collectIdsFromItem } from './shared';
+import { useBoolean } from '~/packages/hooks';
 
 defineOptions({
   name: 'UserPageListTable'

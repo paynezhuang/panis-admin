@@ -1,14 +1,14 @@
 <script setup lang="tsx">
 import type { UploadCustomRequestOptions } from 'naive-ui';
 import { NButton, NPopconfirm } from 'naive-ui';
+import { fetchDeleteFile, fetchGetFileList, fetchPreviewFile, fetchUploadFile } from '@/service/api';
 import { useAppStore } from '@/store/modules/app';
 import { useAuth } from '@/hooks/business/auth';
 import { useTable, useTableOperate } from '@/hooks/common/table';
-import { $t } from '@/locales';
-import { transDeleteParams } from '@/utils/common';
-import { fetchDeleteFile, fetchGetFileList, fetchPreviewFile, fetchUploadFile } from '@/service/api';
 import { useDict } from '@/hooks/business/dict';
+import { transDeleteParams } from '@/utils/common';
 import { formatDateTime } from '@/utils/date';
+import { $t } from '@/locales';
 import FileSearch from './modules/file-search.vue';
 
 defineOptions({

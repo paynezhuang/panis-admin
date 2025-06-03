@@ -1,13 +1,13 @@
 <script setup lang="tsx">
-import { NButton, NPopconfirm } from 'naive-ui';
 import { computed, reactive, watch } from 'vue';
-import { $t } from '@/locales';
-import { transDeleteParams } from '@/utils/common';
+import { NButton, NPopconfirm } from 'naive-ui';
 import { fetchDeleteDictItem, fetchGetDictItemPageList } from '@/service/api';
-import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useAppStore } from '@/store/modules/app';
+import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useAuth } from '@/hooks/business/auth';
 import { useDict } from '@/hooks/business/dict';
+import { transDeleteParams } from '@/utils/common';
+import { $t } from '@/locales';
 import DictItemSearch from './dict-item-search.vue';
 import DictItemOperateDrawer from './dict-item-operate-drawer.vue';
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, shallowRef, watch } from 'vue';
-import { $t } from '@/locales';
 import { fetchAddRolePermission, fetchGetMenuPermission, fetchGetRolePermissionIds } from '@/service/api';
+import { $t } from '@/locales';
 
 defineOptions({
   name: 'ButtonAuthModal'

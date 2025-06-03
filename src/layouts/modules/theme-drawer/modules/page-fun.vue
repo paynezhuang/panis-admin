@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { $t } from '@/locales';
-import { useThemeStore } from '@/store/modules/theme';
 import { resetCacheStrategyOptions, themePageAnimationModeOptions, themeScrollModeOptions, themeTabModeOptions } from '@/constants/app';
+import { useThemeStore } from '@/store/modules/theme';
 import { translateOptions } from '@/utils/common';
+import { $t } from '@/locales';
 import SettingItem from '../components/setting-item.vue';
 
 defineOptions({
@@ -93,6 +93,9 @@ const isWrapperScrollMode = computed(() => themeStore.layout.scrollMode === 'wra
     </SettingItem>
     <SettingItem key="9" :label="$t('theme.header.multilingual.visible')">
       <NSwitch v-model:value="themeStore.header.multilingual.visible" />
+    </SettingItem>
+    <SettingItem key="10" :label="$t('theme.header.globalSearch.visible')">
+      <NSwitch v-model:value="themeStore.header.globalSearch.visible" />
     </SettingItem>
   </TransitionGroup>
 </template>

@@ -4,12 +4,12 @@ import { h, onMounted, ref, shallowRef } from 'vue';
 import type { TreeOption } from 'naive-ui';
 import { NButton, NButtonGroup, NFlex, NPopconfirm } from 'naive-ui';
 import { useBoolean } from '@sa/hooks';
-import { useAuth } from '@/hooks/business/auth';
 import { fetchDeleteOrgUnits, fetchGetOrgUnits, fetchGetOrgUnitsTree } from '@/service/api';
+import { useAuth } from '@/hooks/business/auth';
+import { transDeleteParams } from '@/utils/common';
 import SvgIcon from '@/components/custom/svg-icon.vue';
 import { $t } from '@/locales';
 import OrgUnitsOperateDrawer from '@/views/manage/org/modules/org-units-operate-drawer.vue';
-import { transDeleteParams } from '@/utils/common';
 import type { OperateType } from './shared';
 
 defineOptions({

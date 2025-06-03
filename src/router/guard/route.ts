@@ -1,9 +1,9 @@
 import type { LocationQueryRaw, NavigationGuardNext, RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router';
 import type { RouteKey, RoutePath } from '@elegant-router/types';
-import { getRouteName } from '@/router/elegant/transform';
 import { useRouteStore } from '@/store/modules/route';
-import { localStg } from '@/utils/storage';
 import { useDictStore } from '@/store/modules/dict';
+import { localStg } from '@/utils/storage';
+import { getRouteName } from '@/router/elegant/transform';
 
 /**
  * create route guard

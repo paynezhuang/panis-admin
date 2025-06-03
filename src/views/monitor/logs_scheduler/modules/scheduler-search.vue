@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { $t } from '@/locales';
 import { fetchGetSchedulerAllJobNames } from '@/service/api';
+import { $t } from '@/locales';
 
 defineOptions({
   name: 'LogsSchedulerSearch'

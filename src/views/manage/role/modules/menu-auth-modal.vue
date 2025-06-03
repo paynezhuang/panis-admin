@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, reactive, shallowRef, watch } from 'vue';
 import type { TreeOption } from 'naive-ui';
-import { $t } from '@/locales';
 import { fetchAddRoleMenu, fetchGetMenuTree, fetchGetRoleMenuIds } from '@/service/api';
+import { $t } from '@/locales';
 
 defineOptions({
   name: 'MenuAuthModal'
