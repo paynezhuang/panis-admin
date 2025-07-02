@@ -160,8 +160,8 @@ init(null);
           </div>
         </NCard>
       </NGridItem>
-      <NGridItem v-if="detailVisible" span="4" class="flex flex-col">
-        <NCard :title="$t('page.manage.menu.detail')" :bordered="false" size="small" class="mb-2">
+      <NGridItem v-if="detailVisible" span="4" class="flex-col-stretch gap-8px overflow-hidden lt-sm:overflow-auto">
+        <NCard :title="$t('page.manage.menu.detail')" :bordered="false" size="small">
           <template #header-extra>
             <NFlex>
               <NButton v-if="showData.type === '1' && hasAuth('sys:menu:add')" type="primary" quaternary size="small" @click="handleAddChildMenu()">
