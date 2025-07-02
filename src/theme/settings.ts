@@ -58,7 +58,8 @@ export const themeSettings: App.Theme.ThemeSetting = {
   },
   watermark: {
     visible: false,
-    text: 'PanisAdmin'
+    text: 'PanisAdmin',
+    enableUserName: false
   },
   tokens: {
     light: {
