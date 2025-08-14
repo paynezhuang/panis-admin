@@ -164,7 +164,7 @@ async function handleAddChildOrgUnits(item: Api.SystemManage.OrgUnits) {
 <template>
   <div class="min-h-500px flex-col-stretch gap-8px overflow-hidden lt-sm:overflow-auto">
     <OrgUnitsSearch v-model:model="searchParams" @reset="resetSearchParams" @search="getDataByPage" />
-    <NCard :bordered="false" class="sm:flex-1-hidden card-wrapper" content-class="flex-col">
+    <NCard :bordered="false" class="card-wrapper sm:flex-1-hidden" content-class="flex-col">
       <TableHeaderOperation
         v-model:columns="columnChecks"
         :checked-row-keys="checkedRowKeys"

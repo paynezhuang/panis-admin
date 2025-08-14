@@ -3,21 +3,23 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
-  "editor.fontFamily": "MonoLisa-Regular",
+  "editor.fontFamily": "MonoLisa-Regular,鸿蒙黑体,Maple Mono NF CN",
   "editor.fontSize": 13,
   "editor.tabSize": 2,
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 200,
   "editor.formatOnSave": false,
-  "eslint.validate": ["html", "css", "scss", "json", "jsonc"],
+  "eslint.validate": ["html", "css", "scss", "json", "jsonc", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
   "i18n-ally.displayLanguage": "zh-cn",
   "i18n-ally.enabledParsers": ["ts"],
   "i18n-ally.enabledFrameworks": ["vue"],
   "i18n-ally.editor.preferEditor": true,
   "i18n-ally.keystyle": "nested",
   "i18n-ally.localesPaths": ["src/locales/langs"],
+  "i18n-ally.parsers.typescript.compilerOptions": {
+    "moduleResolution": "node"
+  },
   "prettier.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "unocss.root": ["./"],
-  "vue.server.hybridMode": true
+  "unocss.root": ["./"]
 }

@@ -163,7 +163,7 @@ watch(dictId, () => {
     <NCard
       :title="dict.name + `(` + dict.code + `) ` + $t('page.manage.dictItem.title')"
       :bordered="false"
-      class="sm:flex-1-hidden card-wrapper"
+      class="card-wrapper sm:flex-1-hidden"
       content-class="flex-col"
     >
       <TableHeaderOperation
