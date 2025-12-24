@@ -169,6 +169,21 @@ function handleVariableChange(value: string | null, index: number) {
   }
 }
 
+// 判断是否应该显示逻辑操作符选择器（当规则数量大于1时显示）
+const shouldShowLogic = computed(() => model.customRules.length > 1);
+
+// 监听自定义规则数组变化，当只有一个条件时自动设置为 AND
+watch(
+  () => model.customRules.length,
+  newLength => {
+    if (newLength === 1 && model.customRules[0]) {
+      // 当只有一个条件时，强制设置为 AND
+      model.customRules[0].logic = 'and';
+    }
+  },
+  { immediate: true }
+);
+
 // 监听模态框显示状态
 watch(visible, () => {
   if (visible.value) {
@@ -253,7 +268,12 @@ watch(visible, () => {
                     </NPopover>
                   </NInputGroup>
                   <!-- 逻辑 -->
-                  <NSelect v-model:value="value.logic" :options="logicTypeOptions" :placeholder="$t('page.manage.dataScope.form.logic')" />
+                  <NSelect
+                    v-if="shouldShowLogic"
+                    v-model:value="value.logic"
+                    :options="logicTypeOptions"
+                    :placeholder="$t('page.manage.dataScope.form.logic')"
+                  />
                 </NGi>
               </NGrid>
             </template>
